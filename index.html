@@ -151,6 +151,19 @@
   .tip{font-size:15px;color:var(--muted);margin:14px 0;padding-left:14px;border-left:2px solid var(--line-strong)}
   .tip b{color:var(--ink);font-weight:500}
 
+  /* mnemonic cards */
+  .tricks{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:14px;margin:18px 0}
+  .trick{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .trick .kind{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:9px}
+  .trick .say{font-family:var(--display);font-size:16px;font-weight:500;line-height:1.4;margin:0 0 9px;color:var(--ink)}
+  .trick .say em{font-style:italic;color:var(--muted);font-weight:400}
+  .trick .use{margin:0;font-size:14.5px;color:var(--muted);line-height:1.5}
+  .trick .use b{color:var(--ink);font-weight:500}
+  .trick .lim{margin:10px 0 0;padding-top:9px;border-top:1px dashed var(--line-strong);font-size:13.5px;color:#a4642a;line-height:1.45}
+  .trick .lim b{color:#8a5220;font-weight:700}
+  .trick.solid .lim{color:var(--dat)}
+  .trick.solid .lim b{color:var(--dat)}
+
   /* cheat sheet */
   .cheat{background:#ffffff;color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:clamp(24px,4vw,40px);margin-top:46px}
   .cheat h2{font-family:var(--display);color:var(--ink);margin:0 0 6px;font-size:26px;letter-spacing:-.02em}
@@ -215,6 +228,7 @@
           <li><a href="#s17">Comparison</a></li>
           <li><a href="#s18">n-Deklination</a></li>
           <li><a href="#cheat">Cheat sheet</a></li>
+          <li><a href="#tricks">Eselsbrücken — memory tricks</a></li>
         </ol>
       </nav>
       </div>
@@ -713,6 +727,340 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- 19 -->
+    <section id="tricks">
+      <div class="sec-head"><span class="num">19</span><h2>Eselsbrücken — the tricks learners actually use</h2></div>
+      <p class="lead">German calls a mnemonic an <b>Eselsbrücke</b> ("donkey bridge"). These are the chants, acronyms and rules-of-thumb in real circulation among learners and German teachers — mapped onto every section above. Each card says where the trick <b>stops working</b>, because a memory hook you trust too far becomes a mistake you repeat.</p>
+
+      <div class="rule"><span class="tag">How to read these</span><div>A <b>green note</b> means the trick is watertight inside its stated scope. An <b>amber note</b> means it's useful but leaks — learn the limit with the trick. The <a href="#traps" style="color:var(--accent)">traps table</a> at the end lists popular tricks that are simply wrong.</div></div>
+
+      <h3 class="subhead">§1 · The four cases</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">The W→D swap</span>
+          <p class="say">Wer? · Wen? · Wem? · Wessen?<br><em>swap the W for a D →</em><br>der · den · dem · des</p>
+          <p class="use">Chant the four question words in fixed order; changing the W to a D hands you the matching article as a free check.</p>
+          <p class="lim"><b>Masculine singular only.</b> Feminine (die/die/<b>der</b>/der), neuter and plural all break it. Feminine Dativ <em>der</em> is the classic trap — it looks like a Nominativ masculine.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">First heuristic</span>
+          <p class="say"><em>wen?</em> = direct object<br><em>wem?</em> = indirect object ("to/for whom")</p>
+          <p class="use">Fine as your <b>opening guess</b> when parsing a new sentence.</p>
+          <p class="lim"><b>Not a rule.</b> Dativ verbs take Dativ as their <em>only</em> object (<em>Ich helfe dir</em> — nothing indirect about it), and Akkusativ shows up after <em>für/durch</em> and in bare time phrases (<em>Ich bleibe einen Monat</em>) with no object role at all.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§2 · Dativ verbs</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">Cluster, don't list</span>
+          <p class="say">ritual · <em>danken, gratulieren</em><br>pleasing &amp; fitting · <em>gefallen, schmecken, passen</em><br>help &amp; answer · <em>helfen, antworten</em><br>follow &amp; meet · <em>folgen, begegnen</em><br>belong · <em>gehören</em></p>
+          <p class="use">Six small groups beat one flat list of eleven. This is what teachers fall back on because <b>no acronym or rhyme exists</b> for the Dativ verbs.</p>
+          <p class="lim"><b>glauben is two-faced:</b> <em>Ich glaube <span class="c dat">dir</span></em> (Dativ = I believe <em>you</em>) but <em>Ich glaube <span class="c akk">die Geschichte</span></em> (Akkusativ = I believe <em>the story</em>). Person → Dativ, thing → Akkusativ.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Study method</span>
+          <p class="say">Never learn <em>helfen</em>.<br>Learn <em>Ich helfe <span class="c dat">dir</span>.</em></p>
+          <p class="use">Store the verb inside a full mini-sentence with the case already attached. The chunk carries the grammar so you don't have to recall a rule under pressure.</p>
+          <p class="lim"><b>No caveat</b> — the reason this keeps getting recommended is that the Dativ-verb list genuinely has no internal logic to exploit.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§3 · Adjective endings</h3>
+      <div class="tricks">
+        <div class="trick solid">
+          <span class="kind">Faustregel · weak</span>
+          <p class="say">After <em>der/die/das</em>:<br><b>-e</b> in exactly five slots —<br>Nom. sing. m/f/n + Akk. sing. f/n.<br><b>-en</b> everywhere else.</p>
+          <p class="use">Collapses the 16-cell weak table into one boundary. The whole plural, and every Dativ and Genitiv, is <b>-en</b>.</p>
+          <p class="lim"><b>Exact — inside its scope.</b> Says nothing about <em>ein</em>-words or article-less nouns. For those, use the card beside it.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">The "weird article" hack</span>
+          <p class="say">Normal article <em>(der, die, das, ein, eine)</em> → <b>-e</b><br>Weird article <em>(den, dem, des, einen, einem, plural die)</em> → <b>-en</b></p>
+          <p class="use">A fast one-pass guess when you can't afford to reconstruct the table mid-sentence.</p>
+          <p class="lim"><b>~70–80% accurate</b> by its own author's count. It breaks on bare <em>ein</em> (<em>ein gut<b>er</b> Wein</em>, <em>ein gut<b>es</b> Buch</em>) and on no-article nouns (<em>gut<b>er</b> Wein</em>) — exactly where the adjective has to carry the signal itself.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">The principle underneath</span>
+          <p class="say">German marks the case <b>once</b> per noun phrase.<br>Article marks it → adjective goes weak.<br>Article can't → adjective goes strong.</p>
+          <p class="use">Explains <em>why</em> table C exists: with no article, the adjective inherits the der/die/das job (<em>-er, -es, -em</em>).</p>
+          <p class="lim"><b>Never phrase this as "→ -en".</b> The sloppy version — "if the article shows the case, use -en" — predicts <em>der gut<b>en</b> Mann</em>, which is wrong. It picks strong vs weak, not <em>-e</em> vs <em>-en</em>.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§4 · Fixed-case prepositions</h3>
+      <div class="tricks">
+        <div class="trick solid">
+          <span class="kind">Akkusativ · acronym</span>
+          <p class="say"><b>DOGFU</b><br><em>durch · ohne · gegen · für · um</em></p>
+          <p class="use">The five safe ones. Also sold as <b>O-FUDGE</b> or <b>FUDGO</b> — same letters, same five words.</p>
+          <p class="lim"><b>Deliberately incomplete, and better for it.</b> The longer <b>FUDGEBOW</b> adds <em>bis, entlang, wider</em> — precisely the three that misbehave. See the traps table.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Akkusativ · rhyme</span>
+          <p class="say">„Durch, für, gegen, ohne, um —<br>Deutsch zu lernen ist nicht dumm."</p>
+          <p class="use">Classroom staple. Same five as DOGFU, but it scans, so it sticks.</p>
+          <p class="lim"><b>Clean.</b> Covers only the safe five, and makes no claim beyond them.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Dativ · the famous song</span>
+          <p class="say"><em>aus, außer, bei, mit,<br>nach, seit, von, zu</em><br><em style="color:var(--faint)">→ sung to</em> An der schönen blauen Donau</p>
+          <p class="use">The single most recognisable German mnemonic in the English-speaking world. Strauss's waltz carries eight prepositions effortlessly.</p>
+          <p class="lim"><b>Drops <em>gegenüber</em></b> (and <em>ab</em>). No great loss — <em>gegenüber</em> usually <b>follows</b> its object anyway (<em>mir gegenüber</em>), so it wouldn't fit the line.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Dativ · the complete one</span>
+          <p class="say"><em>aus, bei, mit, nach</em> ×2<br><em>seit, von, zu</em> ×2<br><em>außer, gegenüber</em> ×2<br><em>mit dem Dativ</em> ×2<br><em style="color:var(--faint)">→ Bruder Jakob / Frère Jacques</em></p>
+          <p class="use">Same idea, but it actually fits <em>gegenüber</em> in. Use this one if you want the full set.</p>
+          <p class="lim"><b>Complete</b> for all nine. Only the rare <em>ab</em> is missing.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Dativ · German schools</span>
+          <p class="say">„Mit, nach, von, seit, aus, zu, bei —<br>verlangen stets Fall Nummer drei."</p>
+          <p class="use">What German kids get taught. "Fall Nummer drei" = the 3rd case = Dativ.</p>
+          <p class="lim"><b>Assumes the German numbering</b> (1./2./3./4. Fall). Also omits <em>außer</em> and <em>gegenüber</em>.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§5 · Wechselpräpositionen</h3>
+      <div class="tricks">
+        <div class="trick solid">
+          <span class="kind">The rhyme that does both jobs</span>
+          <p class="say">„An, auf, hinter, neben, in,<br>über, unter, vor und zwischen —<br>schreib mit dem dritten Falle so,<br>wenn du fragen kannst mit <b>Wo?</b>;<br>mit dem vierten Falle hin,<br>wenn du fragen kannst: <b>Wohin?</b>"</p>
+          <p class="use">All nine prepositions <b>and</b> the wo/wohin test in one breath. The best single Eselsbrücke in German grammar.</p>
+          <p class="lim"><b>Accurate.</b> One scope note: these nine only alternate in their <em>literal spatial</em> sense. In fixed expressions the case is locked and the test doesn't apply — <em>Ich denke <b>an dich</b></em> is Akkusativ with zero movement.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Sharpen the test</span>
+          <p class="say"><em>wohin?</em> = <b>destination reached</b><br>not merely "there is movement"</p>
+          <p class="use">Ask whether the phrase names <b>where something ends up</b>. If it names the space the action happens <em>inside</em>, it's <em>wo?</em> → Dativ.</p>
+          <p class="lim"><b>This is the fix for the #1 error.</b> <em>Ich laufe <span class="c dat">im Park</span></em> — full of movement, still Dativ, because the park is the location, not the goal. Compare <em>Ich laufe <span class="c akk">in den Park</span></em>.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§6 · Genitiv prepositions</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">The school Merkspruch</span>
+          <p class="say">„Oberhalb und unterhalb,<br>innerhalb und außerhalb,<br>trotz, unweit, während, wegen, statt —<br>den 2. Fall stets bei sich hat."</p>
+          <p class="use">Nine Genitiv prepositions in four lines, including the <em>-halb</em> family your guide lists.</p>
+          <p class="lim"><b>„stets" is a lie.</b> In speech, <em>wegen, trotz, während, statt</em> routinely take Dativ (<em>wegen dem Wetter</em>). And with a bare plural the Dativ is effectively <b>required</b> — <em>wegen Geschäften</em>, since a bare Genitiv plural shows no marking at all.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Register hook</span>
+          <p class="say">„Der Dativ ist dem Genitiv sein Tod."</p>
+          <p class="use">Bastian Sick's bestselling book title — every German recognises it. It names the exact drift above: the Dativ eating the Genitiv in everyday speech.</p>
+          <p class="lim"><b>The title is deliberately ungrammatical</b> — it's the joke. Write Genitiv in exams; expect Dativ in the bakery.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§7 · Reflexive verbs</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">The golden rule</span>
+          <p class="say">No other object → reflexive is <span class="c akk">Akkusativ</span><br>Already an Akkusativ object → reflexive bumps to <span class="c dat">Dativ</span></p>
+          <p class="use"><em>Ich wasche <span class="c akk">mich</span></em> → add a thing → <em>Ich wasche <span class="c dat">mir</span> <span class="c akk">die Hände</span></em>.</p>
+          <p class="lim"><b>~80–90%.</b> Verbs with a lexically fixed reflexive (<em>sich etwas leisten</em>, <em>sich etwas merken</em>) have to be learned whole — there's no rule to derive them from.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Scope-shrinker</span>
+          <p class="say">Only <b>ich</b> and <b>du</b> can betray you.<br><em>mich/mir · dich/dir</em></p>
+          <p class="use">Everywhere else the Akk/Dat reflexive is identical — <em>sich, uns, euch, sich</em>. So the whole distinction is <b>four forms</b>, not a table.</p>
+          <p class="lim"><b>Simply true.</b> No caveats.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§8 · Verbs + preposition · wo(r)- / da(r)-</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">Animacy split</span>
+          <p class="say">Things <b>fuse</b>: <em>Worauf wartest du? — Ich warte darauf.</em><br>People <b>don't</b>: <em>Auf wen wartest du? — Ich warte auf ihn.</em></p>
+          <p class="use">One question decides the whole construction: is the thing you're waiting for a <b>person</b> or not?</p>
+          <p class="lim"><b>Footnote:</b> <em>da</em>-compounds also point <em>forward</em> to a following clause — <em>Ich freue mich <b>darauf</b>, dass du kommst</em> — which isn't a "thing" at all. Colloquial German also says <em>mit was, auf was</em>; the wo-forms are the written standard.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">The euphonic -r-</span>
+          <p class="say">Preposition starts with a <b>vowel</b> → insert <b>-r-</b><br><em>da + auf → dar<b>auf</b> · wo + über → wor<b>über</b></em><br>Consonant → no r: <em>davon, damit, womit</em></p>
+          <p class="use">Purely mechanical. Say it out loud once and you'll hear why the r is there.</p>
+          <p class="lim"><b>No exceptions.</b> Watch out though — this rule circulates online <em>with broken examples</em>. Trust the rule, check the example.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§9 · Word order</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">TeKaMoLo</span>
+          <p class="say"><b>Te</b>mporal → <b>Ka</b>usal → <b>Mo</b>dal → <b>Lo</b>kal<br><em>wann? → warum? → wie? → wo/wohin?</em></p>
+          <p class="use">The default order of the middle field. English materials also use <b>ZAP</b> (Zeit–Art–Platz) or plain "Time, Manner, Place".</p>
+          <p class="lim"><b>A tendency, not a rule</b> — emphasis and given-before-new override it constantly, and fronting anything to position 1 breaks the sequence by design. ZAP is worse: it has no slot for <em>kausal</em>. Use TeKaMoLo when you have no reason to do otherwise.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">V2 · say it in full</span>
+          <p class="say">The verb is the second <b>element</b> —<br>never the second <b>word</b>.</p>
+          <p class="use">A five-word phrase still occupies exactly one position: <em>[Am nächsten Montag] <u>fahre</u> ich…</em></p>
+          <p class="lim"><b>The rider is the trick.</b> Drop it and learners count words and write <em>Gestern ich bin gegangen</em>. Also: V2 is main clauses only — yes/no questions and imperatives put the verb first.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Two objects, what order?</span>
+          <p class="say">pronoun + pronoun → <span class="c akk">Akk</span> first<br>noun + noun → <span class="c dat">Dat</span> first<br>one of each → <b>pronoun first</b>, whatever its case</p>
+          <p class="use"><em>Ich gebe <span class="c dat">dem Mann</span> <span class="c akk">das Buch</span></em> · <em>Ich gebe <span class="c akk">es</span> <span class="c dat">ihm</span></em> · <em>Ich gebe <span class="c akk">es</span> <span class="c dat">dem Mann</span></em>.</p>
+          <p class="lim"><b>Three clean rules.</b> There's an acronym for this (PAD DAN PIN) but it's more confusing than the rules — skip it.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§10 · Subordinate clauses</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">Verb kickers</span>
+          <p class="say"><em>weil, dass, wenn, obwohl…</em><br>= <b>verb kickers</b>. They kick the verb to the end.</p>
+          <p class="use">Names the whole class by what it does, so you stop memorising conjunctions one at a time.</p>
+          <p class="lim"><b>It's the <em>finite</em> verb that goes last</b> — behind the participle: <em>…, weil ich gearbeitet <b>habe</b></em>. "The verb goes last" is ambiguous in Perfekt and with modals.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">The counter-list</span>
+          <p class="say">Five conjunctions that <b>don't</b> kick:<br><em>und · aber · denn · oder · sondern</em></p>
+          <p class="use">A closed list of five. Everything else that introduces a clause sends the verb to the end — so learn the exceptions, not the rule.</p>
+          <p class="lim"><b>Clean and closed.</b> This is the fix for the <em>denn</em>/<em>weil</em> confusion flagged in §10 — same meaning, opposite word order.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§11 · Relative clauses</h3>
+      <div class="tricks">
+        <div class="trick solid">
+          <span class="kind">The two-step</span>
+          <p class="say"><b>Gender &amp; number from the outside.<br>Case from the inside.</b></p>
+          <p class="use">Look left to the noun for m/f/n/pl; look inside the clause for the pronoun's job. Two independent questions, never one.</p>
+          <p class="lim"><b>Reliable.</b> Two footnotes: a preposition in front overrides the internal role (<em>der Mann, <b>mit dem</b>…</em>), and the forms aren't quite the articles — Genitiv is <em>dessen/deren</em>, Dativ plural is <em>denen</em>.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§12 · Perfekt — sein or haben?</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">The classic — and its repair</span>
+          <p class="say">Old: "movement or change of state → <em>sein</em>"<br><br>Better: <em>sein</em> needs <b>both</b> —<br>① no Akkusativ object <b>and</b><br>② change of place or state<br>③ + four outliers</p>
+          <p class="use">The two-condition version survives the cases the short one fails. Outliers to memorise: <em>sein (ist gewesen), bleiben (ist geblieben), werden, passieren/gelingen</em>.</p>
+          <p class="lim"><b>The short version misfires badly.</b> <em>bleiben</em> is the opposite of movement yet takes <em>sein</em>. Non-directional motion takes <em>haben</em> (<em>Ich <b>habe</b> getanzt/geschwommen</em>). And transitive always wins: <em>Ich <b>habe</b> meinen Bruder gefahren</em> vs <em>Ich <b>bin</b> nach München gefahren</em>.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Minimal pair</span>
+          <p class="say"><em>schlafen</em> → <b>haben</b><br><em>ein</em>schlafen → <b>sein</b></p>
+          <p class="use">Staying in a state takes <em>haben</em>; the <b>transition into</b> it takes <em>sein</em>. Same for <em>sitzen/sich setzen</em>, <em>stehen/aufstehen</em>, <em>wachen/aufwachen</em>.</p>
+          <p class="lim"><b>Clean.</b> Regional note: in the south and in Austria <em>ich bin gestanden / gesessen / gelegen</em> is standard.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§13 · Partizip I &amp; II</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">Meaning cue</span>
+          <p class="say">Partizip I is <b>doing it</b>.<br>Partizip II <b>has had it done</b>.<br><em>der lachende Mann · der geschriebene Brief</em></p>
+          <p class="use">Active-and-ongoing vs completed. Matches the <em>kochend/gekocht</em> pair in §13.</p>
+          <p class="lim"><b>Don't say "Partizip II = passive".</b> That only holds for transitive verbs. With <em>sein</em>-verbs it stays active: <em>die <b>angekommenen</b> Gäste</em> — nobody arrived them.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Shape cue</span>
+          <p class="say">Partizip I = Infinitiv + <b>-d</b><br>Partizip II ≈ <b>ge-</b> + stem + <b>-t/-en</b></p>
+          <p class="use">Fastest way to tell them apart on sight. <em>lachen → lachend</em>; <em>schreiben → geschrieben</em>.</p>
+          <p class="lim"><b>The <em>ge-</em> half leaks.</b> No <em>ge-</em> on inseparable prefixes (<em>besucht, verstanden, erklärt</em>) or <em>-ieren</em> verbs (<em>studiert</em>). With separable prefixes the <em>ge-</em> hides in the middle: <em>ein<b>ge</b>kauft</em>.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§14 · Passiv</h3>
+      <div class="tricks">
+        <div class="trick solid">
+          <span class="kind">The one to memorise</span>
+          <p class="say"><b>worden</b>, never <b>geworden</b>.<br><em>Das Haus ist gebaut <b>worden</b>.</em></p>
+          <p class="use">In the Perfekt passive, <em>werden</em> drops its <em>ge-</em>. <em>geworden</em> is only for <em>werden</em> as a full verb — "became".</p>
+          <p class="lim"><b>Exact, no exceptions.</b> Highest-value single fact in the whole passive topic.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">werden vs sein</span>
+          <p class="say"><em>Die Tür <b>wird</b> geöffnet</em> — the process<br><em>Die Tür <b>ist</b> geöffnet</em> — the result</p>
+          <p class="use">Vorgangspassiv (something is happening) vs Zustandspassiv (something stands done). The bridge: <em>werden</em> = "to become", so the subject <b>becomes</b> the done-to.</p>
+          <p class="lim"><b>Accurate.</b> With a modal, the <em>werden</em> infinitive goes dead last: <em>Der Brief muss geschrieben <b>werden</b>.</em></p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§15 · Konjunktiv II</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">The famous few</span>
+          <p class="say">Learn ~11 real forms as vocabulary:<br><em>wäre, hätte, könnte, müsste, sollte, wollte, dürfte, möchte, wüsste, ginge, käme</em><br>Everything else → <b>würde + Infinitiv</b></p>
+          <p class="use">Matches how natives actually speak. The reason: for weak verbs the Konjunktiv II is <b>identical to the Präteritum</b> (<em>ich sagte</em> = both), so <em>würde</em> disambiguates.</p>
+          <p class="lim"><b>Modals never take <em>würde</em></b> — they have their own forms. Note <em>sollte</em> and <em>wollte</em> look exactly like their Präteritum (no umlaut to give them away).</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Style rule</span>
+          <p class="say">Prefer the real form in the <em>wenn</em>-clause:<br><em>Wenn ich Zeit <b>hätte</b>…</em><br>rather than <em>…haben würde</em></p>
+          <p class="use">Good written style, and it's what the §15 example does.</p>
+          <p class="lim"><b>Usually taught as a ban — it isn't one.</b> <em>würde</em> in the <em>wenn</em>-clause is common in speech and not ungrammatical. For weak verbs it's often the only clear option, since <em>wenn er mich fragte</em> reads as past tense.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§17 · als vs wie</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">Letter-height Eselsbrücke</span>
+          <p class="say">In <b>als</b>, the <b>l</b> stands taller than the <b>a</b> → <b>unequal</b><br>In <b>wie</b>, w–i–e sit at the same height → <b>equal</b></p>
+          <p class="use">A genuine native-speaker trick. <em>größer <b>als</b></em> (unequal) vs <em>so groß <b>wie</b></em> (equal).</p>
+          <p class="lim"><b>Typographically shaky</b> — fails in capitals and handwriting. It also targets a <em>native</em> error: <em>„größer wie"</em> is widespread in colloquial and southern German, so this is a correctness marker, not a comprehension one.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Four-word version</span>
+          <p class="say">„Gleich <b>wie</b> — ungleich <b>als</b>."</p>
+          <p class="use">Equal → <em>wie</em>. Unequal → <em>als</em>. Nothing else to remember.</p>
+          <p class="lim"><b>Accurate.</b> Just don't over-apply it: <em>als</em> also means "when" (<em>als ich jung war</em>) and "in the capacity of" (<em>als Lehrer</em>).</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">§18 · n-Deklination</h3>
+      <div class="tricks">
+        <div class="trick">
+          <span class="kind">The closest thing to a rule</span>
+          <p class="say"><b>masculine + ends in -e + living being</b><br>→ n-Deklination<br><em>der Junge, Kollege, Kunde, Neffe, Löwe, Affe, Franzose</em></p>
+          <p class="use">Very few masculine <em>-e</em> nouns escape this, so it's a strong positive test.</p>
+          <p class="lim"><b>Sufficient, not necessary</b> — it misses the whole suffix group. And the abstract <em>-e</em> nouns (<em>Name, Gedanke, Wille, Glaube</em>) are <b>mixed</b>: <em>-n</em> in Akk/Dat but <em>-<b>ns</b></em> in the Genitiv, exactly as §18 notes for <em>des Namens</em>.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Suffix list</span>
+          <p class="say"><b>-e · -ent · -ant · -ist · -oge · -at · -and · -graf</b><br><em>Student, Präsident, Elefant, Polizist, Biologe, Soldat, Fotograf</em></p>
+          <p class="use">Catches the Greek/Latin agent nouns, which is most of what you'll meet at B1.</p>
+          <p class="lim"><b>Leaks both ways.</b> <em>-at</em> over-generates (<em>das Resultat, das Zitat</em> are neuter, not weak). And it misses the no-suffix crowd: <em>der Herr, Bauer, Nachbar, Mensch, Held, Prinz, Bär</em> — pure memorisation.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">The rogue</span>
+          <p class="say"><em>der <b>Herr</b></em> takes <b>-n</b> in the singular<br>but <b>-en</b> in the plural.<br><em>an Herr<b>n</b> Schmidt · die Herr<b>en</b></em></p>
+          <p class="use">High-frequency enough to be worth its own card — you'll write it in every formal email.</p>
+          <p class="lim"><b>Exact.</b> Register note: the n-declension is nearly extinct in casual speech (<em>mit dem Student</em> is common). Correct in writing regardless.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead" id="traps">Tricks to avoid — popular but wrong</h3>
+      <div class="rule warn"><span class="tag">Warning</span><div>All of these circulate widely. Each one reliably produces errors, so learn them as things <b>not</b> to internalise.</div></div>
+      <div class="tbl">
+        <table>
+          <caption>Known-bad mnemonics and what to use instead</caption>
+          <thead><tr><th>The trick</th><th>Why it fails</th><th>Use instead</th></tr></thead>
+          <tbody>
+            <tr><th>MOACC / PODAT<br><span style="font-weight:400;color:var(--muted)">"motion → Akk, position → Dat"</span></th><td>Motion <em>inside</em> a space is Dativ: <em>Ich laufe <span class="c dat">im Park</span></em>, <em>Die Kinder spielen <span class="c dat">auf der Straße</span></em>. The split is goal vs location, not moving vs still.</td><td>The <em>wohin? / wo?</em> rhyme — destination vs location.</td></tr>
+            <tr><th>FUDGEBOW<br><span style="font-weight:400;color:var(--muted)">the E = entlang</span></th><td><em>entlang</em> is Akkusativ only when it <b>follows</b> the noun (<em>den Fluss entlang</em>). In front it takes Genitiv or Dativ. The acronym teaches <em>entlang den Fluss</em> — wrong.</td><td><b>DOGFU</b>, then learn <em>entlang</em> separately as a postposition.</td></tr>
+            <tr><th>"bis = Akkusativ"</th><td><em>bis</em> almost never governs a bare article. It stacks: <em>bis <b>zu der</b> Brücke</em> → the <em>zu</em> sets Dativ.</td><td>Treat <em>bis</em> as a stacker, not a case-giver.</td></tr>
+            <tr><th>"wem = indirect object"</th><td>Breaks on Dativ verbs (<em>Ich helfe dir</em> — the only object), Akkusativ prepositions, and time phrases.</td><td>Ask the verb's own question; check the Dativ-verb list in §2.</td></tr>
+            <tr><th>"article shows the case → adjective takes -en"</th><td>Predicts <em>der gut<b>en</b> Mann</em>. The principle picks strong vs weak, not the literal ending.</td><td>The weak Faustregel: <b>-e</b> in five slots, <b>-en</b> elsewhere.</td></tr>
+            <tr><th>"movement → sein"</th><td>Misses <em>bleiben, sein, werden, passieren</em>; wrongly predicts <em>sein</em> for <em>getanzt/geschwommen</em> and for transitive <em>Ich habe ihn gefahren</em>.</td><td>The two-condition rule: no Akkusativ object <b>and</b> a change of place/state.</td></tr>
+            <tr><th>"Partizip II = passive"</th><td>False for intransitive <em>sein</em>-verbs: <em>die angekommenen Gäste</em> is active.</td><td>"Ongoing vs completed."</td></tr>
+            <tr><th>Genitiv Merkspruch's <em>„stets"</em></th><td><em>wegen/trotz/während/statt</em> take Dativ constantly in speech, and <b>must</b> with bare plurals (<em>wegen Geschäften</em>).</td><td>Keep the rhyme, read <em>stets</em> as "in writing".</td></tr>
+            <tr><th>"Never <em>würde</em> in the wenn-clause"</th><td>A style preference presented as a ban. It's normal in speech and often unavoidable with weak verbs.</td><td>"Prefer the synthetic form where one exists."</td></tr>
+            <tr><th>„neben, unten, vor und zwischen…"</th><td>Rhymes, teaches nothing about case, and <em>unten</em> isn't even a preposition.</td><td>The <em>wo/wohin</em> rhyme.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="tip"><b>If you only keep ten:</b> DOGFU · the Bruder-Jakob Dativ chant · the <em>wo/wohin</em> rhyme · <em>-e</em> in five slots, <em>-en</em> elsewhere · gender from outside, case from inside · verb kickers + the five that don't · the two-condition <em>sein</em> rule · <em>worden</em> not <em>geworden</em> · <em>„Gleich wie — ungleich als"</em> · masculine + <em>-e</em> + living being.</p>
+
       <footer>Deutsch B1.2 · find the verb → ask the question → label every part</footer>
     </section>
 
