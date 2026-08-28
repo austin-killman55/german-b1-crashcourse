@@ -178,25 +178,25 @@
 
   .drill{margin-top:18px}
   .drill .dhead{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
-  .q{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin:10px 0}
-  .q .qt{margin:0 0 10px;font-size:16.5px;line-height:1.55}
-  .q .qt em{color:var(--muted);font-size:14.5px;font-style:italic}
-  .q .qt b{font-weight:700}
-  .q .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  .q input[type=text]{font-family:var(--body);font-size:16px;padding:7px 11px;border:1px solid var(--line-strong);border-radius:8px;min-width:170px;flex:1 1 170px;background:#fff;color:var(--ink)}
-  .q input[type=text]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
-  .q button{font-family:var(--display);font-size:13px;font-weight:500;padding:8px 15px;border-radius:8px;border:1px solid var(--line-strong);background:#f3f4f6;color:var(--ink);cursor:pointer}
-  .q button:hover{background:#e9ebef}
-  .q .fb{font-size:14.5px;font-family:var(--display);font-weight:500}
-  .q.ok{border-color:#b7e2c9;background:var(--dat-bg)}
-  .q.ok .fb{color:var(--dat)}
-  .q.no{border-color:#f2c9ca;background:var(--akk-bg)}
-  .q.no .fb{color:var(--akk)}
-  .q details{margin-top:10px}
-  .q details summary{cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-  .q details summary:hover{color:var(--accent)}
-  .q details .ans{margin-top:9px;font-size:15.5px;line-height:1.55;color:var(--ink);padding-left:13px;border-left:2px solid var(--accent)}
-  .q details .ans em{color:var(--muted)}
+  .drill .q{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin:10px 0}
+  .drill .q .qt{margin:0 0 10px;font-size:16.5px;line-height:1.55}
+  .drill .q .qt em{color:var(--muted);font-size:14.5px;font-style:italic}
+  .drill .q .qt b{font-weight:700}
+  .drill .q .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .drill .q input[type=text]{font-family:var(--body);font-size:16px;padding:7px 11px;border:1px solid var(--line-strong);border-radius:8px;min-width:170px;flex:1 1 170px;background:#fff;color:var(--ink)}
+  .drill .q input[type=text]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  .drill .q button{font-family:var(--display);font-size:13px;font-weight:500;padding:8px 15px;border-radius:8px;border:1px solid var(--line-strong);background:#f3f4f6;color:var(--ink);cursor:pointer}
+  .drill .q button:hover{background:#e9ebef}
+  .drill .q .fb{font-size:14.5px;font-family:var(--display);font-weight:500}
+  .drill .q.ok{border-color:#b7e2c9;background:var(--dat-bg)}
+  .drill .q.ok .fb{color:var(--dat)}
+  .drill .q.no{border-color:#f2c9ca;background:var(--akk-bg)}
+  .drill .q.no .fb{color:var(--akk)}
+  .drill .q details{margin-top:10px}
+  .drill .q details summary{cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .drill .q details summary:hover{color:var(--accent)}
+  .drill .q details .ans{margin-top:9px;font-size:15.5px;line-height:1.55;color:var(--ink);padding-left:13px;border-left:2px solid var(--accent)}
+  .drill .q details .ans em{color:var(--muted)}
 
   /* mnemonic cards */
   .tricks{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:14px;margin:18px 0}
@@ -222,6 +222,18 @@
 
   footer{color:var(--faint);font-size:13px;text-align:center;margin-top:60px;font-family:var(--mono);letter-spacing:.04em}
 
+  .sub a{color:var(--accent);text-decoration:none;border-bottom:1px solid #bcd3fb}
+  .sub a:hover{border-bottom-color:var(--accent)}
+
+  /* chapter switcher */
+  .chapswitch{display:flex;flex-direction:column;gap:6px;margin:0 0 20px}
+  .chapswitch a{display:flex;align-items:baseline;gap:8px;text-decoration:none;border:1px solid var(--line);
+    border-radius:9px;padding:9px 11px;font-family:var(--display);font-size:13px;font-weight:500;color:var(--muted);background:#fff}
+  .chapswitch a .tagn{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .chapswitch a:hover{border-color:var(--line-strong);color:var(--ink)}
+  .chapswitch a[aria-current="page"]{background:#eef1fb;border-color:#cfdcf8;color:var(--ink)}
+  .chapswitch a[aria-current="page"] .tagn{color:var(--accent)}
+
   /* ---------- responsive: fold sidebar ---------- */
   @media (max-width:860px){
     .wrap{grid-template-columns:1fr}
@@ -240,6 +252,11 @@
   <!-- SIDEBAR -->
   <aside>
     <div class="brand">Deutsch B1.2<span>Grammatik · Crash Course</span></div>
+
+    <div class="chapswitch">
+      <a href="index.html" aria-current="page"><span class="tagn">Sheet 1</span> Grammar A1–B1.2</a>
+      <a href="kapitel-3.html"><span class="tagn">Sheet 2</span> Kapitel 3 · Medien</a>
+    </div>
 
     <div class="legend" aria-label="Case colour key">
       <div class="lg-title">The four cases</div>
@@ -298,6 +315,7 @@
       <div class="kicker">Everything up to B1.2 · in one place</div>
       <h1>Read a sentence the way<br>your teacher <em>takes it apart</em>.</h1>
       <p class="sub">Find the verb, ask the case question, and label every piece. Every case-marked word below is tinted by its case, so you start to <em>see</em> the grammar.</p>
+      <p class="sub" style="font-size:16px;margin-top:12px">Working through <b>Begegnungen B1<sup>+</sup></b>? <a href="kapitel-3.html">Kapitel 3 · Medien</a> has its own sheet — Passiv, Konjunktiv II, reflexive verbs and the D2 verb list with English.</p>
 
       <div class="diagram">
         <div class="dlabel">The method, in one sentence</div>

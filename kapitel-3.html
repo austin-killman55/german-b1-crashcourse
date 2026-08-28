@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>Begegnungen B1+ · Kapitel 3 — Medien</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:light only;
+    --ink:#1b1d24;
+    --muted:#6a6f7b;
+    --faint:#9aa0ab;
+    --paper:#f4f5f7;
+    --card:#ffffff;
+    --line:#e4e6ea;
+    --line-strong:#d3d6dc;
+    --header:#181b22;
+    --accent:#3b82f6;
+
+    /* the four cases — the spine of the whole guide */
+    --nom:#3b82f6;   --nom-bg:#e6effd;
+    --akk:#d83f45;   --akk-bg:#fdecec;
+    --dat:#1f9d5b;   --dat-bg:#e7f6ee;
+    --gen:#7c50e6;   --gen-bg:#f0ebfc;
+
+    --display:'Space Grotesk',system-ui,sans-serif;
+    --body:'Newsreader',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;background:#ffffff}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    margin:0;background:#ffffff;color:var(--ink);
+    font-family:var(--body);font-size:18px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- layout ---------- */
+  .wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:0;max-width:1180px;margin:0 auto;background:#ffffff}
+  .main{padding:0 clamp(20px,5vw,64px) 120px;min-width:0;background:#ffffff}
+
+  /* ---------- sidebar ---------- */
+  aside{
+    position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:#ffffff;
+    padding:34px 22px 40px;border-right:1px solid var(--line);
+  }
+  aside .brand{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;line-height:1.1}
+  aside .brand span{display:block;font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.18em;color:var(--faint);text-transform:uppercase;margin-top:8px}
+  .legend{margin:22px 0 26px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .legend .lg-title{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+  .legend ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .legend li{display:flex;align-items:center;gap:10px;font-size:14px}
+  .swatch{width:13px;height:13px;border-radius:4px;flex:none}
+  .legend .q{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto}
+  nav ol{list-style:none;margin:0;padding:0;counter-reset:s}
+  nav li{counter-increment:s}
+  nav a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--muted);
+    font-family:var(--display);font-size:13.5px;font-weight:500;padding:6px 8px;border-radius:7px;line-height:1.25;
+  }
+  nav a::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:10px;color:var(--faint);flex:none}
+  nav a:hover{color:var(--ink);background:#eef0f3}
+  nav a:focus-visible{outline:2px solid var(--nom);outline-offset:2px}
+
+  /* ---------- hero ---------- */
+  header.hero{background:#ffffff;color:var(--ink);border-bottom:1px solid var(--line);padding:clamp(40px,7vw,84px) clamp(20px,5vw,64px) clamp(44px,6vw,72px);margin:0 calc(-1*clamp(20px,5vw,64px)) 0}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  header.hero h1{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1.02;font-size:clamp(38px,7vw,66px);margin:16px 0 0}
+  header.hero h1 em{font-style:normal;color:var(--accent)}
+  header.hero .sub{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:44ch;margin:20px 0 0;line-height:1.5}
+
+  /* diagrammed hero sentence */
+  .diagram{margin:40px 0 0;padding:26px clamp(18px,3vw,30px);background:#f5f6f9;border:1px solid var(--line);border-radius:16px}
+  .diagram .dlabel{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .dsent{display:flex;flex-wrap:wrap;gap:10px 12px;font-family:var(--body);font-size:clamp(20px,3.3vw,30px);line-height:1.3}
+  .tok{display:flex;flex-direction:column;gap:7px}
+  .tok .w{padding:1px 7px;border-radius:6px;font-weight:500}
+  .tok .t{font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-align:center;color:var(--muted);text-transform:uppercase}
+  .tok.plain .w{color:var(--ink)}
+  .w.nom{background:var(--nom-bg);color:var(--nom)}
+  .w.akk{background:var(--akk-bg);color:var(--akk)}
+  .w.dat{background:var(--dat-bg);color:var(--dat)}
+  .w.gen{background:var(--gen-bg);color:var(--gen)}
+  .diagram .dgloss{font-style:italic;color:var(--muted);font-size:15px;margin-top:18px}
+
+  /* ---------- sections ---------- */
+  section{padding-top:52px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;border-bottom:2px solid var(--accent);padding-bottom:12px}
+  .sec-head .num{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--accent);flex:none}
+  .sec-head h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(24px,3.6vw,32px);margin:0;line-height:1.1;color:var(--accent)}
+  .lead{color:var(--muted);font-size:17px;margin:16px 0 24px;max-width:64ch}
+  .lead b, p b{color:var(--ink);font-weight:500}
+
+  h3.subhead{font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-.01em;margin:30px 0 4px;color:var(--ink)}
+
+  /* rule callout */
+  .rule{display:flex;gap:13px;background:#eef1fb;border:1px solid #d9e2fa;border-left:3px solid var(--accent);border-radius:10px;padding:15px 18px;margin:18px 0;font-size:16px;line-height:1.5}
+  .rule .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;padding-top:4px;flex:none}
+  .rule.warn{background:#fdf2ec;border-color:#f6d9c6;border-left-color:#d97a3a}
+  .rule.warn .tag{color:#c76a2c}
+
+  /* example card + parse */
+  .ex{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;margin:18px 0}
+  .ex .de{font-size:clamp(19px,2.6vw,23px);line-height:1.4;font-weight:500}
+  .ex .en{font-style:italic;color:var(--muted);font-size:16px;margin-top:5px}
+  .parse{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+  .parse li{display:grid;grid-template-columns:auto auto 1fr;gap:10px 12px;align-items:baseline;font-size:15px}
+  @media (max-width:520px){.parse li{grid-template-columns:1fr;gap:4px}}
+  .parse .p{font-weight:500;padding:1px 7px;border-radius:6px;white-space:nowrap;font-size:16px}
+  .parse .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px;white-space:nowrap}
+  .parse .exp{color:var(--muted);font-size:15px}
+  .parse .exp em{color:var(--ink);font-style:italic}
+
+  /* case tinting utilities */
+  .nom{background:var(--nom-bg);color:var(--nom)} .lab.nom{background:none;color:var(--nom)}
+  .akk{background:var(--akk-bg);color:var(--akk)} .lab.akk{background:none;color:var(--akk)}
+  .dat{background:var(--dat-bg);color:var(--dat)} .lab.dat{background:none;color:var(--dat)}
+  .gen{background:var(--gen-bg);color:var(--gen)} .lab.gen{background:none;color:var(--gen)}
+  .lab.neutral{color:var(--faint)}
+  .p.plain{background:#f0f1f3;color:var(--ink)}
+
+  /* inline colored word in prose */
+  .c{padding:0 5px;border-radius:5px;font-weight:500}
+  .c.nom{background:var(--nom-bg);color:var(--nom)}
+  .c.akk{background:var(--akk-bg);color:var(--akk)}
+  .c.dat{background:var(--dat-bg);color:var(--dat)}
+  .c.gen{background:var(--gen-bg);color:var(--gen)}
+
+  /* tables */
+  .tbl{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:12px;background:#ffffff}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:460px;background:#ffffff}
+  caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 16px 6px;background:#ffffff}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);background:#ffffff;color:var(--ink)}
+  thead th{background:#f3f4f6;font-family:var(--display);font-weight:500;font-size:13px;color:var(--muted)}
+  tbody th{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--ink);background:#fafbfc}
+  tr:last-child td,tr:last-child th{border-bottom:none}
+  td .end{font-weight:700}
+  td.n{color:var(--nom)} td.a{color:var(--akk)} td.d{color:var(--dat)} td.g{color:var(--gen)}
+
+  /* mini two-column compare */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  @media (max-width:640px){.split{grid-template-columns:1fr}}
+  .split .ex{margin:0}
+
+  .tip{font-size:15px;color:var(--muted);margin:14px 0;padding-left:14px;border-left:2px solid var(--line-strong)}
+  .tip b{color:var(--ink);font-weight:500}
+
+  /* ---------- exercise mode ---------- */
+  .modebar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    margin:0 calc(-1*clamp(20px,5vw,64px));padding:12px clamp(20px,5vw,64px)}
+  .switch{display:flex;align-items:center;gap:11px;cursor:pointer;-webkit-user-select:none;user-select:none}
+  .switch input{position:absolute;opacity:0;width:0;height:0}
+  .switch .track{width:44px;height:25px;border-radius:999px;background:#d6d9df;flex:none;padding:3px;transition:background .18s}
+  .switch .knob{display:block;width:19px;height:19px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.28);transition:transform .18s}
+  .switch input:checked + .track{background:var(--accent)}
+  .switch input:checked + .track .knob{transform:translateX(19px)}
+  .switch input:focus-visible + .track{outline:2px solid var(--nom);outline-offset:2px}
+  .switch .lbl{font-family:var(--display);font-size:14px;font-weight:500}
+  .modehint{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-left:auto}
+  .modehint b{color:var(--accent);font-weight:700}
+
+  /* the flip — no JS needed */
+  .drill{display:none}
+  body:has(#mode:checked) .drill{display:block}
+  body:has(#mode:checked) section > *:not(.sec-head):not(.drill):not(footer){display:none}
+  body:has(#mode:checked) header.hero .diagram,
+  body:has(#mode:checked) header.hero .sub{display:none}
+  body:has(#mode:checked) .ref-label{display:none}
+  .drill-label{display:none}
+  body:has(#mode:checked) .drill-label{display:inline}
+
+  .drill{margin-top:18px}
+  .drill .dhead{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .drill .q{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin:10px 0}
+  .drill .q .qt{margin:0 0 10px;font-size:16.5px;line-height:1.55}
+  .drill .q .qt em{color:var(--muted);font-size:14.5px;font-style:italic}
+  .drill .q .qt b{font-weight:700}
+  .drill .q .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .drill .q input[type=text]{font-family:var(--body);font-size:16px;padding:7px 11px;border:1px solid var(--line-strong);border-radius:8px;min-width:170px;flex:1 1 170px;background:#fff;color:var(--ink)}
+  .drill .q input[type=text]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  .drill .q button{font-family:var(--display);font-size:13px;font-weight:500;padding:8px 15px;border-radius:8px;border:1px solid var(--line-strong);background:#f3f4f6;color:var(--ink);cursor:pointer}
+  .drill .q button:hover{background:#e9ebef}
+  .drill .q .fb{font-size:14.5px;font-family:var(--display);font-weight:500}
+  .drill .q.ok{border-color:#b7e2c9;background:var(--dat-bg)}
+  .drill .q.ok .fb{color:var(--dat)}
+  .drill .q.no{border-color:#f2c9ca;background:var(--akk-bg)}
+  .drill .q.no .fb{color:var(--akk)}
+  .drill .q details{margin-top:10px}
+  .drill .q details summary{cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .drill .q details summary:hover{color:var(--accent)}
+  .drill .q details .ans{margin-top:9px;font-size:15.5px;line-height:1.55;color:var(--ink);padding-left:13px;border-left:2px solid var(--accent)}
+  .drill .q details .ans em{color:var(--muted)}
+
+  /* mnemonic cards */
+  .tricks{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:14px;margin:18px 0}
+  .trick{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .trick .kind{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;display:block;margin-bottom:9px}
+  .trick .say{font-family:var(--display);font-size:16px;font-weight:500;line-height:1.4;margin:0 0 9px;color:var(--ink)}
+  .trick .say em{font-style:italic;color:var(--muted);font-weight:400}
+  .trick .use{margin:0;font-size:14.5px;color:var(--muted);line-height:1.5}
+  .trick .use b{color:var(--ink);font-weight:500}
+  .trick .lim{margin:10px 0 0;padding-top:9px;border-top:1px dashed var(--line-strong);font-size:13.5px;color:#a4642a;line-height:1.45}
+  .trick .lim b{color:#8a5220;font-weight:700}
+  .trick.solid .lim{color:var(--dat)}
+  .trick.solid .lim b{color:var(--dat)}
+
+  /* cheat sheet */
+  .cheat{background:#ffffff;color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:clamp(24px,4vw,40px);margin-top:46px}
+  .cheat h2{font-family:var(--display);color:var(--ink);margin:0 0 6px;font-size:26px;letter-spacing:-.02em}
+  .cheat .cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;margin-top:24px}
+  .cheat h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+  .cheat ul{margin:0;padding-left:18px;font-size:15px;line-height:1.7;color:var(--muted)}
+  .cheat ul b{color:var(--ink);font-weight:500}
+  .cheat code{font-family:var(--mono);font-size:13px;color:var(--accent)}
+
+  footer{color:var(--faint);font-size:13px;text-align:center;margin-top:60px;font-family:var(--mono);letter-spacing:.04em}
+
+  /* ---------- responsive: fold sidebar ---------- */
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr}
+    aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px}
+    aside .toc-wrap{margin-top:12px}
+    nav ol{columns:2;column-gap:18px}
+    header.hero{margin:0 calc(-1*clamp(20px,5vw,64px)) 0}
+  }
+  details.mtoc summary{cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+  @media (min-width:861px){details.mtoc{display:block}details.mtoc summary{display:none}details.mtoc[open]>*{}}
+
+  /* ================= Kapitel 3 additions ================= */
+
+  /* topic colours reuse the case palette so the two sheets feel like one system */
+  :root{
+    --inf:#d83f45;  --inf-bg:#fdecec;   /* infinitive constructions */
+    --pas:#3b82f6;  --pas-bg:#e6effd;   /* Passiv                   */
+    --kon:#7c50e6;  --kon-bg:#f0ebfc;   /* Konjunktiv II            */
+    --ref:#1f9d5b;  --ref-bg:#e7f6ee;   /* Reflexive                */
+    --voc:#b8791f;  --voc-bg:#fbf1e0;   /* Wortschatz               */
+  }
+  .c.inf{background:var(--inf-bg);color:var(--inf)}
+  .c.pas{background:var(--pas-bg);color:var(--pas)}
+  .c.kon{background:var(--kon-bg);color:var(--kon)}
+  .c.ref{background:var(--ref-bg);color:var(--ref)}
+  .w.inf{background:var(--inf-bg);color:var(--inf)}
+  .w.pas{background:var(--pas-bg);color:var(--pas)}
+  .w.kon{background:var(--kon-bg);color:var(--kon)}
+  .w.ref{background:var(--ref-bg);color:var(--ref)}
+  .p.inf{background:var(--inf-bg);color:var(--inf)}
+  .p.pas{background:var(--pas-bg);color:var(--pas)}
+  .p.kon{background:var(--kon-bg);color:var(--kon)}
+  .p.ref{background:var(--ref-bg);color:var(--ref)}
+  .lab.inf{color:var(--inf)} .lab.pas{color:var(--pas)}
+  .lab.kon{color:var(--kon)} .lab.ref{color:var(--ref)}
+
+  /* per-section accent — the section heading + rules pick up the topic colour */
+  section[data-topic="inf"]{--accent:var(--inf)}
+  section[data-topic="pas"]{--accent:var(--pas)}
+  section[data-topic="kon"]{--accent:var(--kon)}
+  section[data-topic="ref"]{--accent:var(--ref)}
+  section[data-topic="voc"]{--accent:var(--voc)}
+  section[data-topic="voc"] .rule{background:var(--voc-bg);border-color:#f0dfc2;border-left-color:var(--voc)}
+  section[data-topic="inf"] .rule{background:var(--inf-bg);border-color:#f6d3d4;border-left-color:var(--inf)}
+  section[data-topic="kon"] .rule{background:var(--kon-bg);border-color:#ded2f7;border-left-color:var(--kon)}
+  section[data-topic="ref"] .rule{background:var(--ref-bg);border-color:#c9e9d7;border-left-color:var(--ref)}
+
+  /* chapter switcher in the sidebar */
+  .chapswitch{display:flex;flex-direction:column;gap:6px;margin:0 0 20px}
+  .chapswitch a{display:flex;align-items:baseline;gap:8px;text-decoration:none;border:1px solid var(--line);
+    border-radius:9px;padding:9px 11px;font-family:var(--display);font-size:13px;font-weight:500;color:var(--muted);background:#fff}
+  .chapswitch a .tagn{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+  .chapswitch a:hover{border-color:var(--line-strong);color:var(--ink)}
+  .chapswitch a[aria-current="page"]{background:#eef1fb;border-color:#cfdcf8;color:var(--ink)}
+  .chapswitch a[aria-current="page"] .tagn{color:var(--accent)}
+
+  /* verb dictionary */
+  .verbtbl table{min-width:760px;font-size:14.5px}
+  .verbtbl td.de{font-family:var(--display);font-weight:500;white-space:nowrap}
+  .verbtbl td.en{color:var(--muted);font-style:italic;min-width:190px}
+  .verbtbl .stem{color:var(--akk);font-weight:700}
+  .verbtbl .aux-sein{color:var(--dat);font-weight:700}
+  .verbtbl tbody tr:hover td,.verbtbl tbody tr:hover th{background:#f7f8fa}
+  .pill{display:inline-block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:2px 7px;border-radius:999px;border:1px solid var(--line-strong);color:var(--muted);background:#fff;white-space:nowrap}
+  .pill.sein{color:var(--dat);border-color:#b7e2c9;background:var(--dat-bg)}
+  .pill.haben{color:var(--muted)}
+  .pill.refl{color:var(--ref);border-color:#c9e9d7;background:var(--ref-bg)}
+  .pill.prep{color:var(--voc);border-color:#f0dfc2;background:var(--voc-bg)}
+
+  /* vowel-pattern family cards */
+  .fams{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:13px;margin:18px 0}
+  .fam{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .fam .pat{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--akk);letter-spacing:.04em}
+  .fam .patname{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:3px}
+  .fam ul{list-style:none;margin:11px 0 0;padding:0;font-size:14.5px;line-height:1.65;color:var(--muted)}
+  .fam ul b{color:var(--ink);font-weight:500;font-family:var(--display)}
+
+  /* vocabulary list */
+  .vocab{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:16px 0;background:#fff}
+  .vocab .vhead{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--voc);
+    background:var(--voc-bg);padding:11px 16px;border-bottom:1px solid var(--line);font-weight:700}
+  .vocab dl{margin:0;display:grid;grid-template-columns:minmax(210px,.9fr) 1.1fr}
+  @media (max-width:600px){.vocab dl{grid-template-columns:1fr}}
+  .vocab dt{padding:9px 16px;border-bottom:1px solid var(--line);font-family:var(--display);font-weight:500;font-size:15.5px}
+  .vocab dd{padding:9px 16px;border-bottom:1px solid var(--line);margin:0;color:var(--muted);font-size:15px;font-style:italic}
+  @media (max-width:600px){.vocab dt{border-bottom:none;padding-bottom:1px}.vocab dd{padding-top:1px}}
+  .vocab dt .art{color:var(--faint);font-weight:400}
+  .vocab dt .art.m{color:var(--nom)} .vocab dt .art.f{color:var(--akk)} .vocab dt .art.n{color:var(--dat)}
+  .vocab dl>dt:last-of-type,.vocab dl>dd:last-of-type{border-bottom:none}
+
+  /* verb trainer */
+  .trainer{background:var(--card);border:1px solid var(--line-strong);border-radius:14px;padding:20px 22px;margin:22px 0}
+  .trainer .thead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .trainer .thead h4{font-family:var(--display);font-size:17px;font-weight:700;margin:0;letter-spacing:-.01em}
+  .trainer .score{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-left:auto}
+  .trainer .score b{color:var(--dat)}
+  .trainer .score i{color:var(--akk);font-style:normal}
+  .modes{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+  .modes button{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;
+    border-radius:999px;border:1px solid var(--line-strong);background:#fff;color:var(--muted);cursor:pointer}
+  .modes button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+  .prompt{font-family:var(--display);font-size:clamp(20px,3vw,26px);font-weight:500;line-height:1.35;margin:0 0 4px}
+  .prompthint{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 14px}
+  .trainer .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .trainer input[type=text]{font-family:var(--body);font-size:17px;padding:9px 13px;border:1px solid var(--line-strong);
+    border-radius:9px;flex:1 1 220px;min-width:170px;background:#fff;color:var(--ink)}
+  .trainer input[type=text]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  .trainer .go{font-family:var(--display);font-size:14px;font-weight:500;padding:9px 18px;border-radius:9px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+  .trainer .go.ghost{background:#fff;color:var(--ink)}
+  .verdict{margin:13px 0 0;font-size:16px;line-height:1.5;min-height:1.5em}
+  .verdict.ok{color:var(--dat)} .verdict.no{color:var(--akk)}
+  .verdict .full{display:block;color:var(--muted);font-size:14.5px;margin-top:5px;font-style:italic}
+
+  /* can-do checklist */
+  .cando{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;margin:18px 0}
+  .cando .chead{display:grid;grid-template-columns:1fr 62px 78px;font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--faint);background:#f3f4f6;padding:10px 16px;border-bottom:1px solid var(--line)}
+  .cando label{display:grid;grid-template-columns:1fr 62px 78px;align-items:center;gap:8px;padding:11px 16px;
+    border-bottom:1px solid var(--line);font-size:15.5px;cursor:pointer}
+  .cando label:last-child{border-bottom:none}
+  .cando label:hover{background:#fafbfc}
+  .cando input{justify-self:center;width:17px;height:17px;accent-color:var(--accent);cursor:pointer}
+  .cando .en{display:block;color:var(--muted);font-style:italic;font-size:14px;margin-top:2px}
+
+  /* comparison strip: aktiv → passiv */
+  .flip{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;margin:16px 0;
+    background:#f5f6f9;border:1px solid var(--line);border-radius:13px;padding:18px 20px}
+  @media (max-width:640px){.flip{grid-template-columns:1fr;gap:8px}.flip .arrow{transform:rotate(90deg);justify-self:start}}
+  .flip .side{font-size:17px;line-height:1.45}
+  .flip .side .who{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:6px}
+  .flip .arrow{font-family:var(--mono);color:var(--faint);font-size:19px}
+
+  /* back-to-top / print helpers */
+  @media print{aside,.modebar,.trainer,.drill{display:none}.wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="brand">Kapitel 3 · Medien<span>Begegnungen B1<sup>+</sup> · S. 71–97</span></div>
+
+    <div class="chapswitch">
+      <a href="index.html"><span class="tagn">Sheet 1</span> Grammar A1–B1.2</a>
+      <a href="kapitel-3.html" aria-current="page"><span class="tagn">Sheet 2</span> Kapitel 3 · Medien</a>
+    </div>
+
+    <div class="legend" aria-label="Topic colour key">
+      <div class="lg-title">Colour key</div>
+      <ul>
+        <li><span class="swatch" style="background:var(--inf)"></span> Infinitiv <span class="q">um … zu</span></li>
+        <li><span class="swatch" style="background:var(--pas)"></span> Passiv <span class="q">werden</span></li>
+        <li><span class="swatch" style="background:var(--kon)"></span> Konjunktiv II <span class="q">hätte</span></li>
+        <li><span class="swatch" style="background:var(--ref)"></span> Reflexiv <span class="q">sich</span></li>
+        <li><span class="swatch" style="background:var(--voc)"></span> Wortschatz <span class="q">D2</span></li>
+      </ul>
+    </div>
+
+    <details class="mtoc" open>
+      <summary>Contents</summary>
+      <div class="toc-wrap">
+      <nav aria-label="Contents">
+        <ol>
+          <li><a href="#s1">Purpose infinitives · um … zu</a></li>
+          <li><a href="#s2">Passiv · the three tenses</a></li>
+          <li><a href="#s3">Passiv + Modalverben</a></li>
+          <li><a href="#s4">Ways around the Passiv</a></li>
+          <li><a href="#s5">Konjunktiv II · present</a></li>
+          <li><a href="#s6">Konjunktiv II · past</a></li>
+          <li><a href="#s7">Reflexive Verben</a></li>
+          <li><a href="#verbs">D2 · Verb dictionary</a></li>
+          <li><a href="#trainer">Verb trainer</a></li>
+          <li><a href="#w1">Wortschatz · Lesen</a></li>
+          <li><a href="#w2">Wortschatz · Medien</a></li>
+          <li><a href="#w3">Wortschatz · Fernsehen</a></li>
+          <li><a href="#w4">Redemittel · Hypothesen</a></li>
+          <li><a href="#cheat">Cheat sheet</a></li>
+          <li><a href="#test">Mixed test · 20 items</a></li>
+          <li><a href="#cando">D3 · Ich kann …</a></li>
+        </ol>
+      </nav>
+      </div>
+    </details>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="modebar">
+      <label class="switch">
+        <input type="checkbox" id="mode">
+        <span class="track"><span class="knob"></span></span>
+        <span class="lbl">Übungsmodus — turn the whole sheet into practice questions</span>
+      </label>
+      <span class="modehint"><span class="ref-label">Reference</span><b class="drill-label">Exercises</b></span>
+    </div>
+
+    <header class="hero">
+      <div class="kicker">Begegnungen B1<sup>+</sup> · Kapitel 3 · Medien</div>
+      <h1>Five grammar points,<br>twenty-two verbs, <em>one page</em>.</h1>
+      <p class="sub">Everything Kapitel 3 asks of you — purpose infinitives, the Passiv in three tenses, Passiv with modals, Konjunktiv II in the present <em>and</em> the past, and reflexive verbs — explained in English, with the D2 verb list glossed and drillable.</p>
+
+      <div class="diagram">
+        <div class="dlabel">The chapter's signature sentence</div>
+        <div class="dsent">
+          <span class="tok"><span class="w nom">Der Film</span><span class="t">Nom · subject</span></span>
+          <span class="tok"><span class="w pas">musste</span><span class="t">Modalverb</span></span>
+          <span class="tok plain"><span class="w">für das Fernsehen</span><span class="t">Angabe</span></span>
+          <span class="tok"><span class="w pas">synchronisiert</span><span class="t">Partizip II</span></span>
+          <span class="tok"><span class="w pas">werden</span><span class="t">Infinitiv · last</span></span>
+        </div>
+        <div class="dgloss">The film had to be dubbed for television. — Modal conjugated, Partizip II, then <em>werden</em> dead last.</div>
+      </div>
+    </header>
+
+    <!-- 1 -->
+    <section id="s1" data-topic="inf">
+      <div class="sec-head"><span class="num">01</span><h2>Sinngerichtete Infinitivkonstruktionen</h2></div>
+      <p class="lead"><b>"Purpose-directed infinitive constructions."</b> Four little connectors that let you glue a second idea onto a sentence without a second conjugated verb: <b>um … zu</b> (in order to), <b>ohne … zu</b> (without doing), <b>(an)statt … zu</b> (instead of doing), and their escape hatch <b>damit</b>. The whole topic turns on <em>one</em> question: <b>do both halves have the same subject?</b></p>
+
+      <div class="rule"><span class="tag">The rule</span><div><b>Same subject in both halves → use the infinitive</b> (<em>um/ohne/statt … zu</em>). <b>Different subjects → use the dass-form</b> (<em>damit / ohne dass / statt dass</em>) with a full conjugated verb at the end.</div></div>
+
+      <h3 class="subhead">um … zu — "in order to"</h3>
+      <p>The purpose one. It answers <b>Wozu?</b> / <b>Warum?</b> — <em>what for?</em> The infinitive clause has <b>no subject of its own</b>; it silently borrows the subject of the main clause.</p>
+
+      <div class="ex">
+        <p class="de">Ich lese jeden Abend, <span class="c inf">um</span> besser <span class="c inf">einzuschlafen</span>.</p>
+        <p class="en">I read every evening in order to fall asleep more easily.</p>
+        <ul class="parse">
+          <li><span class="p nom">Ich</span><span class="lab nom">Subject</span><span class="exp">One subject, shared by both halves — that is what licenses <em>um … zu</em>.</span></li>
+          <li><span class="p inf">um … zu</span><span class="lab inf">Frame</span><span class="exp"><em>um</em> opens the clause, <em>zu + Infinitiv</em> closes it. Everything else sits in between.</span></li>
+          <li><span class="p inf">ein<b>zu</b>schlafen</span><span class="lab inf">Trennbar</span><span class="exp">Separable verb → <em>zu</em> climbs <b>inside</b>, between prefix and stem. <em>einschlafen → einzuschlafen</em>, <em>aufstehen → aufzustehen</em>, <em>fernsehen → fernzusehen</em>.</span></li>
+        </ul>
+      </div>
+
+      <div class="tip"><b>The English test.</b> If you can say "<em>in order to</em>" in English and it still sounds right, German wants <em>um … zu</em>. If the verb simply <b>demands</b> a zu-infinitive (<em>ich habe vor, ich versuche, ich hoffe, es ist wichtig</em>), you use bare <em>zu + Infinitiv</em> with <b>no <em>um</em></b>: <em>Ich habe vor, ein Buch zu lesen.</em> Adding <em>um</em> there is one of the most common B1 mistakes.</div>
+
+      <h3 class="subhead">damit — when the subjects differ</h3>
+      <p><em>damit</em> introduces a proper subordinate clause: it has its own subject and its own conjugated verb, which goes <b>to the end</b>.</p>
+
+      <div class="split">
+        <div class="ex">
+          <p class="de">Ich spreche langsam, <span class="c inf">um</span> deutlich <span class="c inf">zu sein</span>.</p>
+          <p class="en">I speak slowly in order to be clear.</p>
+          <p class="tip" style="margin-bottom:0"><b>Same subject</b> (ich → ich). Infinitive is the natural choice.</p>
+        </div>
+        <div class="ex">
+          <p class="de">Ich spreche langsam, <span class="c inf">damit</span> alle mich <span class="c inf">verstehen</span>.</p>
+          <p class="en">I speak slowly so that everyone understands me.</p>
+          <p class="tip" style="margin-bottom:0"><b>Different subjects</b> (ich → alle). Only <em>damit</em> works here.</p>
+        </div>
+      </div>
+
+      <div class="rule warn"><span class="tag">Warning</span><div><em>damit</em> is <b>always allowed</b>, even with the same subject — <em>Ich lese, damit ich besser einschlafe</em> is grammatical. But <em>um … zu</em> is <b>not</b> allowed when the subjects differ. So when you are unsure, <em>damit</em> is the safe fallback; when the subjects match, <em>um … zu</em> is the better style.</div></div>
+
+      <h3 class="subhead">ohne … zu — "without doing something"</h3>
+      <p>Note what German does <b>not</b> do: there is no gerund. English "without <em>reading</em>" becomes German "ohne … <b>zu lesen</b>".</p>
+      <div class="ex">
+        <p class="de">Er sieht den ganzen Abend fern, <span class="c inf">ohne</span> ein Wort <span class="c inf">zu sagen</span>.</p>
+        <p class="en">He watches TV all evening without saying a word.</p>
+        <p class="tip" style="margin-bottom:0">Different subjects → <b>ohne dass</b>: <em>Er schaltete den Fernseher ein, <span class="c inf">ohne dass</span> die anderen es merkten.</em> — He switched the TV on without the others noticing.</p>
+      </div>
+
+      <h3 class="subhead">(an)statt … zu — "instead of doing something"</h3>
+      <p><em>statt</em> and <em>anstatt</em> are interchangeable; <em>statt</em> is more common in speech. This construction very often comes <b>first</b> in the sentence, which pushes the main verb into position 2 straight after the comma.</p>
+      <div class="ex">
+        <p class="de"><span class="c inf">Statt</span> ein Buch <span class="c inf">zu lesen</span>, sieht er lieber fern.</p>
+        <p class="en">Instead of reading a book, he'd rather watch TV.</p>
+        <p class="tip" style="margin-bottom:0">The whole infinitive clause occupies position 1, so the conjugated verb <em>sieht</em> comes immediately after the comma, <b>before</b> the subject. Different subjects → <b>(an)statt dass</b>.</p>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <caption>The four connectors at a glance</caption>
+          <thead><tr><th>Same subject</th><th>Different subjects</th><th>Means</th><th>Answers</th></tr></thead>
+          <tbody>
+            <tr><th>um … zu</th><td>damit</td><td>in order to / so that</td><td>Wozu? Warum?</td></tr>
+            <tr><th>ohne … zu</th><td>ohne dass</td><td>without doing</td><td>— (negative accompaniment)</td></tr>
+            <tr><th>(an)statt … zu</th><td>(an)statt dass</td><td>instead of doing</td><td>— (rejected alternative)</td></tr>
+            <tr><th>zu + Infinitiv <span style="font-weight:400;color:var(--muted)">(no um!)</span></th><td>dass</td><td>required by the main verb</td><td>Was?</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip"><b>Where does <em>zu</em> go?</b> Simple verb → <em>zu lesen</em>, two words. Separable verb → one word with <em>zu</em> in the seam: <em>fern<b>zu</b>sehen, ein<b>zu</b>kaufen, an<b>zu</b>rufen, auf<b>zu</b>stehen</em>. Inseparable verb → two words again: <em>zu verstehen, zu bekommen, zu erfinden</em>.</div>
+
+      <div class="drill">
+        <div class="dhead">§01 · um … zu / damit / ohne … zu / statt … zu</div>
+        <div class="q" data-a="um">
+          <p class="qt">Ich kaufe ein Tablet, ___ unterwegs lesen zu können. <em>(um oder damit?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="damit">
+          <p class="qt">Ich schalte die Untertitel ein, ___ meine Frau den Film versteht. <em>(um oder damit?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="fernzusehen">
+          <p class="qt">Statt ein Buch zu lesen, beschließt er, den ganzen Abend ___. <em>(fernsehen → zu-Infinitiv)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="einzuschalten">
+          <p class="qt">Er verlässt das Zimmer, ohne den Fernseher ___. <em>(einschalten)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="zu lesen">
+          <p class="qt">Ich habe vor, heute Abend ein Buch ___. <em>(lesen — careful: um or no um?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="ohne dass">
+          <p class="qt">Die Kinder sahen fern, ___ die Eltern es bemerkten. <em>(ohne … zu oder ohne dass?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why is <em>„Ich lese laut vor, um meine Kinder einschlafen."</em> wrong — twice over?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">Two faults. (1) The subjects differ — <b>ich</b> read, <b>the children</b> fall asleep — so <em>um … zu</em> is illegal; it must be <em>damit meine Kinder einschlafen</em>. (2) Even structurally, <em>um … zu</em> needs the <em>zu</em>: <em>einzuschlafen</em>, never bare <em>einschlafen</em>.</div></details>
+        </div>
+        <div class="q">
+          <p class="qt">Rewrite with <em>statt … zu</em>: <em>Er liest kein Buch. Er spielt an der Spielkonsole.</em></p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em><b>Statt</b> ein Buch <b>zu lesen</b>, spielt er an der Spielkonsole.</em> — the infinitive clause takes position 1, so the conjugated verb <em>spielt</em> follows the comma directly, before the subject <em>er</em>.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section id="s2" data-topic="pas">
+      <div class="sec-head"><span class="num">02</span><h2>Passiv — Präsens, Präteritum, Perfekt</h2></div>
+      <p class="lead">German uses the passive far more than English does, especially in writing about processes: how a book <b>is printed</b>, how a film <b>was dubbed</b>, what <b>was discovered</b> in the 15th century. The recipe never changes: <b>werden + Partizip II</b>. Only the form of <em>werden</em> moves with the tense.</p>
+
+      <div class="rule"><span class="tag">The recipe</span><div><b>werden</b> (conjugated, position 2) <b>+ Partizip II</b> (dead last). The Akkusativ object of the active sentence becomes the Nominativ subject of the passive.</div></div>
+
+      <div class="flip">
+        <div class="side"><span class="who">Aktiv</span><span class="c nom">Der Verlag</span> druckt <span class="c akk">das Buch</span>.</div>
+        <div class="arrow">→</div>
+        <div class="side"><span class="who">Passiv</span><span class="c nom">Das Buch</span> <span class="c pas">wird</span> (vom Verlag) <span class="c pas">gedruckt</span>.</div>
+      </div>
+      <p class="tip">The <span class="c akk">Akkusativ object</span> is promoted to <span class="c nom">Nominativ subject</span>. The old subject is demoted to an optional <em>von</em>-phrase — and in real German it is usually just <b>dropped</b>. That is the entire point of the passive: the doer is unknown, irrelevant, or obvious.</p>
+
+      <h3 class="subhead">The three tenses you need</h3>
+      <div class="tbl">
+        <table>
+          <caption>Passiv forms — <em>das Buch drucken</em></caption>
+          <thead><tr><th>Tense</th><th>Formula</th><th>Example</th><th>English</th></tr></thead>
+          <tbody>
+            <tr><th>Präsens</th><td><b>wird</b> + Partizip II</td><td>Das Buch <b>wird</b> gedruckt.</td><td>is being printed</td></tr>
+            <tr><th>Präteritum</th><td><b>wurde</b> + Partizip II</td><td>Das Buch <b>wurde</b> gedruckt.</td><td>was printed</td></tr>
+            <tr><th>Perfekt</th><td><b>ist</b> + Partizip II + <b>worden</b></td><td>Das Buch <b>ist</b> gedruckt <b>worden</b>.</td><td>has been printed</td></tr>
+            <tr><th>Plusquamperfekt</th><td><b>war</b> + Partizip II + <b>worden</b></td><td>Das Buch <b>war</b> gedruckt <b>worden</b>.</td><td>had been printed</td></tr>
+            <tr><th>Futur I</th><td><b>wird</b> + Partizip II + <b>werden</b></td><td>Das Buch <b>wird</b> gedruckt <b>werden</b>.</td><td>will be printed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rule warn"><span class="tag">Memorise exactly</span><div>In the Perfekt passive it is <b>worden</b>, never <b>geworden</b>. <em>Das Haus ist gebaut <b>worden</b>.</em> — <em>geworden</em> belongs only to <em>werden</em> used as a full verb meaning "became": <em>Er ist Lehrer <b>geworden</b>.</em> This single letter-pair is the most frequently marked passive error at B1.</div></div>
+
+      <div class="tip"><b>And the auxiliary is always <em>sein</em>.</b> <em>drucken</em> takes <em>haben</em> in the active (<em>er hat gedruckt</em>), but the Perfekt <b>passive</b> is <em>ist … worden</em> for every verb without exception.</div>
+
+      <h3 class="subhead">werden, conjugated</h3>
+      <div class="tbl">
+        <table>
+          <caption>The one verb the whole topic depends on</caption>
+          <thead><tr><th></th><th>ich</th><th>du</th><th>er/sie/es</th><th>wir</th><th>ihr</th><th>sie/Sie</th></tr></thead>
+          <tbody>
+            <tr><th>Präsens</th><td>werde</td><td class="a">wirst</td><td class="a">wird</td><td>werden</td><td>werdet</td><td>werden</td></tr>
+            <tr><th>Präteritum</th><td>wurde</td><td>wurdest</td><td>wurde</td><td>wurden</td><td>wurdet</td><td>wurden</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subhead">von or durch?</h3>
+      <p>If you <em>do</em> name the agent, you must choose between two prepositions — and they mean different things.</p>
+      <div class="split">
+        <div class="ex">
+          <p class="de">Der Buchdruck wurde <span class="c dat">von Gutenberg</span> erfunden.</p>
+          <p class="en">Printing was invented by Gutenberg.</p>
+          <p class="tip" style="margin-bottom:0"><b>von + Dativ</b> — the <b>doer</b>: a person, a group, an institution. Someone with intent.</p>
+        </div>
+        <div class="ex">
+          <p class="de">Die Stadt wurde <span class="c akk">durch ein Erdbeben</span> zerstört.</p>
+          <p class="en">The city was destroyed by an earthquake.</p>
+          <p class="tip" style="margin-bottom:0"><b>durch + Akkusativ</b> — the <b>means or cause</b>: an event, a tool, a force. No intent.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">Two traps worth learning as facts</h3>
+      <p><b>1. Dativ objects never get promoted.</b> Only an <em>Akkusativ</em> object can become the passive subject. A Dativ object stays exactly where it is, in the Dativ, and the sentence ends up with <b>no subject at all</b>.</p>
+      <div class="ex">
+        <p class="de">Aktiv: <span class="c nom">Der Lehrer</span> hilft <span class="c dat">dem Schüler</span>. → Passiv: <span class="c dat">Dem Schüler</span> <span class="c pas">wird</span> <span class="c pas">geholfen</span>.</p>
+        <p class="en">The pupil is helped. — <b>Not</b> „Der Schüler wird geholfen."</p>
+        <p class="tip" style="margin-bottom:0">Same for every Dativ verb: <em>danken, gratulieren, antworten, glauben, folgen, gehören, zuhören</em>. Because there is no subject, the verb stays in the <b>3rd person singular</b>: <em>wird geholfen</em>, even for several pupils — <em>Den Schülern wird geholfen.</em></p>
+      </div>
+
+      <p><b>2. The subjectless passive (unpersönliches Passiv).</b> German can put an intransitive verb — one with no object at all — into the passive to describe an activity in the abstract. English has no equivalent and has to paraphrase.</p>
+      <div class="ex">
+        <p class="de"><span class="c pas">Es wird</span> abends viel <span class="c pas">ferngesehen</span>. · Abends <span class="c pas">wird</span> viel <span class="c pas">ferngesehen</span>. · Hier <span class="c pas">wird</span> nicht <span class="c pas">geraucht</span>.</p>
+        <p class="en">There's a lot of TV-watching in the evenings. · No smoking here.</p>
+        <p class="tip" style="margin-bottom:0">The <em>es</em> is a placeholder that only exists to fill position 1. Put anything else in position 1 — <em>Abends</em>, <em>Hier</em>, <em>In Deutschland</em> — and the <em>es</em> vanishes. It is never a real subject.</p>
+      </div>
+
+      <div class="tip"><b>Which verbs can't do this at all?</b> Verbs with no Akkusativ object and no action: <em>sein, werden, bleiben, haben, wissen, kennen, bekommen, es gibt</em>, and most reflexives. „Das Buch wird gehabt" is not a sentence.</div>
+
+      <div class="drill">
+        <div class="dhead">§02 · Passiv in three tenses</div>
+        <div class="q" data-a="wird gedruckt">
+          <p class="qt">Aktiv: <em>Der Verlag druckt das Buch.</em> → Passiv Präsens: Das Buch ___. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wurde erfunden">
+          <p class="qt">Aktiv: <em>Gutenberg erfand den Buchdruck.</em> → Passiv Präteritum: Der Buchdruck ___ von Gutenberg. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="worden">
+          <p class="qt">Der Film ist gestern synchronisiert ___. <em>(worden oder geworden?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="geworden">
+          <p class="qt">Nach dem Studium ist sie Journalistin ___. <em>(worden oder geworden?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="ist gesendet worden|ist gesendet worden.">
+          <p class="qt">Passiv Perfekt von <em>Man sendete die Nachrichten.</em> → Die Nachrichten ___. <em>(three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="durch">
+          <p class="qt">Die Bibliothek wurde ___ einen Brand zerstört. <em>(von oder durch?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="von">
+          <p class="qt">Das Programm wird ___ Experten zusammengestellt. <em>(von oder durch?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Dem Kunden wird geholfen.|Dem Kunden wird geholfen">
+          <p class="qt">Put into the Passiv: <em>Der Verkäufer hilft dem Kunden.</em> <em>(watch the case!)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why does <em>Es wurden viele Entdeckungen gemacht</em> have <em>wurden</em> and not <em>wurde</em>?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">Because the real subject is the plural <em>viele Entdeckungen</em>, and the verb agrees with it. The <em>es</em> is only a placeholder holding position 1 — move something else there and it disappears: <em>Im 15. Jahrhundert <b>wurden</b> viele Entdeckungen gemacht.</em></div></details>
+        </div>
+        <div class="q">
+          <p class="qt">Name three verbs that have no passive at all, and say why.</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>sein, haben, bleiben, wissen, kennen, bekommen, es gibt</em> — they take no Akkusativ object that could be promoted (or, like <em>haben</em>, describe a state rather than an action). No object → nothing to make into a subject.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section id="s3" data-topic="pas">
+      <div class="sec-head"><span class="num">03</span><h2>Passiv mit Modalverben</h2></div>
+      <p class="lead">Once you can build a passive, adding a modal is mechanical. The modal takes over as the conjugated verb, and the <em>werden</em> that used to be conjugated demotes to a bare infinitive at the very end of the sentence.</p>
+
+      <div class="rule"><span class="tag">The recipe</span><div><b>Modalverb</b> (conjugated, position 2) … <b>Partizip II + werden</b> (both at the end, in that order). The infinitive <em>werden</em> is <b>always the last word</b>.</div></div>
+
+      <div class="flip">
+        <div class="side"><span class="who">Aktiv</span>Man <span class="c pas">muss</span> den Film <span class="c pas">synchronisieren</span>.</div>
+        <div class="arrow">→</div>
+        <div class="side"><span class="who">Passiv</span>Der Film <span class="c pas">muss</span> <span class="c pas">synchronisiert werden</span>.</div>
+      </div>
+
+      <div class="tbl">
+        <table>
+          <caption>Modal + Passiv across the tenses</caption>
+          <thead><tr><th>Tense</th><th>Example</th><th>English</th></tr></thead>
+          <tbody>
+            <tr><th>Präsens</th><td>Der Film <b>muss</b> synchronisiert <b>werden</b>.</td><td>has to be dubbed</td></tr>
+            <tr><th>Präteritum</th><td>Der Film <b>musste</b> synchronisiert <b>werden</b>.</td><td>had to be dubbed</td></tr>
+            <tr><th>Konjunktiv II</th><td>Der Film <b>müsste</b> synchronisiert <b>werden</b>.</td><td>would have to be dubbed</td></tr>
+            <tr><th>Perfekt <span style="font-weight:400;color:var(--muted)">(avoid)</span></th><td>Der Film <b>hat</b> synchronisiert werden <b>müssen</b>.</td><td>has had to be dubbed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip"><b>Skip the Perfekt.</b> Modal + passive + Perfekt produces a double infinitive (<em>werden müssen</em>) and native speakers avoid it in speech. Say the Präteritum instead: <em>musste … werden</em>. Recognise the Perfekt form when you read it; don't reach for it when you write.</div>
+
+      <h3 class="subhead">In a subordinate clause</h3>
+      <p>The conjugated modal jumps to the <b>very end</b>, behind both infinitives — the one place in German where a conjugated verb sits after two non-finite forms.</p>
+      <div class="ex">
+        <p class="de">Ich weiß, dass der Film noch <span class="c pas">synchronisiert werden muss</span>.</p>
+        <p class="en">I know the film still has to be dubbed.</p>
+        <ul class="parse">
+          <li><span class="p pas">synchronisiert</span><span class="lab pas">Partizip II</span><span class="exp">First of the three.</span></li>
+          <li><span class="p pas">werden</span><span class="lab pas">Infinitiv</span><span class="exp">Second — the passive marker.</span></li>
+          <li><span class="p pas">muss</span><span class="lab pas">Finites Verb</span><span class="exp">Last, because it is a subordinate clause. In a main clause it would be second: <em>Der Film muss synchronisiert werden.</em></span></li>
+        </ul>
+      </div>
+
+      <h3 class="subhead">Vorgangspassiv vs Zustandspassiv</h3>
+      <p>Swap <em>werden</em> for <em>sein</em> and you stop describing an <b>event</b> and start describing a <b>state</b>. Begegnungen calls the first one the Vorgangspassiv (process) and the second the Zustandspassiv (state).</p>
+      <div class="split">
+        <div class="ex">
+          <p class="de">Der Fernseher <span class="c pas">wird</span> repariert.</p>
+          <p class="en">The TV is being repaired. — it's happening</p>
+          <p class="tip" style="margin-bottom:0"><b>Vorgangspassiv</b>: werden + P II. Something is going on right now.</p>
+        </div>
+        <div class="ex">
+          <p class="de">Der Fernseher <span class="c dat">ist</span> repariert.</p>
+          <p class="en">The TV is repaired. — it's done, it works</p>
+          <p class="tip" style="margin-bottom:0"><b>Zustandspassiv</b>: sein + P II. The result stands there.</p>
+        </div>
+      </div>
+      <div class="tip"><b>Careful with the Perfekt.</b> <em>Der Fernseher <b>ist</b> repariert <b>worden</b></em> (Vorgangspassiv Perfekt — someone repaired it) is not the same sentence as <em>Der Fernseher <b>ist</b> repariert</em> (Zustandspassiv Präsens — it is in working order). The word <em>worden</em> is the whole difference.</div>
+
+      <div class="drill">
+        <div class="dhead">§03 · Passiv + Modalverben</div>
+        <div class="q" data-a="muss ausgefüllt werden">
+          <p class="qt">Aktiv: <em>Man muss das Formular ausfüllen.</em> → Passiv: Das Formular ___. <em>(three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="werden">
+          <p class="qt">Die Einschaltquoten können nicht genau gemessen ___. <em>(last word)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="musste">
+          <p class="qt">Präteritum: Der Text ___ vor der Sendung geprüft werden.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="abgestimmt werden muss">
+          <p class="qt">…, dass das Programm auf die Zielgruppe ___. <em>(abstimmen + müssen, subordinate clause — three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="ist">
+          <p class="qt">Zustandspassiv: Die Tür ___ geöffnet. <em>(wird oder ist? — the state, not the event)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Give the word order for a main clause and a subordinate clause with modal + passive.</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>Main:</b> Subjekt — <b>Modal</b> — … — Partizip II — <b>werden</b>. <em>Der Film muss synchronisiert werden.</em><br><b>Subordinate:</b> … dass — Subjekt — … — Partizip II — werden — <b>Modal</b>. <em>…, dass der Film synchronisiert werden muss.</em> The conjugated modal is the only thing that moves.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section id="s4" data-topic="pas">
+      <div class="sec-head"><span class="num">04</span><h2>Ways around the Passiv — Passiversatzformen</h2></div>
+      <p class="lead">German has four common ways of saying a passive thing without using <em>werden</em>. Kapitel 3 expects you to <b>recognise</b> all four and to be able to convert them into a real passive — that is the classic exam task.</p>
+
+      <div class="tbl">
+        <table>
+          <caption>Substitute forms and their passive equivalents</caption>
+          <thead><tr><th>Form</th><th>Example</th><th>= Passiv</th><th>Force</th></tr></thead>
+          <tbody>
+            <tr><th>man + Aktiv</th><td>Man druckt das Buch.</td><td>Das Buch wird gedruckt.</td><td>neutral</td></tr>
+            <tr><th>sich lassen + Inf.</th><td>Das Problem <b>lässt sich</b> lösen.</td><td>… kann gelöst werden.</td><td><b>können</b></td></tr>
+            <tr><th>sein + zu + Inf.</th><td>Das Formular <b>ist</b> auszufüllen.</td><td>… muss ausgefüllt werden.</td><td><b>müssen</b> (mostly)</td></tr>
+            <tr><th>Adjektiv auf -bar / -lich</th><td>Das Problem ist <b>lösbar</b>.</td><td>… kann gelöst werden.</td><td><b>können</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rule"><span class="tag">Quick read</span><div><b>-bar, -lich, sich lassen → können.</b> <b>sein + zu → müssen</b>, unless the sentence is negated or carries <em>kaum / leicht / schwer</em>, in which case it reads as <em>können</em>: <em>Der Text ist nicht zu verstehen</em> = kann nicht verstanden werden.</div></div>
+
+      <div class="tip"><b>Why bother?</b> Because <em>man</em> is everywhere in spoken German and <em>sein + zu</em> is everywhere in written German — instructions, forms, notices. <em>Die Einschaltquoten sind zu berücksichtigen</em> is exactly the register Kapitel 3's media texts are written in.</div>
+
+      <div class="drill">
+        <div class="dhead">§04 · Passiversatzformen</div>
+        <div class="q" data-a="kann gelöst werden">
+          <p class="qt">Das Problem lässt sich lösen. → Das Problem ___. <em>(three words, real Passiv)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="muss ausgefüllt werden">
+          <p class="qt">Das Formular ist auszufüllen. → Das Formular ___. <em>(three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wird konsumiert">
+          <p class="qt">Man konsumiert heute weniger Bücher. → Bücher ___ heute weniger. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="kann">
+          <p class="qt">Der Text ist kaum zu verstehen. = Der Text ___ kaum verstanden werden. <em>(kann oder muss?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section id="s5" data-topic="kon">
+      <div class="sec-head"><span class="num">05</span><h2>Konjunktiv II — Gegenwart</h2></div>
+      <p class="lead">The mood for things that are <b>not real</b>: hypotheses, wishes, advice and polite requests. English does this with "would / could / if I were". German has two ways of building it, and the whole skill is knowing which one to use for which verb.</p>
+
+      <div class="rule"><span class="tag">The 80/20</span><div>Use the real form for <b>sein, haben and the modals</b>. Use <b>würde + Infinitiv</b> for everything else. That single decision gets you correct, natural German in almost every sentence you will ever write at B1.</div></div>
+
+      <div class="tbl">
+        <table>
+          <caption>The forms worth memorising as vocabulary</caption>
+          <thead><tr><th>Infinitiv</th><th>Präteritum</th><th>Konjunktiv II</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><th>sein</th><td>war</td><td class="g"><b>wäre</b></td><td>would be</td></tr>
+            <tr><th>haben</th><td>hatte</td><td class="g"><b>hätte</b></td><td>would have</td></tr>
+            <tr><th>können</th><td>konnte</td><td class="g"><b>könnte</b></td><td>could</td></tr>
+            <tr><th>müssen</th><td>musste</td><td class="g"><b>müsste</b></td><td>would have to</td></tr>
+            <tr><th>dürfen</th><td>durfte</td><td class="g"><b>dürfte</b></td><td>would be allowed to</td></tr>
+            <tr><th>sollen</th><td>sollte</td><td class="g"><b>sollte</b></td><td>should</td></tr>
+            <tr><th>wollen</th><td>wollte</td><td class="g"><b>wollte</b></td><td>would want to</td></tr>
+            <tr><th>mögen</th><td>mochte</td><td class="g"><b>möchte</b></td><td>would like</td></tr>
+            <tr><th>wissen</th><td>wusste</td><td class="g"><b>wüsste</b></td><td>would know</td></tr>
+            <tr><th>werden</th><td>wurde</td><td class="g"><b>würde</b></td><td>would</td></tr>
+            <tr><th>kommen · gehen · geben</th><td>kam · ging · gab</td><td class="g"><b>käme · ginge · gäbe</b></td><td>would come/go/give</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip"><b>How the real forms are built:</b> take the <b>Präteritum stem</b>, add an umlaut if the vowel is a/o/u, and attach the endings <em>-e, -est, -e, -en, -et, -en</em>. <em>war → wär-e</em>, <em>hatte → hätt-e</em>, <em>konnte → könnt-e</em>, <em>kam → käm-e</em>. Note <b>sollte</b> and <b>wollte</b> take <b>no umlaut</b> — they look identical to their Präteritum, which is why context has to carry them.</div>
+
+      <div class="rule warn"><span class="tag">Why würde exists</span><div>For weak verbs the Konjunktiv II is <b>identical</b> to the Präteritum — <em>ich sagte</em> could be "I said" or "I would say". <em>würde + Infinitiv</em> removes the ambiguity, which is exactly why native speakers reach for it. <b>Modals never take würde</b>; they have their own forms.</div></div>
+
+      <h3 class="subhead">What you use it for</h3>
+      <div class="tbl">
+        <table>
+          <caption>Four jobs, one mood</caption>
+          <thead><tr><th>Job</th><th>Example</th><th>English</th></tr></thead>
+          <tbody>
+            <tr><th>Hypothese</th><td>Wenn ich mehr Zeit <b>hätte</b>, <b>würde</b> ich mehr <b>lesen</b>.</td><td>If I had more time I'd read more.</td></tr>
+            <tr><th>Wunsch</th><td>Ich <b>wünschte</b>, ich <b>hätte</b> mehr Zeit! · <b>Wäre</b> ich doch reicher!</td><td>I wish I had more time.</td></tr>
+            <tr><th>Höfliche Bitte</th><td><b>Könnten</b> Sie mir helfen? · Ich <b>hätte</b> gern einen Kaffee.</td><td>Could you help me?</td></tr>
+            <tr><th>Ratschlag</th><td>Du <b>solltest</b> weniger fernsehen. · An deiner Stelle <b>würde</b> ich …</td><td>You should watch less TV.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subhead">The wenn-clause and its two shapes</h3>
+      <div class="ex">
+        <p class="de"><span class="c kon">Wenn</span> ich mehr Zeit <span class="c kon">hätte</span>, <span class="c kon">würde</span> ich mehr <span class="c kon">lesen</span>.</p>
+        <p class="en">If I had more time, I would read more.</p>
+        <p class="tip" style="margin-bottom:0">The <em>wenn</em>-clause is subordinate → its verb goes last. The main clause then starts with its own conjugated verb (or with <em>dann</em>: <em>…, dann würde ich mehr lesen</em>).</p>
+      </div>
+      <div class="ex">
+        <p class="de"><span class="c kon">Hätte</span> ich mehr Zeit, <span class="c kon">würde</span> ich mehr lesen.</p>
+        <p class="en">Had I more time, I'd read more.</p>
+        <p class="tip" style="margin-bottom:0"><b>Drop <em>wenn</em> and the verb moves to the front.</b> Same meaning, more literary — and worth recognising, because Begegnungen's reading texts use it.</p>
+      </div>
+
+      <div class="tip"><b>Style, not law.</b> Teachers often say "never use <em>würde</em> in the wenn-clause". Prefer the real form where one exists — <em>Wenn ich Zeit hätte</em> beats <em>Wenn ich Zeit haben würde</em> — but <em>würde</em> in a wenn-clause is normal in speech and often the only clear option with a weak verb, since <em>wenn er mich fragte</em> reads as past tense.</div>
+
+      <div class="drill">
+        <div class="dhead">§05 · Konjunktiv II Gegenwart</div>
+        <div class="q" data-a="hätte">
+          <p class="qt">Wenn ich mehr Zeit ___, würde ich mehr lesen. <em>(haben)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wäre">
+          <p class="qt">Wenn ich reicher ___, würde ich ein Tablet kaufen. <em>(sein)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Könnten">
+          <p class="qt">___ Sie bitte die Fernbedienung holen? <em>(können — polite request)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="solltest">
+          <p class="qt">Du ___ weniger fernsehen. <em>(sollen — advice)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="würde">
+          <p class="qt">An deiner Stelle ___ ich mich beim Sender beschweren. <em>(the workhorse form)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wüsste">
+          <p class="qt">Ich ___ gern, wie hoch die Einschaltquote ist. <em>(wissen)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why do Germans say <em>ich würde sagen</em> rather than <em>ich sagte</em>?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">Because <em>sagen</em> is a weak verb, so its Konjunktiv II <b>is</b> its Präteritum — <em>ich sagte</em> already means "I said". <em>würde + Infinitiv</em> is the only way to signal "I would say" unambiguously.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section id="s6" data-topic="kon">
+      <div class="sec-head"><span class="num">06</span><h2>Konjunktiv II — Vergangenheit</h2></div>
+      <p class="lead">The half of the topic Kapitel 3 really drills: things that <b>could have happened but didn't</b>. <em>Wenn ich im 15. Jahrhundert gelebt hätte …</em> — If I had lived in the 15th century. There is exactly one past form, it is easy to build, and <b>würde has no part in it</b>.</p>
+
+      <div class="rule"><span class="tag">The recipe</span><div><b>hätte / wäre + Partizip II.</b> Which one? Whichever auxiliary the verb takes in the Perfekt. <em>Er hat gearbeitet → er <b>hätte</b> gearbeitet.</em> <em>Er ist gegangen → er <b>wäre</b> gegangen.</em> That's the entire rule.</div></div>
+
+      <div class="tbl">
+        <table>
+          <caption>From Perfekt to Konjunktiv II Vergangenheit — swap the auxiliary, keep the participle</caption>
+          <thead><tr><th>Perfekt (real)</th><th>Konjunktiv II (unreal)</th><th>English</th></tr></thead>
+          <tbody>
+            <tr><th>Ich <b>habe</b> gearbeitet.</th><td>Ich <b>hätte</b> gearbeitet.</td><td>I would have worked.</td></tr>
+            <tr><th>Ich <b>habe</b> gelesen.</th><td>Ich <b>hätte</b> gelesen.</td><td>I would have read.</td></tr>
+            <tr><th>Ich <b>bin</b> gegangen.</th><td>Ich <b>wäre</b> gegangen.</td><td>I would have gone.</td></tr>
+            <tr><th>Ich <b>bin</b> gewesen.</th><td>Ich <b>wäre</b> gewesen.</td><td>I would have been.</td></tr>
+            <tr><th>Ich <b>bin</b> aufgestanden.</th><td>Ich <b>wäre</b> aufgestanden.</td><td>I would have got up.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rule warn"><span class="tag">Never</span><div>There is <b>no <em>würde</em> in the past</b>. „Ich würde gelebt haben" is not German you should ever produce. And there is only <b>one</b> past form — German does not distinguish an unreal perfect from an unreal pluperfect.</div></div>
+
+      <h3 class="subhead">The chapter's own model sentence</h3>
+      <div class="ex">
+        <p class="de"><span class="c kon">Wenn</span> ich im 15. Jahrhundert <span class="c kon">gelebt hätte</span>, <span class="c kon">hätte</span> ich in einem kleinen Haus <span class="c kon">gewohnt</span>.</p>
+        <p class="en">If I had lived in the 15th century, I would have lived in a small house.</p>
+        <ul class="parse">
+          <li><span class="p kon">gelebt hätte</span><span class="lab kon">Nebensatz</span><span class="exp">Subordinate clause → the conjugated <em>hätte</em> goes <b>last</b>, after the participle.</span></li>
+          <li><span class="p kon">hätte … gewohnt</span><span class="lab kon">Hauptsatz</span><span class="exp">Main clause → <em>hätte</em> is second, participle last. The clause-bracket you already know.</span></li>
+        </ul>
+      </div>
+
+      <div class="ex">
+        <p class="de"><span class="c kon">Wäre</span> ich <span class="c kon">geboren worden</span>, <span class="c kon">wäre</span> ich bestimmt ein Handwerker <span class="c kon">gewesen</span>. · Ich <span class="c kon">wäre</span> um 5.00 Uhr <span class="c kon">aufgestanden</span> und <span class="c kon">wäre</span> zu Fuß zur Arbeit <span class="c kon">gegangen</span>.</p>
+        <p class="en">I would certainly have been a craftsman. I would have got up at 5 and walked to work.</p>
+        <p class="tip" style="margin-bottom:0"><em>sein, aufstehen, gehen</em> all take <em>sein</em> in the Perfekt → all take <b>wäre</b>. <em>wohnen, arbeiten, essen, trinken, lesen</em> take <em>haben</em> → <b>hätte</b>.</p>
+      </div>
+
+      <h3 class="subhead">With a modal verb: the double infinitive</h3>
+      <p>"I could have …", "I should have …". German builds these with <b>hätte + Infinitiv + Modalinfinitiv</b> — the modal appears as a bare infinitive, <b>not</b> as a Partizip II.</p>
+      <div class="tbl">
+        <table>
+          <caption>hätte + Infinitiv + Modal</caption>
+          <thead><tr><th>German</th><th>English</th></tr></thead>
+          <tbody>
+            <tr><th>Ich <b>hätte</b> mehr <b>lesen können</b>.</th><td>I could have read more.</td></tr>
+            <tr><th>Er <b>hätte</b> früher <b>gehen müssen</b>.</th><td>He should have / had to go earlier.</td></tr>
+            <tr><th>Du <b>hättest</b> mich <b>fragen sollen</b>.</th><td>You should have asked me.</td></tr>
+            <tr><th>Sie <b>hätte</b> nicht <b>fernsehen dürfen</b>.</th><td>She shouldn't have been allowed to watch TV.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rule warn"><span class="tag">Word-order oddity</span><div>In a <b>subordinate</b> clause a double infinitive refuses to let <em>hätte</em> go last. It jumps in <b>front</b> of both infinitives: <em>Wenn ich <b>hätte</b> kommen können, …</em> — not „…kommen können hätte". This is the one place the verb-last rule breaks.</div></div>
+
+      <div class="tip"><b>Two bonus patterns you will meet in the reading texts.</b> <em>beinahe / fast</em> + Konjunktiv II Vergangenheit = "I almost …": <em>Ich <b>wäre</b> beinahe vor dem Fernseher <b>eingeschlafen</b>.</em> And <em>als ob</em> + Konjunktiv II = "as if": <em>Er tut so, <b>als ob</b> er alles gelesen <b>hätte</b>.</em></div>
+
+      <div class="drill">
+        <div class="dhead">§06 · Konjunktiv II Vergangenheit</div>
+        <div class="q" data-a="gelebt hätte">
+          <p class="qt">Wenn ich im 15. Jahrhundert ___, … <em>(leben — subordinate clause, two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wäre">
+          <p class="qt">Ich ___ bestimmt Handwerker gewesen. <em>(hätte oder wäre?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="hätte">
+          <p class="qt">Ich ___ viel Fleisch gegessen und Wein getrunken. <em>(hätte oder wäre?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wäre">
+          <p class="qt">Ich ___ um 5.00 Uhr aufgestanden. <em>(hätte oder wäre?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="lesen können">
+          <p class="qt">Ich hätte damals viel mehr ___. <em>(lesen + können — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="hättest">
+          <p class="qt">Du ___ mich fragen sollen. <em>(2. Person Singular)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="hätte">
+          <p class="qt">Wenn ich früher ___ aufstehen können, wäre ich pünktlich gewesen. <em>(watch the double-infinitive word order)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Translate: <em>If he had read the book, he would have understood the film.</em></p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>Wenn er das Buch <b>gelesen hätte</b>, <b>hätte</b> er den Film <b>verstanden</b>.</em> — both verbs take <em>haben</em>, so both use <em>hätte</em>; verb-last in the wenn-clause, verb-second in the main clause.</div></details>
+        </div>
+        <div class="q">
+          <p class="qt">What is wrong with <em>„Ich würde im 15. Jahrhundert gelebt haben"</em>?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>würde</em> has no past form in normal German. Past Konjunktiv II is built <b>only</b> with <em>hätte / wäre + Partizip II</em>: <em>Ich <b>hätte</b> im 15. Jahrhundert <b>gelebt</b>.</em></div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section id="s7" data-topic="ref">
+      <div class="sec-head"><span class="num">07</span><h2>Reflexive Verben</h2></div>
+      <p class="lead">A reflexive verb points its action back at its own subject. German uses them far more freely than English does — <em>sich beeilen</em>, <em>sich beschweren</em>, <em>sich befinden</em>, <em>sich unterhalten</em> all appear in the D2 list. The only real decision you have to make is <b>Akkusativ or Dativ</b>, and there is a clean test for it.</p>
+
+      <div class="tbl">
+        <table>
+          <caption>The two sets — only <em>mich/mir</em> and <em>dich/dir</em> actually differ</caption>
+          <thead><tr><th></th><th>ich</th><th>du</th><th>er/sie/es</th><th>wir</th><th>ihr</th><th>sie/Sie</th></tr></thead>
+          <tbody>
+            <tr><th>Akkusativ</th><td class="a"><b>mich</b></td><td class="a"><b>dich</b></td><td>sich</td><td>uns</td><td>euch</td><td>sich</td></tr>
+            <tr><th>Dativ</th><td class="d"><b>mir</b></td><td class="d"><b>dir</b></td><td>sich</td><td>uns</td><td>euch</td><td>sich</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rule"><span class="tag">The test</span><div>Is there <b>already another Akkusativ object</b> in the sentence? <b>Yes → the reflexive goes Dativ.</b> <b>No → Akkusativ.</b> A German clause takes only one Akkusativ object, so the reflexive has to step aside.</div></div>
+
+      <div class="split">
+        <div class="ex">
+          <p class="de">Ich wasche <span class="c akk">mich</span>.</p>
+          <p class="en">I wash (myself).</p>
+          <p class="tip" style="margin-bottom:0">No other object → <b>Akkusativ</b>.</p>
+        </div>
+        <div class="ex">
+          <p class="de">Ich wasche <span class="c dat">mir</span> <span class="c akk">die Hände</span>.</p>
+          <p class="en">I wash my hands.</p>
+          <p class="tip" style="margin-bottom:0"><em>die Hände</em> is already the Akkusativ → the reflexive goes <b>Dativ</b>.</p>
+        </div>
+      </div>
+      <div class="tip"><b>Same pattern, high frequency:</b> <em>Ich sehe <b>mir</b> den Film an.</em> · <em>Ich merke <b>mir</b> die Vokabeln.</em> · <em>Ich kaufe <b>mir</b> ein Tablet.</em> · <em>Ich putze <b>mir</b> die Zähne.</em> · <em>Ich stelle <b>mir</b> das Mittelalter vor.</em> Notice that German uses the Dativ where English uses a possessive: not "my hands" but "<b>to myself</b> the hands".</div>
+
+      <h3 class="subhead">Echte vs unechte reflexive Verben</h3>
+      <div class="split">
+        <div class="ex">
+          <p class="de"><b>Echt</b> — the <em>sich</em> is part of the verb</p>
+          <p class="en">sich beeilen · sich befinden · sich beschweren · sich erholen · sich freuen · sich schämen · sich verlieben · sich bedanken · sich weigern · sich erkälten · sich ereignen · sich verspäten · sich vollziehen</p>
+          <p class="tip" style="margin-bottom:0">You cannot "beeilen" anyone else. Drop the <em>sich</em> and the verb stops existing. Learn these <b>with</b> the <em>sich</em>, like an article.</p>
+        </div>
+        <div class="ex">
+          <p class="de"><b>Unecht</b> — the verb also lives without <em>sich</em></p>
+          <p class="en">waschen · ansehen · treffen · kaufen · ärgern · setzen · legen · unterhalten · anziehen</p>
+          <p class="tip" style="margin-bottom:0"><em>Ich wasche <b>mich</b></em> vs <em>Ich wasche <b>das Auto</b></em>. <em>Ich unterhalte <b>mich</b></em> (I chat) vs <em>Der Clown unterhält <b>die Gäste</b></em> (entertains them).</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">Reziprok — "each other"</h3>
+      <p>In the plural, <em>sich / uns / euch</em> is ambiguous between "themselves" and "each other". Context normally settles it; add <b>einander</b> or <b>gegenseitig</b> when it doesn't.</p>
+      <div class="ex">
+        <p class="de">Sie <span class="c ref">streiten sich</span> über das Fernsehprogramm. · Wir <span class="c ref">unterhalten uns</span> über Bücher. · Sie helfen <span class="c ref">einander</span>.</p>
+        <p class="en">They argue with each other about the TV schedule. · We chat about books. · They help each other.</p>
+      </div>
+
+      <h3 class="subhead">Where does the pronoun sit?</h3>
+      <div class="tbl">
+        <table>
+          <caption>Position of the reflexive pronoun</caption>
+          <thead><tr><th>Clause</th><th>Example</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><th>Main, subject first</th><td>Er <b>beeilt sich</b>.</td><td>straight after the conjugated verb</td></tr>
+            <tr><th>Main, something else first</th><td>Heute beeilt <b>er sich</b>.</td><td>pronoun subject keeps its place, <em>sich</em> follows it</td></tr>
+            <tr><th>Main, noun subject</th><td>Heute beeilt <b>sich</b> der Student.</td><td><em>sich</em> may hop in front of a <b>noun</b> subject — and usually does</td></tr>
+            <tr><th>Nebensatz</th><td>…, dass <b>er sich</b> beeilt. / …, dass <b>sich</b> der Student beeilt.</td><td>right after the subject, or in front of a noun subject</td></tr>
+            <tr><th>Imperativ</th><td>Beeil <b>dich</b>! · Setzen Sie <b>sich</b>!</td><td>immediately after the verb</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="rule"><span class="tag">Perfekt</span><div>Reflexive verbs <b>always</b> form the Perfekt with <b>haben</b> — no exceptions, even for verbs of motion or position. <em>Er <b>hat sich</b> beeilt.</em> <em>Das Museum <b>hat sich</b> im Zentrum befunden.</em> <em>Sie <b>haben sich</b> gestritten.</em></div></div>
+
+      <h3 class="subhead">Reflexive + fixed preposition</h3>
+      <p>Most reflexive verbs of opinion and emotion drag a fixed preposition behind them, and that preposition fixes the case. Learn the three-part chunk as one unit.</p>
+      <div class="tbl">
+        <table>
+          <caption>The ones Kapitel 3 actually uses</caption>
+          <thead><tr><th>Verb + preposition</th><th>Case</th><th>Meaning</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><th>sich beschweren <b>über</b></th><td class="a">Akkusativ</td><td>to complain about</td><td>Ich beschwere mich über die Lieferung.</td></tr>
+            <tr><th>sich beschweren <b>bei</b></th><td class="d">Dativ</td><td>to complain to (a person)</td><td>Ich beschwere mich beim Sender.</td></tr>
+            <tr><th>sich interessieren <b>für</b></th><td class="a">Akkusativ</td><td>to be interested in</td><td>Sie interessiert sich für Krimis.</td></tr>
+            <tr><th>sich freuen <b>über</b></th><td class="a">Akkusativ</td><td>to be glad about <em>(now / past)</em></td><td>Ich freue mich über das Geschenk.</td></tr>
+            <tr><th>sich freuen <b>auf</b></th><td class="a">Akkusativ</td><td>to look forward to <em>(future)</em></td><td>Ich freue mich auf die Sendung.</td></tr>
+            <tr><th>sich ärgern <b>über</b></th><td class="a">Akkusativ</td><td>to be annoyed about</td><td>Er ärgert sich über die Werbung.</td></tr>
+            <tr><th>sich unterhalten <b>über</b> / <b>mit</b></th><td class="a">Akk / <span class="d">Dat</span></td><td>to chat about / with</td><td>Wir unterhalten uns mit ihm über Bücher.</td></tr>
+            <tr><th>sich streiten <b>über</b> / <b>mit</b></th><td class="a">Akk / <span class="d">Dat</span></td><td>to argue about / with</td><td>Sie streiten sich mit den Eltern über das Programm.</td></tr>
+            <tr><th>sich informieren <b>über</b></th><td class="a">Akkusativ</td><td>to find out about</td><td>Ich informiere mich über die Nachrichten.</td></tr>
+            <tr><th>sich erinnern <b>an</b></th><td class="a">Akkusativ</td><td>to remember</td><td>Ich erinnere mich an den Film.</td></tr>
+            <tr><th>sich gewöhnen <b>an</b></th><td class="a">Akkusativ</td><td>to get used to</td><td>Man gewöhnt sich an die Untertitel.</td></tr>
+            <tr><th>sich richten <b>an</b></th><td class="a">Akkusativ</td><td>to be aimed at</td><td>Die Sendung richtet sich an Jugendliche.</td></tr>
+            <tr><th>sich orientieren <b>an</b></th><td class="d">Dativ</td><td>to be guided by</td><td>Das Programm orientiert sich an Zielgruppen.</td></tr>
+            <tr><th>sich befinden <span style="font-weight:400;color:var(--muted)">(+ place)</span></th><td class="d">Dativ</td><td>to be located</td><td>Der Sender befindet sich in Mainz.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip"><b>Asking about them:</b> for a thing, fuse <em>wo(r)-</em> with the preposition — <em>Wor<b>über</b> beschwerst du dich?</em>, <em>Wor<b>auf</b> freust du dich?</em> For a person, keep the preposition — <em><b>Bei wem</b> beschwerst du dich?</em>, <em><b>Mit wem</b> unterhältst du dich?</em></div>
+
+      <div class="drill">
+        <div class="dhead">§07 · Reflexive Verben</div>
+        <div class="q" data-a="mich">
+          <p class="qt">Ich beeile ___, weil die Sendung gleich anfängt.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="mir">
+          <p class="qt">Ich sehe ___ heute Abend einen Film an. <em>(mich oder mir?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dir">
+          <p class="qt">Wäschst du ___ die Hände? <em>(dich oder dir?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="uns">
+          <p class="qt">Wir unterhalten ___ über das neue Buch.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="über">
+          <p class="qt">Der Kunde beschwert sich ___ die Lieferverzögerung. <em>(preposition)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="an">
+          <p class="qt">Die Sendung richtet sich ___ Jugendliche. <em>(preposition)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="hat sich">
+          <p class="qt">Das Museum ___ früher im Zentrum befunden. <em>(Perfekt — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Worüber">
+          <p class="qt">___ ärgerst du dich? <em>(ask about a thing)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why is it <em>Ich kaufe <b>mir</b> ein Tablet</em> but <em>Ich setze <b>mich</b></em>?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">Because <em>ein Tablet</em> is already the Akkusativ object, so the reflexive is pushed into the Dativ. In <em>Ich setze mich</em> there is no other object, so the reflexive itself is the Akkusativ.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- D2 VERBS -->
+    <section id="verbs" data-topic="voc">
+      <div class="sec-head"><span class="num">08</span><h2>D2 · Kleines Wörterbuch der Verben</h2></div>
+      <p class="lead">The full Kapitel 3 verb list from page 97 and the Rückblick — <b>18 irregular + 4 regular</b> — with the English the book leaves out. Read across: <b>Infinitiv → Präsens → Präteritum → Perfekt</b>. The Perfekt column already carries the right auxiliary, which is the half of the entry most people get wrong.</p>
+
+      <div class="rule"><span class="tag">How to use this</span><div>Learn each verb as a <b>four-part chunk</b> said out loud — <em>„befinden, befindet, befand, hat sich befunden"</em> — not as four separate facts. Then use the pattern families below to compress 18 verbs down to about 8 shapes.</div></div>
+
+      <div class="tbl verbtbl">
+        <table>
+          <caption>Unregelmäßige Verben · irregular</caption>
+          <thead><tr><th>Infinitiv</th><th>English</th><th>3. P. Sg. Präsens</th><th>3. P. Sg. Präteritum</th><th>3. P. Sg. Perfekt</th></tr></thead>
+          <tbody>
+            <tr><td class="de">befinden <i>(sich)</i></td><td class="en">to be located, to be situated</td><td>er bef<span class="stem">i</span>ndet sich</td><td>er bef<span class="stem">a</span>nd sich</td><td>er hat sich bef<span class="stem">u</span>nden</td></tr>
+            <tr><td class="de">bestehen <i>(eine Prüfung)</i></td><td class="en">to pass (an exam); to exist; <br>~ aus = to consist of; ~ auf = to insist on</td><td>er best<span class="stem">e</span>ht</td><td>er best<span class="stem">a</span>nd</td><td>er hat best<span class="stem">a</span>nden</td></tr>
+            <tr><td class="de">bitten <i>(um Hilfe)</i></td><td class="en">to ask for, to request (help)</td><td>er b<span class="stem">i</span>ttet</td><td>er b<span class="stem">a</span>t</td><td>er hat geb<span class="stem">e</span>ten</td></tr>
+            <tr><td class="de">entstehen</td><td class="en">to arise, to come into being, to be created</td><td>es entst<span class="stem">e</span>ht</td><td>es entst<span class="stem">a</span>nd</td><td>es <span class="aux-sein">ist</span> entst<span class="stem">a</span>nden</td></tr>
+            <tr><td class="de">erfinden <i>(den Buchdruck)</i></td><td class="en">to invent (printing)</td><td>er erf<span class="stem">i</span>ndet</td><td>er erf<span class="stem">a</span>nd</td><td>er hat erf<span class="stem">u</span>nden</td></tr>
+            <tr><td class="de">gewinnen <i>(einen Überblick)</i></td><td class="en">to win; to gain (an overview)</td><td>er gew<span class="stem">i</span>nnt</td><td>er gew<span class="stem">a</span>nn</td><td>er hat gew<span class="stem">o</span>nnen</td></tr>
+            <tr><td class="de">gießen <i>(Blei)</i></td><td class="en">to pour; to cast (lead); to water (plants)</td><td>er g<span class="stem">ie</span>ßt</td><td>er g<span class="stem">o</span>ss</td><td>er hat geg<span class="stem">o</span>ssen</td></tr>
+            <tr><td class="de">greifen <i>(zur Fernbedienung)</i></td><td class="en">to grab, to reach (for the remote)</td><td>er gr<span class="stem">ei</span>ft</td><td>er gr<span class="stem">i</span>ff</td><td>er hat gegr<span class="stem">i</span>ffen</td></tr>
+            <tr><td class="de">laufen</td><td class="en">to run, to walk; <br>(film / show) to be on, to be showing</td><td>er l<span class="stem">äu</span>ft</td><td>er l<span class="stem">ie</span>f</td><td>er <span class="aux-sein">ist</span> gel<span class="stem">au</span>fen</td></tr>
+            <tr><td class="de">(an)sehen</td><td class="en">to look at, to watch; <em>sehen</em> = to see</td><td>er s<span class="stem">ie</span>ht (an)</td><td>er s<span class="stem">a</span>h (an)</td><td>er hat (an)ges<span class="stem">e</span>hen</td></tr>
+            <tr><td class="de">sinken</td><td class="en">to sink; to fall, to decline <em>(ratings, numbers)</em></td><td>er s<span class="stem">i</span>nkt</td><td>er s<span class="stem">a</span>nk</td><td>er <span class="aux-sein">ist</span> ges<span class="stem">u</span>nken</td></tr>
+            <tr><td class="de">steigen</td><td class="en">to climb; to rise, to increase <em>(ratings, numbers)</em></td><td>er st<span class="stem">ei</span>gt</td><td>er st<span class="stem">ie</span>g</td><td>er <span class="aux-sein">ist</span> gest<span class="stem">ie</span>gen</td></tr>
+            <tr><td class="de">streiten <i>(sich)</i></td><td class="en">to argue, to quarrel</td><td>er str<span class="stem">ei</span>tet sich</td><td>er str<span class="stem">i</span>tt sich</td><td>er hat sich gestr<span class="stem">i</span>tten</td></tr>
+            <tr><td class="de">überbieten <i>(einen Preis)</i></td><td class="en">to outbid; to beat, to top (a price, a record)</td><td>er überb<span class="stem">ie</span>tet</td><td>er überb<span class="stem">o</span>t</td><td>er hat überb<span class="stem">o</span>ten</td></tr>
+            <tr><td class="de">unterhalten <i>(sich)</i></td><td class="en">to converse, to chat; <br>(non-refl.) to entertain</td><td>er unterh<span class="stem">ä</span>lt sich</td><td>er unterh<span class="stem">ie</span>lt sich</td><td>er hat sich unterh<span class="stem">a</span>lten</td></tr>
+            <tr><td class="de">verschlingen <i>(Bücher)</i></td><td class="en">to devour (books); to gulp down</td><td>er verschl<span class="stem">i</span>ngt</td><td>er verschl<span class="stem">a</span>ng</td><td>er hat verschl<span class="stem">u</span>ngen</td></tr>
+            <tr><td class="de">vollziehen <i>(sich, Veränderung)</i></td><td class="en">(of a change) to take place, to occur</td><td>sie vollz<span class="stem">ie</span>ht sich</td><td>sie vollz<span class="stem">o</span>g sich</td><td>sie hat sich vollz<span class="stem">o</span>gen</td></tr>
+            <tr><td class="de">waschen</td><td class="en">to wash</td><td>er w<span class="stem">ä</span>scht</td><td>er w<span class="stem">u</span>sch</td><td>er hat gew<span class="stem">a</span>schen</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tbl verbtbl">
+        <table>
+          <caption>Einige regelmäßige Verben · regular — stem + <em>-te</em>, stem + <em>-t</em></caption>
+          <thead><tr><th>Infinitiv</th><th>English</th><th>3. P. Sg. Präsens</th><th>3. P. Sg. Präteritum</th><th>3. P. Sg. Perfekt</th></tr></thead>
+          <tbody>
+            <tr><td class="de">beeilen <i>(sich)</i></td><td class="en">to hurry, to rush</td><td>er beeilt sich</td><td>er beeil<span class="stem">te</span> sich</td><td>er hat sich beeil<span class="stem">t</span></td></tr>
+            <tr><td class="de">beschweren <i>(sich)</i></td><td class="en">to complain</td><td>er beschwert sich</td><td>er beschwer<span class="stem">te</span> sich</td><td>er hat sich beschwer<span class="stem">t</span></td></tr>
+            <tr><td class="de">synchronisieren <i>(einen Film)</i></td><td class="en">to dub (a film)</td><td>er synchronisiert</td><td>er synchronisier<span class="stem">te</span></td><td>er hat synchronisier<span class="stem">t</span></td></tr>
+            <tr><td class="de">verfügen <i>(über viele Bücher)</i></td><td class="en">to have at one's disposal, to possess</td><td>er verfügt</td><td>er verfüg<span class="stem">te</span></td><td>er hat verfüg<span class="stem">t</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip"><b>Two things the regular table hides.</b> None of the four takes <em>ge-</em> in the Partizip II: <em>be-</em> is an inseparable prefix (<em>beeilt, beschwert</em>), <em>ver-</em> likewise (<em>verfügt</em>), and <em>-ieren</em> verbs never take <em>ge-</em> (<em>synchronisiert</em>). All four are also identical in the Präsens and the Partizip — <em>er verfügt / hat verfügt</em>.</div>
+
+      <h3 class="subhead">The four things to notice</h3>
+      <div class="tricks">
+        <div class="trick solid">
+          <span class="kind">Auxiliary</span>
+          <p class="say">Only <b>four</b> take <em>sein</em>:<br><em>entstehen · laufen · sinken · steigen</em></p>
+          <p class="use">All four are a change of place or state with no Akkusativ object — the standard <em>sein</em> test. The other eighteen take <em>haben</em>.</p>
+          <p class="lim"><b>Including every reflexive.</b> <em>sich befinden</em> is about location and still takes <em>haben</em>: <em>hat sich befunden</em>.</p>
+        </div>
+        <div class="trick solid">
+          <span class="kind">Reflexives</span>
+          <p class="say">Six carry <em>sich</em>:<br><em>sich befinden · sich streiten · sich unterhalten · sich vollziehen · sich beeilen · sich beschweren</em></p>
+          <p class="use">Learn the <em>sich</em> as part of the word, the way you learn an article with a noun.</p>
+          <p class="lim"><b><em>unterhalten</em> works both ways</b> — <em>sich unterhalten</em> = to chat, <em>jemanden unterhalten</em> = to entertain someone.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">No ge- in the Partizip</span>
+          <p class="say">Inseparable prefixes eat the <em>ge-</em>:<br><em>be- · er- · ent- · ver- · über- · unter- · voll-</em></p>
+          <p class="use">That is why it is <em>bestanden</em>, <em>erfunden</em>, <em>entstanden</em>, <em>verschlungen</em>, <em>überboten</em>, <em>unterhalten</em>, <em>vollzogen</em> — no <em>ge-</em> anywhere.</p>
+          <p class="lim"><b>Separable prefixes keep it, in the middle:</b> <em>an<b>ge</b>sehen</em>. Same verb, different prefix type, different rule.</p>
+        </div>
+        <div class="trick">
+          <span class="kind">Media pair</span>
+          <p class="say"><b>steigen ↔ sinken</b><br><em>Die Einschaltquote steigt / sinkt.</em></p>
+          <p class="use">The single most useful pair in the chapter — you need it for every Grafik description and every ratings sentence.</p>
+          <p class="lim"><b>Both take <em>sein</em>:</b> <em>ist gestiegen / ist gesunken</em>. Their transitive partners <em>steigern</em> and <em>senken</em> take <em>haben</em>.</p>
+        </div>
+      </div>
+
+      <h3 class="subhead">Pattern families — 18 verbs, 8 shapes</h3>
+      <p>Strong verbs are not random. Group them by their vowel change and the list becomes memorisable in one sitting.</p>
+      <div class="fams">
+        <div class="fam"><div class="pat">i — a — u</div><div class="patname">nasal group</div>
+          <ul><li><b>befinden</b> · befand · befunden</li><li><b>erfinden</b> · erfand · erfunden</li><li><b>sinken</b> · sank · gesunken</li><li><b>verschlingen</b> · verschlang · verschlungen</li></ul></div>
+        <div class="fam"><div class="pat">i — a — o</div><div class="patname">the odd one out</div>
+          <ul><li><b>gewinnen</b> · gewann · gewonnen</li><li class="tip" style="margin:8px 0 0;padding-left:0;border:none">Looks like the group above but lands on <em>o</em>. Worth a separate card.</li></ul></div>
+        <div class="fam"><div class="pat">ei — i — i</div><div class="patname">short-i group</div>
+          <ul><li><b>greifen</b> · griff · gegriffen</li><li><b>streiten</b> · stritt · gestritten</li></ul></div>
+        <div class="fam"><div class="pat">ei — ie — ie</div><div class="patname">long-ie group</div>
+          <ul><li><b>steigen</b> · stieg · gestiegen</li></ul></div>
+        <div class="fam"><div class="pat">ie — o — o</div><div class="patname">o-group</div>
+          <ul><li><b>gießen</b> · goss · gegossen</li><li><b>überbieten</b> · überbot · überboten</li><li><b>vollziehen</b> · vollzog · vollzogen</li></ul></div>
+        <div class="fam"><div class="pat">e — a — a</div><div class="patname">stehen-group</div>
+          <ul><li><b>bestehen</b> · bestand · bestanden</li><li><b>entstehen</b> · entstand · entstanden</li><li><b>bitten</b> · bat · gebeten <span style="color:var(--faint)">(→ e)</span></li></ul></div>
+        <div class="fam"><div class="pat">e — a — e</div><div class="patname">sehen-group</div>
+          <ul><li><b>(an)sehen</b> · sah · (an)gesehen</li></ul></div>
+        <div class="fam"><div class="pat">a — u/ie — a</div><div class="patname">umlaut-in-Präsens group</div>
+          <ul><li><b>waschen</b> · wusch · gewaschen <span style="color:var(--faint)">(er wäscht)</span></li><li><b>unterhalten</b> · unterhielt · unterhalten <span style="color:var(--faint)">(er unterhält)</span></li><li><b>laufen</b> · lief · gelaufen <span style="color:var(--faint)">(er läuft, au→äu)</span></li></ul></div>
+      </div>
+      <div class="tip"><b>The Präsens umlaut is its own fact.</b> Only <em>waschen (wäscht)</em>, <em>unterhalten (unterhält)</em>, <em>laufen (läuft)</em> and <em>(an)sehen (sieht)</em> change their vowel in the <em>du</em>- and <em>er</em>-forms. The other fourteen keep the infinitive vowel throughout the present tense — <em>er befindet, er sinkt, er greift</em>.</div>
+
+      <div class="drill">
+        <div class="dhead">§08 · Principal parts</div>
+        <div class="q" data-a="er hat sich befunden">
+          <p class="qt">befinden (sich) → 3. Person Singular <b>Perfekt</b>. <em>(four words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er bat">
+          <p class="qt">bitten → 3. Person Singular <b>Präteritum</b>. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="es ist entstanden">
+          <p class="qt">entstehen → 3. Person Singular <b>Perfekt</b>. <em>(three words, careful with the auxiliary)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er hat gewonnen">
+          <p class="qt">gewinnen → 3. Person Singular <b>Perfekt</b>. <em>(three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er goss">
+          <p class="qt">gießen → 3. Person Singular <b>Präteritum</b>. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er wäscht">
+          <p class="qt">waschen → 3. Person Singular <b>Präsens</b>. <em>(two words, mind the umlaut)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er wusch">
+          <p class="qt">waschen → 3. Person Singular <b>Präteritum</b>. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er verschlang">
+          <p class="qt">verschlingen → 3. Person Singular <b>Präteritum</b>. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er ist gestiegen">
+          <p class="qt">steigen → 3. Person Singular <b>Perfekt</b>. <em>(three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er hat sich unterhalten">
+          <p class="qt">unterhalten (sich) → 3. Person Singular <b>Perfekt</b>. <em>(four words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er überbot">
+          <p class="qt">überbieten → 3. Person Singular <b>Präteritum</b>. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er hat sich beschwert">
+          <p class="qt">beschweren (sich) → 3. Person Singular <b>Perfekt</b>. <em>(four words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Which four verbs in the list take <em>sein</em> in the Perfekt, and why those four?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>entstehen · laufen · sinken · steigen</em>. Each is a change of place or state with no Akkusativ object — the two conditions for <em>sein</em>. Everything else on the list, reflexives included, takes <em>haben</em>.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINER -->
+    <section id="trainer" data-topic="voc">
+      <div class="sec-head"><span class="num">09</span><h2>Verb trainer</h2></div>
+      <p class="lead">Random drill over all 22 D2 verbs. Pick what you want tested, type the answer, press Enter. It keeps score and re-queues anything you got wrong, so the verbs you keep missing come back more often.</p>
+
+      <div class="trainer" id="vt">
+        <div class="thead">
+          <h4>Kapitel 3 · 22 Verben</h4>
+          <span class="score">Richtig <b id="vtOk">0</b> · Falsch <i id="vtNo">0</i></span>
+        </div>
+        <div class="modes" role="group" aria-label="Drill mode">
+          <button type="button" data-m="en" aria-pressed="true">Deutsch → English</button>
+          <button type="button" data-m="de" aria-pressed="false">English → Deutsch</button>
+          <button type="button" data-m="prat" aria-pressed="false">Präteritum</button>
+          <button type="button" data-m="perf" aria-pressed="false">Perfekt</button>
+          <button type="button" data-m="pras" aria-pressed="false">Präsens</button>
+          <button type="button" data-m="mix" aria-pressed="false">Alles gemischt</button>
+        </div>
+        <p class="prompt" id="vtPrompt">…</p>
+        <p class="prompthint" id="vtHint">…</p>
+        <div class="row">
+          <input type="text" id="vtInput" aria-label="Antwort" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Antwort eingeben…">
+          <button type="button" class="go" id="vtCheck">Prüfen</button>
+          <button type="button" class="go ghost" id="vtSkip">Überspringen</button>
+        </div>
+        <p class="verdict" id="vtVerdict" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="tip"><b>Umlauts.</b> The trainer accepts <em>ae / oe / ue / ss</em> for <em>ä / ö / ü / ß</em>, so you can drill from a phone keyboard without switching layouts. Articles and the pronoun <em>er/es/sie</em> are optional — <em>wusch</em> is accepted for <em>er wusch</em>.</div>
+    </section>
+
+    <!-- W1 -->
+    <section id="w1" data-topic="voc">
+      <div class="sec-head"><span class="num">10</span><h2>Wortschatz · Lesen, Bücher und Buchdruck</h2></div>
+      <p class="lead">The vocabulary the chapter builds its reading and speaking tasks on. Learn the phrases as whole chunks — Begegnungen tests them as Redemittel, not as isolated words.</p>
+
+      <div class="vocab">
+        <div class="vhead">Leseverhalten · what kind of reader are you</div>
+        <dl>
+          <dt><span class="art m">der</span> Wenigleser</dt><dd>infrequent reader, someone who reads little</dd>
+          <dt><span class="art m">der</span> Normalleser</dt><dd>average reader</dd>
+          <dt><span class="art m">der</span> Vielleser</dt><dd>heavy reader</dd>
+          <dt><span class="art f">die</span> Leseratte</dt><dd>bookworm <em>(lit. "reading rat")</em></dd>
+          <dt><span class="art m">der</span> Bücherwurm</dt><dd>bookworm</dd>
+          <dt><span class="art m">der</span> Totalverweigerer</dt><dd>total refuser — someone who reads nothing at all</dd>
+          <dt>„buchresistent" sein</dt><dd>to be "book-resistant"</dd>
+          <dt>Bücher verschlingen</dt><dd>to devour books</dd>
+          <dt>keine Bücher zum Leben brauchen</dt><dd>not to need books to live</dd>
+          <dt>ohne Bücher leben können</dt><dd>to be able to live without books</dd>
+          <dt>Bücher auswählen / beurteilen</dt><dd>to select / to judge books</dd>
+          <dt>Bücher kaufen · lesen · konsumieren</dt><dd>to buy · read · consume books</dd>
+          <dt>Bücher verschenken · ausleihen</dt><dd>to give books away · to borrow (or lend) books</dd>
+          <dt><span class="art f">die</span> Inhaltsangabe</dt><dd>summary, synopsis</dd>
+          <dt><span class="art f">die</span> Gattung, -en</dt><dd>genre, literary category</dd>
+        </dl>
+      </div>
+
+      <div class="vocab">
+        <div class="vhead">Gattungen · genres</div>
+        <dl>
+          <dt><span class="art m">der</span> Roman, -e</dt><dd>novel</dd>
+          <dt><span class="art m">der</span> Krimi, -s</dt><dd>crime novel, detective story</dd>
+          <dt><span class="art m">der</span> Thriller, -</dt><dd>thriller</dd>
+          <dt><span class="art n">das</span> Sachbuch, ¨-er</dt><dd>non-fiction book</dd>
+          <dt><span class="art m">der</span> Ratgeber, -</dt><dd>guidebook, how-to book</dd>
+          <dt><span class="art f">die</span> Biografie, -n</dt><dd>biography</dd>
+          <dt><span class="art f">die</span> Kurzgeschichte, -n</dt><dd>short story</dd>
+          <dt><span class="art n">das</span> Gedicht, -e</dt><dd>poem</dd>
+          <dt><span class="art n">das</span> Liebesgedicht, -e</dt><dd>love poem</dd>
+          <dt><span class="art n">das</span> Taschenbuch, ¨-er</dt><dd>paperback</dd>
+        </dl>
+      </div>
+
+      <div class="vocab">
+        <div class="vhead">Buchdruck · Gutenberg and the printing press</div>
+        <dl>
+          <dt><span class="art m">der</span> Buchdruck</dt><dd>book printing, letterpress printing</dd>
+          <dt><span class="art f">die</span> Druckerpresse, -n</dt><dd>printing press</dd>
+          <dt>bewegliche Lettern <em>(Pl.)</em></dt><dd>movable type</dd>
+          <dt><span class="art n">das</span> Blei</dt><dd>lead <em>(the metal — cast into type)</em></dd>
+          <dt>Blei gießen</dt><dd>to cast lead</dd>
+          <dt><span class="art f">die</span> Erfindung, -en</dt><dd>invention</dd>
+          <dt>etwas erfinden</dt><dd>to invent something</dd>
+          <dt><span class="art f">die</span> Entdeckung, -en</dt><dd>discovery</dd>
+          <dt><span class="art n">das</span> Mittelalter</dt><dd>the Middle Ages</dd>
+          <dt><span class="art f">die</span> Neuzeit</dt><dd>the modern era</dd>
+          <dt><span class="art m">der</span> Übergang, ¨-e</dt><dd>transition</dd>
+          <dt><span class="art m">der</span> Handwerker, -</dt><dd>craftsman, tradesman</dd>
+          <dt><span class="art m">der</span> Ritter, -</dt><dd>knight</dd>
+          <dt><span class="art m">der</span> Widerspruch, ¨-e</dt><dd>contradiction</dd>
+        </dl>
+      </div>
+
+      <div class="drill">
+        <div class="dhead">§10 · Lesen und Buchdruck</div>
+        <div class="q" data-a="Leseratte|die Leseratte">
+          <p class="qt">Somebody who reads constantly is <em>eine …</em> — the "reading rat".</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="verschlingt">
+          <p class="qt">Sie liest sehr schnell und viel — sie ___ Bücher. <em>(verschlingen, Präsens)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wurde erfunden">
+          <p class="qt">Der Buchdruck ___ im 15. Jahrhundert ___. <em>(erfinden, Passiv Präteritum — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Blei">
+          <p class="qt">Gutenberg goss die Lettern aus ___. <em>(the metal)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- W2 -->
+    <section id="w2" data-topic="voc">
+      <div class="sec-head"><span class="num">11</span><h2>Wortschatz · Medien und Zubehör</h2></div>
+      <p class="lead">Devices and the bits that plug into them. Learn each one <b>with its article</b> — the genders are unpredictable and Begegnungen will ask for them.</p>
+
+      <div class="vocab">
+        <div class="vhead">Geräte · devices</div>
+        <dl>
+          <dt><span class="art m">der</span> Fernseher, -</dt><dd>television set</dd>
+          <dt><span class="art n">das</span> Radio, -s</dt><dd>radio</dd>
+          <dt><span class="art n">das</span> Smartphone, -s</dt><dd>smartphone</dd>
+          <dt><span class="art n">das</span> Tablet, -s</dt><dd>tablet</dd>
+          <dt><span class="art f">die</span> Foto-/Videokamera, -s</dt><dd>photo / video camera</dd>
+          <dt><span class="art f">die</span> Spielkonsole, -n</dt><dd>games console</dd>
+          <dt><span class="art n">das</span> Fitnessarmband, ¨-er</dt><dd>fitness tracker, fitness band</dd>
+        </dl>
+      </div>
+
+      <div class="vocab">
+        <div class="vhead">Zubehör · accessories and parts</div>
+        <dl>
+          <dt><span class="art f">die</span> Tastatur, -en</dt><dd>keyboard</dd>
+          <dt><span class="art m">der</span> Bildschirm, -e</dt><dd>screen, monitor</dd>
+          <dt><span class="art m">der</span> Kopfhörer, -</dt><dd>headphones</dd>
+          <dt><span class="art m">der</span> Lautsprecher, -</dt><dd>loudspeaker</dd>
+          <dt><span class="art f">die</span> Fernbedienung, -en</dt><dd>remote control</dd>
+          <dt><span class="art f">die</span> Steckdose, -n</dt><dd>power socket, outlet</dd>
+          <dt><span class="art n">das</span> Verbindungskabel, -</dt><dd>connecting cable</dd>
+          <dt><span class="art f">die</span> Ladestation, -en</dt><dd>charging station, dock</dd>
+        </dl>
+      </div>
+
+      <div class="tip"><b>Two gender patterns to lean on.</b> Agent nouns in <b>-er</b> are masculine: <em>der Fernseher, der Kopfhörer, der Lautsprecher, der Bildschirm</em>. Nouns in <b>-ung</b> and <b>-ion</b> are feminine: <em>die Fernbedienung, die Ladestation</em>. And English loanwords for devices are mostly neuter: <em>das Smartphone, das Tablet, das Radio</em>.</div>
+
+      <div class="drill">
+        <div class="dhead">§11 · Medien und Zubehör</div>
+        <div class="q" data-a="die">
+          <p class="qt">___ Fernbedienung <em>(Artikel)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">___ Kopfhörer <em>(Artikel)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="die">
+          <p class="qt">___ Steckdose <em>(Artikel)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="das">
+          <p class="qt">___ Verbindungskabel <em>(Artikel)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Tastatur|die Tastatur">
+          <p class="qt">Womit tippt man am Computer? — mit der ___</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Fernbedienung|zur Fernbedienung">
+          <p class="qt">Er greift zur ___, um umzuschalten.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- W3 -->
+    <section id="w3" data-topic="voc">
+      <div class="sec-head"><span class="num">12</span><h2>Wortschatz · Fernsehen und Grafiken</h2></div>
+      <p class="lead">The television half of the chapter is written almost entirely in the passive and in reflexive verbs — which is exactly why Begegnungen puts those two grammar points here. Read the phrases and you will see §02 and §07 doing the work.</p>
+
+      <div class="vocab">
+        <div class="vhead">Fernsehen · nouns</div>
+        <dl>
+          <dt><span class="art m">der</span> Fernsehsender, -</dt><dd>TV broadcaster, channel</dd>
+          <dt>private und öffentlich-rechtliche Sender</dt><dd>commercial and public-service broadcasters</dd>
+          <dt><span class="art n">das</span> Fernsehprogramm, -e</dt><dd>TV schedule; the programming as a whole</dd>
+          <dt><span class="art f">die</span> Fernsehsendung, -en</dt><dd>TV programme, show</dd>
+          <dt><span class="art f">die</span> Sendezeit, -en</dt><dd>airtime, broadcast slot</dd>
+          <dt><span class="art f">die</span> Einschaltquote, -n</dt><dd>ratings, viewing figures</dd>
+          <dt><span class="art m">der</span> Marktanteil, -e</dt><dd>market share</dd>
+          <dt><span class="art f">die</span> Zielgruppe, -n</dt><dd>target group, target audience</dd>
+          <dt><span class="art f">die</span> Sehgewohnheit, -en</dt><dd>viewing habit</dd>
+          <dt><span class="art m">der</span> Untertitel, -</dt><dd>subtitle</dd>
+          <dt><span class="art f">die</span> Werbung</dt><dd>advertising, commercials</dd>
+          <dt><span class="art f">die</span> Vorliebe, -n · <span class="art f">die</span> Abneigung, -en</dt><dd>preference · dislike, aversion</dd>
+        </dl>
+      </div>
+
+      <div class="vocab">
+        <div class="vhead">Fernsehen · the sentences to memorise</div>
+        <dl>
+          <dt>Filme <b>werden synchronisiert</b>.</dt><dd>Films are dubbed. <em>(Passiv Präsens)</em></dd>
+          <dt>Filme <b>laufen</b> mit Untertiteln.</dt><dd>Films run with subtitles.</dd>
+          <dt>Sender und Sendungen haben Marktanteile und Einschaltquoten.</dt><dd>Channels and shows have market shares and ratings.</dd>
+          <dt>Die Einschaltquote <b>steigt</b> / <b>sinkt</b>.</dt><dd>The ratings rise / fall.</dd>
+          <dt>Das Programm <b>orientiert sich an</b> bestimmten Zielgruppen.</dt><dd>The schedule is geared to particular target groups. <em>(reflexiv + Dativ)</em></dd>
+          <dt>Das Programm <b>wird auf</b> Zielgruppen <b>abgestimmt</b>.</dt><dd>The schedule is tailored to target groups. <em>(Passiv)</em></dd>
+          <dt>Programme <b>richten sich an</b> Jugendliche / Erwachsene.</dt><dd>Programmes are aimed at teenagers / adults. <em>(reflexiv + Akk)</em></dd>
+          <dt>Experten wissen alles über die Sehgewohnheiten der Deutschen.</dt><dd>Experts know everything about Germans' viewing habits.</dd>
+          <dt>Ich schalte um / schalte ein / schalte aus.</dt><dd>I change channel / switch on / switch off.</dd>
+        </dl>
+      </div>
+
+      <div class="vocab">
+        <div class="vhead">Grafiken beschreiben · describing a chart</div>
+        <dl>
+          <dt>Die Grafik <b>zeigt</b> … / <b>stellt</b> … <b>dar</b>.</dt><dd>The chart shows / depicts …</dd>
+          <dt>Die Zahlen <b>beziehen sich auf</b> das Jahr …</dt><dd>The figures relate to the year …</dd>
+          <dt><b>An erster Stelle steht</b> …</dt><dd>In first place is …</dd>
+          <dt>… Prozent <b>der Befragten</b></dt><dd>… per cent of those surveyed</dd>
+          <dt>Die Zahl <b>ist um</b> 5 Prozent <b>gestiegen / gesunken</b>.</dt><dd>The figure has risen / fallen by 5 per cent.</dd>
+          <dt><b>im Vergleich zu</b> + Dativ</dt><dd>compared with …</dd>
+          <dt><b>Auffällig ist, dass</b> …</dt><dd>What stands out is that …</dd>
+          <dt><b>Zusammenfassend lässt sich sagen, dass</b> …</dt><dd>To sum up, one can say that … <em>(sich lassen = Passiversatz!)</em></dd>
+        </dl>
+      </div>
+
+      <div class="tip"><b>Two verbs, one contrast, worth drilling until automatic.</b> <em>steigen / sinken</em> are intransitive and take <em>sein</em>: <em>Die Quote <b>ist</b> gestiegen.</em> Their transitive partners are <em>steigern / senken</em> and take <em>haben</em>: <em>Der Sender <b>hat</b> die Quote gesteigert.</em> Use <em>um</em> for the size of the change (<em>um 5 Prozent</em>) and <em>auf</em> for the level reached (<em>auf 20 Prozent</em>).</div>
+
+      <div class="drill">
+        <div class="dhead">§12 · Fernsehen und Grafiken</div>
+        <div class="q" data-a="werden synchronisiert">
+          <p class="qt">In Deutschland ___ ausländische Filme meistens ___. <em>(synchronisieren, Passiv Präsens — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="ist gestiegen">
+          <p class="qt">Die Einschaltquote ___ um fünf Prozent ___. <em>(steigen, Perfekt — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="sich an">
+          <p class="qt">Die Sendung richtet ___ Jugendliche. <em>(reflexive pronoun + preposition — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="um">
+          <p class="qt">Die Zahl ist ___ zehn Prozent gesunken. <em>(um oder auf? — the size of the change)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Einschaltquote|die Einschaltquote">
+          <p class="qt">German for <em>ratings / viewing figures</em>?</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Zielgruppe|die Zielgruppe">
+          <p class="qt">German for <em>target group</em>?</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- W4 -->
+    <section id="w4" data-topic="voc">
+      <div class="sec-head"><span class="num">13</span><h2>Redemittel · Hypothesen und geschichtliche Ereignisse</h2></div>
+      <p class="lead">The two speaking tasks the chapter is built around. Both are really grammar practice in disguise: the history task drills the <b>Präteritum and the passive</b>, the hypothesis task drills <b>Konjunktiv II Vergangenheit</b>.</p>
+
+      <div class="vocab">
+        <div class="vhead">Über ein Jahrhundert / ein geschichtliches Ereignis sprechen</div>
+        <dl>
+          <dt>eine große Rolle in der Geschichte <b>spielen</b></dt><dd>to play a big role in history</dd>
+          <dt>einen Übergang (vom Mittelalter zur Neuzeit) <b>kennzeichnen</b></dt><dd>to mark a transition (from the Middle Ages to the modern era)</dd>
+          <dt>Es <b>vollzogen sich</b> politische Veränderungen.</dt><dd>Political changes took place. <em>(sich vollziehen, Präteritum)</em></dd>
+          <dt>Es <b>wurden</b> Entdeckungen <b>gemacht</b>.</dt><dd>Discoveries were made. <em>(Passiv Präteritum, es as placeholder)</em></dd>
+          <dt>Es <b>gab</b> viele Widersprüche.</dt><dd>There were many contradictions.</dd>
+          <dt>Es <b>fanden</b> schreckliche Kriege <b>statt</b>.</dt><dd>Terrible wars took place.</dd>
+          <dt>Die Menschen <b>konnten</b> (nicht) lesen und schreiben.</dt><dd>People could(n't) read and write.</dd>
+          <dt>Sie <b>wohnten</b> in …</dt><dd>They lived in …</dd>
+          <dt>Sie <b>übten</b> Berufe wie Handwerker <b>aus</b>.</dt><dd>They practised trades such as craftsman.</dd>
+          <dt>Sie <b>aßen</b> … und <b>tranken</b> …</dt><dd>They ate … and drank …</dd>
+        </dl>
+      </div>
+      <div class="tip"><b>Notice the tense.</b> This whole block is <b>Präteritum</b>, not Perfekt — narrating history in German is written-narrative territory: <em>vollzogen, wurden gemacht, gab, fanden statt, konnten, wohnten, übten aus, aßen, tranken</em>. Using the Perfekt here sounds like gossip about last weekend.</div>
+
+      <div class="vocab">
+        <div class="vhead">Hypothesen in der Vergangenheit formulieren</div>
+        <dl>
+          <dt><b>Wenn ich</b> im 15. Jahrhundert <b>gelebt hätte</b>, …</dt><dd>If I had lived in the 15th century, …</dd>
+          <dt>… <b>hätte</b> ich in einem kleinen Haus <b>gewohnt</b>.</dt><dd>… I would have lived in a small house.</dd>
+          <dt>… <b>hätte</b> ich viel Fleisch <b>gegessen</b> und Wein <b>getrunken</b>.</dt><dd>… I would have eaten a lot of meat and drunk wine.</dd>
+          <dt>… <b>wäre</b> ich bestimmt ein Handwerker <b>gewesen</b>.</dt><dd>… I would certainly have been a craftsman.</dd>
+          <dt>… <b>hätte</b> ich auf dem Markt <b>gearbeitet</b>.</dt><dd>… I would have worked at the market.</dd>
+          <dt>… <b>hätte</b> ich 12 Stunden am Tag <b>gearbeitet</b>.</dt><dd>… I would have worked 12 hours a day.</dd>
+          <dt>… <b>wäre</b> ich um 5.00 Uhr <b>aufgestanden</b>.</dt><dd>… I would have got up at 5 o'clock.</dd>
+          <dt>… <b>wäre</b> ich zu Fuß zur Arbeit <b>gegangen</b>.</dt><dd>… I would have walked to work.</dd>
+          <dt>… <b>hätte</b> ich Liebesgedichte von Rittern <b>gelesen</b>.</dt><dd>… I would have read love poems by knights.</dd>
+        </dl>
+      </div>
+      <div class="tip"><b>The pattern in one line:</b> the four <em>wäre</em> sentences all use motion or <em>sein</em> verbs (<em>sein, aufstehen, gehen</em>); every other verb here — <em>wohnen, essen, trinken, arbeiten, lesen</em> — takes <em>hätte</em>. Build your own eight sentences by swapping the bracketed parts, and you have the whole speaking task.</div>
+
+      <div class="drill">
+        <div class="dhead">§13 · Redemittel</div>
+        <div class="q" data-a="wurden">
+          <p class="qt">Im 15. Jahrhundert ___ viele Entdeckungen gemacht. <em>(Passiv Präteritum — singular or plural?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="vollzogen sich">
+          <p class="qt">Damals ___ große politische Veränderungen. <em>(sich vollziehen, Präteritum — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="fanden">
+          <p class="qt">Es ___ schreckliche Kriege statt. <em>(stattfinden, Präteritum)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wäre">
+          <p class="qt">Wenn ich damals gelebt hätte, ___ ich zu Fuß zur Arbeit gegangen.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Write three sentences about your own life in the 15th century, using <em>hätte</em> twice and <em>wäre</em> once.</p>
+          <details><summary>Musterlösung</summary><div class="ans"><em>Wenn ich im 15. Jahrhundert <b>gelebt hätte</b>, <b>hätte</b> ich als Handwerker <b>gearbeitet</b>. Ich <b>wäre</b> jeden Tag um 5.00 Uhr <b>aufgestanden</b>. Abends <b>hätte</b> ich Liebesgedichte von Rittern <b>gelesen</b>.</em> — <em>arbeiten</em> and <em>lesen</em> take <em>haben</em> → <em>hätte</em>; <em>aufstehen</em> takes <em>sein</em> → <em>wäre</em>.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHEAT -->
+    <section id="cheat">
+      <div class="cheat">
+        <div class="kicker" style="color:var(--muted)">One screen · Kapitel 3</div>
+        <h2>The cheat sheet</h2>
+        <p style="color:var(--muted);margin:6px 0 0;font-size:16px">If you revise nothing else the night before, revise this.</p>
+        <div class="cg">
+          <div>
+            <h4>Infinitiv</h4>
+            <ul>
+              <li>Same subject → <b>um … zu</b></li>
+              <li>Different subject → <b>damit</b></li>
+              <li>Separable: <code>ein<b>zu</b>schlafen</code></li>
+              <li>Verb demands it → <b>zu</b> alone, no <em>um</em></li>
+              <li><b>ohne … zu</b> / <b>ohne dass</b></li>
+              <li><b>(an)statt … zu</b> / <b>statt dass</b></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Passiv</h4>
+            <ul>
+              <li>Präsens <code>wird + P II</code></li>
+              <li>Präteritum <code>wurde + P II</code></li>
+              <li>Perfekt <code>ist + P II + worden</code></li>
+              <li><b>worden</b>, never <em>geworden</em></li>
+              <li>Perfekt always with <b>sein</b></li>
+              <li>Akk → Nom; <b>Dativ stays Dativ</b></li>
+              <li><b>von</b> + Dat = doer · <b>durch</b> + Akk = cause</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Passiv + Modal</h4>
+            <ul>
+              <li><code>Modal … P II + werden</code></li>
+              <li><em>werden</em> is the <b>last word</b></li>
+              <li>Nebensatz: modal goes last of all</li>
+              <li><b>wird</b> repariert = process</li>
+              <li><b>ist</b> repariert = state</li>
+              <li>Ersatz: <b>man · sich lassen · sein+zu · -bar</b></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Konjunktiv II</h4>
+            <ul>
+              <li>Present: real form for <b>sein, haben, Modale</b></li>
+              <li>everything else → <b>würde + Inf.</b></li>
+              <li>Past: <b>hätte / wäre + P II</b></li>
+              <li><b>no würde in the past</b>, ever</li>
+              <li>Modal past: <code>hätte … lesen können</code></li>
+              <li>Nebensatz + double inf.: <b>hätte moves forward</b></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Reflexiv</h4>
+            <ul>
+              <li>Another Akk object? → <b>Dativ</b> (mir/dir)</li>
+              <li>Otherwise <b>Akkusativ</b> (mich/dich)</li>
+              <li>Only <em>mich/mir</em>, <em>dich/dir</em> differ</li>
+              <li>Perfekt always with <b>haben</b></li>
+              <li>Learn the fixed preposition with the verb</li>
+              <li>Thing → <b>wor</b>über? · Person → <b>bei wem</b>?</li>
+            </ul>
+          </div>
+          <div>
+            <h4>D2 Verben</h4>
+            <ul>
+              <li><b>sein</b>: entstehen · laufen · sinken · steigen</li>
+              <li>reflexive: befinden · streiten · unterhalten · vollziehen · beeilen · beschweren</li>
+              <li>no <b>ge-</b> after be-/er-/ent-/ver-/über-/unter-/voll-</li>
+              <li>Präsens umlaut only: wäscht · unterhält · läuft · sieht</li>
+              <li>Quoten: <b>steigen ↔ sinken</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEST -->
+    <section id="test">
+      <div class="sec-head"><span class="num">14</span><h2>Mixed test — 20 items</h2></div>
+      <p class="lead">Everything from the chapter, shuffled and unlabelled — no topic headings to tell you which rule to reach for. That is the point: on an exam nobody tells you either. Answers are graded as you go.</p>
+
+      <div class="drill" style="display:block">
+        <div class="dhead">Kapitel 3 · Gesamttest</div>
+        <div class="q" data-a="um">
+          <p class="qt"><b>1.</b> Er kauft sich Kopfhörer, ___ im Zug Musik hören zu können.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="damit">
+          <p class="qt"><b>2.</b> Sie spricht laut, ___ alle Zuschauer sie verstehen.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="anzuschalten">
+          <p class="qt"><b>3.</b> Er ging ins Bett, ohne den Fernseher ___. <em>(anschalten)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wird gedruckt">
+          <p class="qt"><b>4.</b> Passiv Präsens: <em>Der Verlag druckt das Buch.</em> → Das Buch ___.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wurde">
+          <p class="qt"><b>5.</b> Der Film ___ letztes Jahr synchronisiert. <em>(Passiv Präteritum)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="worden">
+          <p class="qt"><b>6.</b> Die Sendung ist gestern zum letzten Mal gezeigt ___.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="durch">
+          <p class="qt"><b>7.</b> Viele Bücher wurden ___ das Feuer zerstört. <em>(von oder durch?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Dem Zuschauer wird geholfen.|Dem Zuschauer wird geholfen">
+          <p class="qt"><b>8.</b> Passiv: <em>Der Sender hilft dem Zuschauer.</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="werden">
+          <p class="qt"><b>9.</b> Das Programm muss auf die Zielgruppe abgestimmt ___.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="gemessen werden kann">
+          <p class="qt"><b>10.</b> …, dass die Einschaltquote genau ___. <em>(messen + können, Passiv, Nebensatz — three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="kann gelöst werden">
+          <p class="qt"><b>11.</b> Das Problem lässt sich lösen. → Das Problem ___.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="hätte">
+          <p class="qt"><b>12.</b> Wenn ich mehr Zeit ___, würde ich mehr lesen.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wäre">
+          <p class="qt"><b>13.</b> Wenn ich im Mittelalter gelebt hätte, ___ ich Handwerker gewesen.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="gelesen hätte">
+          <p class="qt"><b>14.</b> Wenn er das Buch ___, hätte er den Film verstanden. <em>(lesen — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="fragen sollen">
+          <p class="qt"><b>15.</b> Du hättest mich ___. <em>(fragen + sollen — two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="mir">
+          <p class="qt"><b>16.</b> Ich sehe ___ die Nachrichten an.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="mich">
+          <p class="qt"><b>17.</b> Ich beschwere ___ über die Lieferverzögerung.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er hat sich befunden">
+          <p class="qt"><b>18.</b> befinden (sich) → 3. Person Singular Perfekt. <em>(four words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er griff">
+          <p class="qt"><b>19.</b> greifen → 3. Person Singular Präteritum. <em>(two words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="es ist entstanden">
+          <p class="qt"><b>20.</b> entstehen → 3. Person Singular Perfekt. <em>(three words)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CANDO -->
+    <section id="cando">
+      <div class="sec-head"><span class="num">15</span><h2>D3 · Evaluation — Überprüfen Sie sich selbst</h2></div>
+      <p class="lead">The chapter's own self-assessment list. Tick honestly; anything left unticked tells you which section to go back to. Your ticks are remembered on this device.</p>
+
+      <div class="cando" id="cando">
+        <div class="chead"><span>Ich kann …</span><span>gut</span><span>nicht so gut</span></div>
+        <label><span>über mein Leseverhalten berichten.<span class="en">talk about my own reading habits — §10</span></span><input type="checkbox" data-k="c1"><input type="checkbox" data-k="c1b"></label>
+        <label><span>eine Buchauswahl treffen und begründen.<span class="en">choose books and justify the choice — §01, §10</span></span><input type="checkbox" data-k="c2"><input type="checkbox" data-k="c2b"></label>
+        <label><span>eine kurze Inhaltsangabe von Büchern verschiedener Gattungen verstehen.<span class="en">understand short synopses across genres — §10</span></span><input type="checkbox" data-k="c3"><input type="checkbox" data-k="c3b"></label>
+        <label><span>Hypothesen in der Gegenwart und der Vergangenheit formulieren.<span class="en">form hypotheses in the present and the past — §05, §06</span></span><input type="checkbox" data-k="c4"><input type="checkbox" data-k="c4b"></label>
+        <label><span>einen einfachen populärwissenschaftlichen Text über den Buchdruck verstehen.<span class="en">understand a simple popular-science text on printing — §02, §10</span></span><input type="checkbox" data-k="c5"><input type="checkbox" data-k="c5b"></label>
+        <label><span>etwas über die verschiedenen Medien sagen und meine Vorlieben und Abneigungen benennen.<span class="en">talk about media and name my likes and dislikes — §07, §11</span></span><input type="checkbox" data-k="c6"><input type="checkbox" data-k="c6b"></label>
+        <label><span>über das Fernsehprogramm in meinem Heimatland und mein Fernsehverhalten mündlich und schriftlich berichten.<span class="en">report on TV in my country and my own viewing, spoken and written — §02, §12</span></span><input type="checkbox" data-k="c7"><input type="checkbox" data-k="c7b"></label>
+        <label><span>einfache Grafiken zu verschiedenen Themen beschreiben.<span class="en">describe simple charts — §12</span></span><input type="checkbox" data-k="c8"><input type="checkbox" data-k="c8b"></label>
+        <label><span>eine E-Mail über ein Medienthema schreiben.<span class="en">write an e-mail on a media topic — §01, §07</span></span><input type="checkbox" data-k="c9"><input type="checkbox" data-k="c9b"></label>
+        <label><span>die 22 Verben aus D2 in allen vier Formen abrufen.<span class="en">recall all 22 D2 verbs in all four forms — §08, §09</span></span><input type="checkbox" data-k="c10"><input type="checkbox" data-k="c10b"></label>
+      </div>
+
+      <footer>Begegnungen B1<sup>+</sup> · Kapitel 3 · Medien — <a href="index.html" style="color:inherit">back to the A1–B1.2 grammar sheet</a></footer>
+    </section>
+
+  </div>
+</div>
+<script>
+(function(){
+  // strip case, fold umlauts (so ae/oe/ue/ss typed on a phone still count),
+  // collapse spaces, drop trailing punctuation
+  var norm = function(s){
+    return s.toLowerCase().normalize('NFC')
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/\s+/g,' ').replace(/[.!?,;]+$/,'').trim();
+  };
+  function check(q){
+    var input = q.querySelector('input[type=text]');
+    var fb = q.querySelector('.fb');
+    var accepted = q.dataset.a.split('|');
+    var ok = accepted.some(function(a){ return norm(a) === norm(input.value); });
+    q.classList.toggle('ok', ok);
+    q.classList.toggle('no', !ok);
+    fb.textContent = ok ? '✓ richtig' : '✗ — ' + accepted[0];
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.chk');
+    if (btn) check(btn.closest('.q'));
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.matches('.q input[type=text]')){
+      e.preventDefault();
+      check(e.target.closest('.q'));
+    }
+  });
+})();
+</script>
+<script id="verb-trainer">
+(function(){
+  var root = document.getElementById('vt');
+  if (!root) return;
+
+  // Kapitel 3, Teil D2 — Kleines Wörterbuch der Verben.
+  // pras/prat/perf are the 3rd person singular forms exactly as the book prints them.
+  var VERBS = [
+    {inf:'sich befinden',      en:['to be located','to be situated','to be'],                       pras:'er befindet sich',   prat:'er befand sich',      perf:'er hat sich befunden'},
+    {inf:'bestehen',           en:['to pass','to pass an exam','to exist','to consist of'],          pras:'er besteht',         prat:'er bestand',          perf:'er hat bestanden'},
+    {inf:'bitten',             en:['to ask for','to request','to ask'],                              pras:'er bittet',          prat:'er bat',              perf:'er hat gebeten'},
+    {inf:'entstehen',          en:['to arise','to come into being','to be created','to emerge'],     pras:'es entsteht',        prat:'es entstand',         perf:'es ist entstanden'},
+    {inf:'erfinden',           en:['to invent'],                                                     pras:'er erfindet',        prat:'er erfand',           perf:'er hat erfunden'},
+    {inf:'gewinnen',           en:['to win','to gain'],                                              pras:'er gewinnt',         prat:'er gewann',           perf:'er hat gewonnen'},
+    {inf:'gießen',             en:['to pour','to cast','to water'],                                  pras:'er gießt',           prat:'er goss',             perf:'er hat gegossen'},
+    {inf:'greifen',            en:['to grab','to reach for','to reach','to grasp'],                  pras:'er greift',          prat:'er griff',            perf:'er hat gegriffen'},
+    {inf:'laufen',             en:['to run','to walk','to be showing','to be on'],                   pras:'er läuft',           prat:'er lief',             perf:'er ist gelaufen'},
+    {inf:'(an)sehen',          en:['to look at','to watch','to see'],                                pras:'er sieht an',        prat:'er sah an',           perf:'er hat angesehen'},
+    {inf:'sinken',             en:['to sink','to fall','to decline','to drop'],                      pras:'er sinkt',           prat:'er sank',             perf:'er ist gesunken'},
+    {inf:'steigen',            en:['to climb','to rise','to increase','to go up'],                   pras:'er steigt',          prat:'er stieg',            perf:'er ist gestiegen'},
+    {inf:'sich streiten',      en:['to argue','to quarrel','to fight'],                              pras:'er streitet sich',   prat:'er stritt sich',      perf:'er hat sich gestritten'},
+    {inf:'überbieten',         en:['to outbid','to beat','to top','to outdo'],                       pras:'er überbietet',      prat:'er überbot',          perf:'er hat überboten'},
+    {inf:'sich unterhalten',   en:['to converse','to chat','to talk','to entertain'],                pras:'er unterhält sich',  prat:'er unterhielt sich',  perf:'er hat sich unterhalten'},
+    {inf:'verschlingen',       en:['to devour','to gulp down','to swallow'],                         pras:'er verschlingt',     prat:'er verschlang',       perf:'er hat verschlungen'},
+    {inf:'sich vollziehen',    en:['to take place','to occur','to happen'],                          pras:'sie vollzieht sich', prat:'sie vollzog sich',    perf:'sie hat sich vollzogen'},
+    {inf:'waschen',            en:['to wash'],                                                       pras:'er wäscht',          prat:'er wusch',            perf:'er hat gewaschen'},
+    {inf:'sich beeilen',       en:['to hurry','to rush','to hurry up'],                              pras:'er beeilt sich',     prat:'er beeilte sich',     perf:'er hat sich beeilt'},
+    {inf:'sich beschweren',    en:['to complain'],                                                   pras:'er beschwert sich',  prat:'er beschwerte sich',  perf:'er hat sich beschwert'},
+    {inf:'synchronisieren',    en:['to dub'],                                                        pras:'er synchronisiert',  prat:'er synchronisierte',  perf:'er hat synchronisiert'},
+    {inf:'verfügen',           en:['to have at ones disposal','to possess','to have'],               pras:'er verfügt',         prat:'er verfügte',         perf:'er hat verfügt'}
+  ];
+
+  var norm = function(s){
+    return String(s).toLowerCase().normalize('NFC')
+      .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+      .replace(/[’']/g,'').replace(/[().,!?;]/g,' ')
+      .replace(/\s+/g,' ').trim();
+  };
+
+  // Build every spelling we are willing to accept for one German form. Each pass
+  // widens the set, so the optional bits compose: "er sieht an" also accepts
+  // "sieht an", "er sieht" and "sieht".
+  function expand(list, fn){
+    var out = list.slice();
+    list.forEach(function(v){
+      var r = fn(v);
+      if (r && out.indexOf(r) === -1) out.push(r);
+    });
+    return out;
+  }
+  function germanForms(s){
+    var v = [s];
+    v = expand(v, function(x){ return /^(er|es|sie|man)\s/.test(x) ? x.replace(/^(er|es|sie|man)\s+/,'') : null; });
+    v = expand(v, function(x){ return x.indexOf('(') !== -1 ? x.replace(/\(([^)]*)\)/g,'$1') : null; });  // (an)sehen → ansehen
+    v = expand(v, function(x){ return x.indexOf('(') !== -1 ? x.replace(/\([^)]*\)/g,'')     : null; });  // (an)sehen → sehen
+    v = expand(v, function(x){ return /^sich\s/.test(x)  ? x.replace(/^sich\s+/,'') : null; });          // sich is optional
+    v = expand(v, function(x){ return /\ssich\b/.test(x) ? x.replace(/\ssich\b/,'')  : null; });
+    v = expand(v, function(x){ return /\san\b/.test(x)   ? x.replace(/\san\b/,'')    : null; });
+    v = expand(v, function(x){ return /\bangesehen\b/.test(x) ? x.replace('angesehen','gesehen') : null; });
+    return v.map(norm).filter(function(x,i,a){ return x && a.indexOf(x)===i; });
+  }
+  function englishForms(list){
+    var out = [];
+    list.forEach(function(v){
+      out.push(v);
+      out.push(v.replace(/^to\s+/,''));
+    });
+    return out.map(norm).filter(function(v,i,a){ return v && a.indexOf(v)===i; });
+  }
+
+  var MODES = {
+    en:   {hint:'Give the English meaning',        ask:function(v){return v.inf;},  ok:function(v){return englishForms(v.en);},   show:function(v){return v.en[0];}},
+    de:   {hint:'Give the German infinitive',      ask:function(v){return v.en[0];},ok:function(v){return germanForms(v.inf);},   show:function(v){return v.inf;}},
+    pras: {hint:'3. Person Singular · Präsens',    ask:function(v){return v.inf;},  ok:function(v){return germanForms(v.pras);},  show:function(v){return v.pras;}},
+    prat: {hint:'3. Person Singular · Präteritum', ask:function(v){return v.inf;},  ok:function(v){return germanForms(v.prat);},  show:function(v){return v.prat;}},
+    perf: {hint:'3. Person Singular · Perfekt',    ask:function(v){return v.inf;},  ok:function(v){return germanForms(v.perf);},  show:function(v){return v.perf;}}
+  };
+  var MIX = ['en','de','pras','prat','perf'];
+
+  var promptEl  = document.getElementById('vtPrompt');
+  var hintEl    = document.getElementById('vtHint');
+  var inputEl   = document.getElementById('vtInput');
+  var verdictEl = document.getElementById('vtVerdict');
+  var okEl      = document.getElementById('vtOk');
+  var noEl      = document.getElementById('vtNo');
+  var checkBtn  = document.getElementById('vtCheck');
+  var skipBtn   = document.getElementById('vtSkip');
+
+  var mode = 'en', pool = [], current = null, curMode = 'en', answered = false;
+  var score = {ok:0, no:0};
+  // don't steal focus on load — that would scroll the page down to the trainer
+  var started = false;
+
+  function refill(){
+    pool = VERBS.map(function(_,i){ return i; });
+    for (var i = pool.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+  }
+  function next(){
+    if (!pool.length) refill();
+    current = VERBS[pool.shift()];
+    curMode = (mode === 'mix') ? MIX[Math.floor(Math.random() * MIX.length)] : mode;
+    answered = false;
+    promptEl.textContent = MODES[curMode].ask(current);
+    hintEl.textContent = MODES[curMode].hint;
+    verdictEl.textContent = '';
+    verdictEl.className = 'verdict';
+    inputEl.value = '';
+    if (started) inputEl.focus();
+  }
+  function principalParts(v){
+    return v.inf + ' · ' + v.pras + ' · ' + v.prat + ' · ' + v.perf + ' — ' + v.en[0];
+  }
+  function reveal(right){
+    answered = true;
+    verdictEl.className = 'verdict ' + (right ? 'ok' : 'no');
+    verdictEl.innerHTML = (right ? '✓ richtig' : '✗ ' + MODES[curMode].show(current)) +
+      '<span class="full">' + principalParts(current) + '</span>';
+    if (right){ score.ok++; }
+    else {
+      score.no++;
+      // missed verbs come back sooner, and once more later
+      var idx = VERBS.indexOf(current);
+      pool.splice(Math.min(2, pool.length), 0, idx);
+      pool.push(idx);
+    }
+    okEl.textContent = score.ok;
+    noEl.textContent = score.no;
+  }
+  function grade(){
+    if (answered){ next(); return; }
+    var typed = norm(inputEl.value);
+    if (!typed) return;
+    reveal(MODES[curMode].ok(current).indexOf(typed) !== -1);
+  }
+
+  checkBtn.addEventListener('click', function(){ started = true; grade(); });
+  skipBtn.addEventListener('click', function(){
+    started = true;
+    if (!answered){ reveal(false); } else { next(); }
+  });
+  inputEl.addEventListener('focus', function(){ started = true; });
+  inputEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter'){ e.preventDefault(); grade(); }
+  });
+  root.querySelectorAll('.modes button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      mode = btn.dataset.m;
+      started = true;
+      root.querySelectorAll('.modes button').forEach(function(b){
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+      refill();
+      next();
+    });
+  });
+
+  refill();
+  next();
+})();
+</script>
+<script id="mobile-toc">
+(function(){
+  // on a phone the sidebar would otherwise push the whole lesson below the fold
+  var toc = document.querySelector('details.mtoc');
+  if (toc && window.matchMedia('(max-width:860px)').matches) toc.open = false;
+})();
+</script>
+<script id="cando-memory">
+(function(){
+  var box = document.getElementById('cando');
+  if (!box) return;
+  var KEY = 'begegnungen-k3-cando';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ state = {}; }
+  box.querySelectorAll('input[type=checkbox]').forEach(function(cb){
+    if (state[cb.dataset.k]) cb.checked = true;
+    cb.addEventListener('change', function(){
+      // "gut" and "nicht so gut" are mutually exclusive on a row
+      var row = cb.closest('label');
+      if (cb.checked){
+        row.querySelectorAll('input[type=checkbox]').forEach(function(o){
+          if (o !== cb){ o.checked = false; state[o.dataset.k] = false; }
+        });
+      }
+      state[cb.dataset.k] = cb.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>
