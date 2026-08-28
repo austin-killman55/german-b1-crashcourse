@@ -151,6 +151,53 @@
   .tip{font-size:15px;color:var(--muted);margin:14px 0;padding-left:14px;border-left:2px solid var(--line-strong)}
   .tip b{color:var(--ink);font-weight:500}
 
+  /* ---------- exercise mode ---------- */
+  .modebar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    margin:0 calc(-1*clamp(20px,5vw,64px));padding:12px clamp(20px,5vw,64px)}
+  .switch{display:flex;align-items:center;gap:11px;cursor:pointer;-webkit-user-select:none;user-select:none}
+  .switch input{position:absolute;opacity:0;width:0;height:0}
+  .switch .track{width:44px;height:25px;border-radius:999px;background:#d6d9df;flex:none;padding:3px;transition:background .18s}
+  .switch .knob{display:block;width:19px;height:19px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.28);transition:transform .18s}
+  .switch input:checked + .track{background:var(--accent)}
+  .switch input:checked + .track .knob{transform:translateX(19px)}
+  .switch input:focus-visible + .track{outline:2px solid var(--nom);outline-offset:2px}
+  .switch .lbl{font-family:var(--display);font-size:14px;font-weight:500}
+  .modehint{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-left:auto}
+  .modehint b{color:var(--accent);font-weight:700}
+
+  /* the flip — no JS needed */
+  .drill{display:none}
+  body:has(#mode:checked) .drill{display:block}
+  body:has(#mode:checked) section > *:not(.sec-head):not(.drill):not(footer){display:none}
+  body:has(#mode:checked) header.hero .diagram,
+  body:has(#mode:checked) header.hero .sub{display:none}
+  body:has(#mode:checked) .ref-label{display:none}
+  .drill-label{display:none}
+  body:has(#mode:checked) .drill-label{display:inline}
+
+  .drill{margin-top:18px}
+  .drill .dhead{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin:10px 0}
+  .q .qt{margin:0 0 10px;font-size:16.5px;line-height:1.55}
+  .q .qt em{color:var(--muted);font-size:14.5px;font-style:italic}
+  .q .qt b{font-weight:700}
+  .q .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .q input[type=text]{font-family:var(--body);font-size:16px;padding:7px 11px;border:1px solid var(--line-strong);border-radius:8px;min-width:170px;flex:1 1 170px;background:#fff;color:var(--ink)}
+  .q input[type=text]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+  .q button{font-family:var(--display);font-size:13px;font-weight:500;padding:8px 15px;border-radius:8px;border:1px solid var(--line-strong);background:#f3f4f6;color:var(--ink);cursor:pointer}
+  .q button:hover{background:#e9ebef}
+  .q .fb{font-size:14.5px;font-family:var(--display);font-weight:500}
+  .q.ok{border-color:#b7e2c9;background:var(--dat-bg)}
+  .q.ok .fb{color:var(--dat)}
+  .q.no{border-color:#f2c9ca;background:var(--akk-bg)}
+  .q.no .fb{color:var(--akk)}
+  .q details{margin-top:10px}
+  .q details summary{cursor:pointer;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .q details summary:hover{color:var(--accent)}
+  .q details .ans{margin-top:9px;font-size:15.5px;line-height:1.55;color:var(--ink);padding-left:13px;border-left:2px solid var(--accent)}
+  .q details .ans em{color:var(--muted)}
+
   /* mnemonic cards */
   .tricks{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:14px;margin:18px 0}
   .trick{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
@@ -238,6 +285,15 @@
   <!-- MAIN -->
   <div class="main">
 
+    <div class="modebar">
+      <label class="switch">
+        <input type="checkbox" id="mode">
+        <span class="track"><span class="knob"></span></span>
+        <span class="lbl">Übungsmodus — turn the whole sheet into practice questions</span>
+      </label>
+      <span class="modehint"><span class="ref-label">Reference</span><b class="drill-label">Exercises</b></span>
+    </div>
+
     <header class="hero">
       <div class="kicker">Everything up to B1.2 · in one place</div>
       <h1>Read a sentence the way<br>your teacher <em>takes it apart</em>.</h1>
@@ -285,7 +341,35 @@
         </ul>
       </div>
       <p class="tip"><b>Order of attack:</b> verb first → <em>wer/was?</em> for the Nominativ subject → then the verb's <em>wen?</em> or <em>wem?</em> for the objects.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§1 · Kasus bestimmen</div>
+        <div class="q" data-a="Die">
+          <p class="qt">___ Lehrerin erklärt die Grammatik. <em>(Nominativ, feminin)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der Freundin">
+          <p class="qt">Ich schenke ___ Blumen. <em>(die Freundin → Dativ)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dem Lehrer">
+          <p class="qt">Wir danken ___. <em>(der Lehrer → Dativ)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="des Mannes|des Manns">
+          <p class="qt">Das ist das Auto ___. <em>(der Mann → Genitiv)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="den Film">
+          <p class="qt">Er sieht ___. <em>(der Film → Akkusativ)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Welcher Kasus? <em>Ich bleibe einen Monat.</em></p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>Akkusativ</b> — a bare time phrase. Note it is <em>not</em> an object: nobody is doing anything to the month. This is exactly why "Akkusativ = direct object" is a first heuristic, not a rule.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 2 -->
     <section id="s2">
@@ -311,7 +395,39 @@
         </div>
       </div>
       <p class="tip"><b>Two objects?</b> The default pattern is <span class="c dat">Dativ</span> (person) + <span class="c akk">Akkusativ</span> (thing): <em>Ich gebe <span class="c dat">dir</span> <span class="c akk">das Geld</span>.</em></p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§2 · Dativverben</div>
+        <div class="q" data-a="meinem Bruder">
+          <p class="qt">Ich helfe ___. <em>(mein Bruder)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der Frau">
+          <p class="qt">Das Buch gehört ___. <em>(die Frau)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="den Kindern">
+          <p class="qt">Der Kuchen schmeckt ___. <em>(die Kinder, Plural)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dir">
+          <p class="qt">Ich glaube ___. <em>(du — I believe you)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="die Geschichte">
+          <p class="qt">Ich glaube ___. <em>(die Geschichte — I believe the story)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dir das Geld">
+          <p class="qt">Ich gebe ___. <em>(du + das Geld)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why do the two <em>glauben</em> answers differ?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>glauben</em> is two-faced: a <b>person</b> you believe goes in the Dativ (<em>Ich glaube dir</em>), a <b>thing</b> you believe goes in the Akkusativ (<em>Ich glaube die Geschichte</em>). Any list that files <em>glauben</em> flatly under "Dativ verb" is teaching an error.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 3 -->
     <section id="s3">
@@ -362,7 +478,47 @@
         </ul>
       </div>
       <p class="tip"><b>Shortcut:</b> if the article already shows the case clearly (den, dem, des, einem…), the adjective almost always ends in <b>-en</b>. The interesting endings live in the Nominativ/Akkusativ top rows.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§3 · Adjektivendungen — type the ending only</div>
+        <div class="q" data-a="e">
+          <p class="qt">der neu___ Wagen <em>(Nominativ)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="en">
+          <p class="qt">den neu___ Wagen <em>(Akkusativ)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er">
+          <p class="qt">ein neu___ Wagen <em>(Nominativ, maskulin)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="es">
+          <p class="qt">ein neu___ Auto <em>(Nominativ, neutrum)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="en">
+          <p class="qt">mit dem neu___ Wagen <em>(Dativ)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="er">
+          <p class="qt">gut___ Wein <em>(Nominativ, kein Artikel)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="e">
+          <p class="qt">Ich trinke kalt___ Milch. <em>(Akkusativ, kein Artikel)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="en">
+          <p class="qt">wegen des schlecht___ Wetters <em>(Genitiv)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt"><em>Das Auto ist neu___</em> — welche Endung?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>None.</b> After <em>sein / werden / bleiben</em> the adjective is predicative and takes no ending at all: <em>Das Auto ist neu.</em></div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 4 -->
     <section id="s4">
@@ -387,7 +543,39 @@
           </ul>
         </div>
       </div>
-    </section>
+          <div class="drill">
+        <div class="dhead">§4 · Präpositionen mit festem Kasus</div>
+        <div class="q" data-a="den">
+          <p class="qt">Wir gehen durch ___ Park. <em>(der Park)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dem">
+          <p class="qt">Ich fahre mit ___ Bus. <em>(der Bus)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dich">
+          <p class="qt">Das Geschenk ist für ___. <em>(du)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">Nach ___ Arbeit fahre ich nach Hause. <em>(die Arbeit)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">Er kommt aus ___ Schweiz. <em>(die Schweiz)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="den">
+          <p class="qt">Ich bin gegen ___ Plan. <em>(der Plan)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Which five does DOGFU cover — and which three does it leave out on purpose?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">DOGFU = <b>durch, ohne, gegen, für, um</b>. Left out: <em>bis, entlang, wider</em> — the three that misbehave. <em>entlang</em> is Akkusativ only <b>after</b> its noun (<em>den Fluss entlang</em>); <em>bis</em> stacks with another preposition that then sets the case (<em>bis zu der Brücke</em>).</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 5 -->
     <section id="s5">
@@ -409,7 +597,39 @@
         </div>
       </div>
       <p class="tip"><b>Verb pairs that give it away:</b> <em>legen/liegen, stellen/stehen, setzen/sitzen, hängen/hängen</em> — the "put" verb signals <em>wohin?</em> (Akk), the "be" verb signals <em>wo?</em> (Dat).</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§5 · Wechselpräpositionen</div>
+        <div class="q" data-a="die">
+          <p class="qt">Ich hänge das Bild an ___ Wand. <em>(die Wand — wohin?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">Das Bild hängt an ___ Wand. <em>(die Wand — wo?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="den">
+          <p class="qt">Stell die Flasche auf ___ Tisch. <em>(der Tisch)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dem">
+          <p class="qt">Die Flasche steht auf ___ Tisch. <em>(der Tisch)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="den">
+          <p class="qt">Ich gehe in ___ Park. <em>(der Park — entering it)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dem">
+          <p class="qt">Ich jogge jeden Morgen in ___ Park. <em>(der Park — running around inside it)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">The last sentence is full of movement, yet it takes the Dativ. Why?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>wohin?</em> means <b>destination reached</b>, not "there is motion". The park is the space the running happens <em>inside</em>, so it answers <em>wo?</em> → Dativ. This is precisely where the popular "motion → Akkusativ" mnemonic produces errors.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 6 -->
     <section id="s6">
@@ -425,7 +645,31 @@
         </ul>
       </div>
       <p class="tip">In everyday speech you'll hear <em>wegen dem Wetter</em> (Dativ) — fine for talking, but write the Genitiv for exams.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§6 · Genitivpräpositionen</div>
+        <div class="q" data-a="des">
+          <p class="qt">wegen ___ schlechten Wetters <em>(das Wetter)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="des">
+          <p class="qt">trotz ___ Regens <em>(der Regen)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">während ___ Woche <em>(die Woche)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">innerhalb ___ Stadt <em>(die Stadt)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">You hear <em>wegen dem Wetter</em> on the street. Is it wrong?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">Not in speech — the Dativ after <em>wegen / trotz / während / statt</em> is completely normal colloquially. Write the Genitiv in exams. And with a <b>bare plural</b> the Dativ is effectively required: <em>wegen Geschäft<b>en</b></em>, because a bare Genitiv plural carries no marking at all.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 7 -->
     <section id="s7">
@@ -448,7 +692,35 @@
         </div>
       </div>
       <p class="tip"><b>Akk vs Dat forms differ only in ich/du:</b> mich/mir, dich/dir. For er/sie/es/wir/ihr/sie the reflexive is just <em>sich / uns / euch / sich</em>.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§7 · Reflexivpronomen</div>
+        <div class="q" data-a="mich">
+          <p class="qt">Ich wasche ___. <em>(kein weiteres Objekt)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="mir">
+          <p class="qt">Ich wasche ___ die Hände.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="sich">
+          <p class="qt">Er putzt ___ die Zähne.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dich">
+          <p class="qt">Freust du ___ auf die Ferien?</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="uns">
+          <p class="qt">Wir treffen ___ um acht.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">How many reflexive forms actually differ between Akkusativ and Dativ?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>Four.</b> Only <em>mich/mir</em> and <em>dich/dir</em>. Everything else — <em>sich, uns, euch, sich</em> — is identical in both cases, so the entire distinction lives in the 1st and 2nd person singular.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 8 -->
     <section id="s8">
@@ -463,7 +735,43 @@
         </ul>
       </div>
       <div class="rule"><span class="tag">wo(r)- & da(r)-</span><div>For <b>things</b>, ask with <b>Wo(r)+prep</b> (<em>Worauf? Wovon? Woran?</em>) and answer with <b>Da(r)+prep</b> (<em>darauf, davon, daran</em>). For <b>people</b>, use the preposition + pronoun (<em>auf wen? → auf ihn</em>).</div></div>
-    </section>
+          <div class="drill">
+        <div class="dhead">§8 · Verben mit fester Präposition</div>
+        <div class="q" data-a="auf">
+          <p class="qt">Ich warte ___ den Bus.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="für">
+          <p class="qt">Ich interessiere mich ___ Musik.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="an">
+          <p class="qt">Ich denke ___ dich.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="vor">
+          <p class="qt">Ich habe Angst ___ Hunden.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Worauf">
+          <p class="qt">___ wartest du? <em>(auf den Bus — a thing)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Auf wen">
+          <p class="qt">___ wartest du? <em>(auf meinen Bruder — a person)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="darauf">
+          <p class="qt">Ich freue mich ___. <em>(auf die Ferien — replace with a da-compound)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why <em>darauf</em> and <em>worüber</em>, but <em>davon</em> and <em>womit</em>?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">The <b>-r-</b> appears only when the preposition starts with a <b>vowel</b>: da + auf → dar<b>auf</b>, wo + über → wor<b>über</b>. Consonant-initial prepositions take none: <em>davon, damit, wovon, womit</em>. No exceptions.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 9 -->
     <section id="s9">
@@ -482,7 +790,35 @@
         </ul>
       </div>
       <p class="tip"><b>Verb-second still holds if you front something:</b> <em>Morgen <u>fahre</u> ich mit dem Auto nach Berlin.</em> The verb stays in slot 2; the subject moves behind it.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§9 · Wortstellung</div>
+        <div class="q" data-a="Ich fahre morgen mit dem Auto nach Berlin">
+          <p class="qt">Ordne: <em>ich / nach Berlin / morgen / mit dem Auto / fahre</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="fahre">
+          <p class="qt">Morgen ___ ich nach Hause. <em>(fahren)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="fliegen">
+          <p class="qt">Am nächsten Montag ___ wir nach Wien. <em>(fliegen)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dem Mann das Buch">
+          <p class="qt">Ich gebe ___. <em>(dem Mann + das Buch — noun + noun)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="es ihm">
+          <p class="qt">Ich gebe ___. <em>(es + ihm — two pronouns)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt"><em>Gestern ich bin gegangen</em> — what went wrong?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">V2 means the verb is the second <b>element</b>, never the second <b>word</b>. <em>Gestern</em> already fills position 1, so the verb comes next and the subject moves behind it: <em>Gestern <b>bin</b> ich gegangen.</em></div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 10 -->
     <section id="s10">
@@ -501,7 +837,35 @@
       </div>
       <p class="tip"><b>Front the subordinate clause?</b> Then it fills position 1, and the main verb comes right after the comma: <em>Weil ich krank bin, <u>bleibe</u> ich zu Hause.</em> (verb–verb across the comma).</p>
       <p class="tip"><b>Careful:</b> <em>denn</em> also means "because" but is <b>coordinating</b> — normal word order, verb stays in position 2.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§10 · Nebensätze</div>
+        <div class="q" data-a="bin">
+          <p class="qt">Ich bleibe zu Hause, weil ich krank ___. <em>(sein)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="kommt">
+          <p class="qt">Ich weiß, dass er morgen ___. <em>(kommen)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="bin">
+          <p class="qt">Ich gehe nicht, denn ich ___ müde. <em>(sein)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="bleibe">
+          <p class="qt">Weil ich krank bin, ___ ich zu Hause. <em>(bleiben)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="versprochen hatte|versprochen hat">
+          <p class="qt">Er kam nicht, obwohl er es ___. <em>(versprechen, Perfekt)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt"><em>weil</em> and <em>denn</em> both mean "because". What is the difference?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>weil</em> is <b>subordinating</b> → verb to the end (<em>…, weil ich müde <b>bin</b></em>). <em>denn</em> is <b>coordinating</b> → normal V2 (<em>…, denn ich <b>bin</b> müde</em>). The five that never kick: <em>und, aber, denn, oder, sondern</em>.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 11 -->
     <section id="s11">
@@ -524,7 +888,35 @@
         </ul>
       </div>
       <p class="tip"><b>Genitiv relative pronoun</b> = <em>dessen</em> (m/n) / <em>deren</em> (f/pl): <em>Der Mann, <span class="c gen">dessen</span> Auto kaputt ist, …</em></p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§11 · Relativsätze</div>
+        <div class="q" data-a="dem">
+          <p class="qt">Das ist der Mann, ___ ich geholfen habe.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">Die Frau, mit ___ ich spreche, ist meine Chefin.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dessen">
+          <p class="qt">Der Mann, ___ Auto kaputt ist, wartet draußen.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="das">
+          <p class="qt">Das Kind, ___ dort weint, sucht seine Mutter.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="denen">
+          <p class="qt">Die Kollegen, ___ ich vertraue, sind heute da. <em>(vertrauen + Dativ)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">In <em>Das ist der Mann, dem ich geholfen habe</em> — where does each half of the pronoun come from?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>Gender and number from the outside:</b> <em>der Mann</em> → masculine singular. <b>Case from the inside:</b> <em>helfen</em> takes the Dativ → <em>dem</em>. Two separate questions, always.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 12 -->
     <section id="s12">
@@ -540,7 +932,39 @@
         </ul>
       </div>
       <div class="rule"><span class="tag">sein or haben?</span><div>Use <b>sein</b> in the Perfekt/Plusquamperfekt for verbs of <b>movement</b> (<em>gehen, fahren, kommen</em>) and <b>change of state</b> (<em>aufstehen, einschlafen, werden</em>). Everything else takes <b>haben</b>.</div></div>
-    </section>
+          <div class="drill">
+        <div class="dhead">§12 · Zeiten · sein oder haben</div>
+        <div class="q" data-a="hatte">
+          <p class="qt">Nachdem ich gegessen ___, ging ich spazieren. <em>(haben)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="bin">
+          <p class="qt">Ich ___ nach Berlin gefahren.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="habe">
+          <p class="qt">Ich ___ meinen Bruder zum Bahnhof gefahren.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="ist">
+          <p class="qt">Er ___ zu Hause geblieben.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="haben">
+          <p class="qt">Wir ___ die ganze Nacht getanzt.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="ist">
+          <p class="qt">Sie ___ um zehn eingeschlafen.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt"><em>bleiben</em> is the opposite of movement, yet it takes <em>sein</em>. So what is the real rule?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>sein</em> needs <b>both</b>: (1) no Akkusativ object <b>and</b> (2) a change of place or state — plus four memorised outliers: <em>sein, bleiben, werden, passieren/gelingen</em>. Transitive always wins: <em>Ich <b>habe</b> ihn gefahren</em> vs <em>Ich <b>bin</b> gefahren</em>. And non-directional motion takes <em>haben</em>: <em>Ich <b>habe</b> getanzt</em>.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 13 -->
     <section id="s13">
@@ -567,7 +991,39 @@
           <li><span class="p akk">seine Mutter</span><span class="lab akk">Akk · wen?</span><span class="exp">Direct object of <em>suchen</em>.</span></li>
         </ul>
       </div>
-    </section>
+          <div class="drill">
+        <div class="dhead">§13 · Partizip I & II</div>
+        <div class="q" data-a="kochende">
+          <p class="qt">das ___ Wasser <em>(kochen — Partizip I)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="gekochte">
+          <p class="qt">das ___ Ei <em>(kochen — Partizip II)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="weinende">
+          <p class="qt">das ___ Kind <em>(weinen — Partizip I)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="angekommenen">
+          <p class="qt">die ___ Gäste <em>(ankommen — Partizip II)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="studiert">
+          <p class="qt">Partizip II von <em>studieren</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="besucht">
+          <p class="qt">Partizip II von <em>besuchen</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt"><em>die angekommenen Gäste</em> is a Partizip II. Is it passive?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">No. "Partizip II = passive" holds only for <b>transitive</b> verbs. With <em>sein</em>-verbs the participle stays <b>active</b> — nobody arrived the guests. Think "ongoing vs completed", not "active vs passive". Note too that <em>studiert</em> and <em>besucht</em> take no <em>ge-</em>.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 14 -->
     <section id="s14">
@@ -584,7 +1040,35 @@
         </ul>
       </div>
       <p class="tip"><b>von vs durch:</b> <em>von</em> = the person/agent doing it; <em>durch</em> = the means or cause (<em>durch einen Sturm</em>).</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§14 · Passiv</div>
+        <div class="q" data-a="wurde">
+          <p class="qt">Der Brief ___ von meinem Chef geschrieben. <em>(Präteritum)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="worden">
+          <p class="qt">Das Haus ist gebaut ___.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="werden">
+          <p class="qt">Der Brief muss geschrieben ___.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wird">
+          <p class="qt">Die Tür ___ gerade geöffnet. <em>(Vorgang — someone is opening it)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wird">
+          <p class="qt">Aktiv → Passiv: <em>Der Chef schreibt den Brief.</em> → Der Brief ___ geschrieben.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">When is it <em>worden</em> and when <em>geworden</em>?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em><b>worden</b></em> in the Perfekt passive — <em>werden</em> drops its <em>ge-</em>: <em>Das Haus ist gebaut worden.</em> <em><b>geworden</b></em> only when <em>werden</em> is a full verb meaning "became": <em>Er ist Arzt geworden.</em></div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 15 -->
     <section id="s15">
@@ -601,7 +1085,35 @@
         </ul>
       </div>
       <p class="tip"><b>Polite requests:</b> <em>Könnten Sie mir helfen?</em> / <em>Ich hätte gern einen Kaffee.</em> — softer than the plain present.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§15 · Konjunktiv II</div>
+        <div class="q" data-a="hätte">
+          <p class="qt">Wenn ich Zeit ___, würde ich dir helfen. <em>(haben)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wäre">
+          <p class="qt">Wenn ich reich ___, würde ich nicht arbeiten. <em>(sein)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Könnten">
+          <p class="qt">___ Sie mir bitte helfen? <em>(können — höflich)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="hätte">
+          <p class="qt">Ich ___ gern einen Kaffee. <em>(haben)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="würde">
+          <p class="qt">An deiner Stelle ___ ich mehr lernen. <em>(werden)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why does German reach for <em>würde</em> with most verbs?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">Because for weak verbs the Konjunktiv II is <b>identical to the Präteritum</b> — <em>ich sagte</em> is both — so <em>würde</em> removes the ambiguity. About eleven verbs keep their own form (<em>wäre, hätte, könnte, müsste, sollte, wollte, dürfte, möchte, wüsste, ginge, käme</em>), and modals never combine with <em>würde</em>.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 16 -->
     <section id="s16">
@@ -621,7 +1133,35 @@
         </div>
       </div>
       <p class="tip"><b>Different subjects?</b> Use <em>damit</em> instead: <em>Ich erkläre es, <b>damit</b> du es verstehst.</em></p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§16 · Infinitiv mit zu · um…zu</div>
+        <div class="q" data-a="aufzustehen">
+          <p class="qt">Ich versuche, früh ___. <em>(aufstehen)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="um">
+          <p class="qt">Ich lerne Deutsch, ___ in Deutschland zu studieren.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="damit">
+          <p class="qt">Ich erkläre es, ___ du es verstehst. <em>(zwei Subjekte)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="zu üben">
+          <p class="qt">Es ist wichtig, jeden Tag ___. <em>(üben)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="anzurufen">
+          <p class="qt">Ich habe vergessen, dich ___. <em>(anrufen)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Why <em>damit</em> in the third one and not <em>um…zu</em>?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>um…zu</em> works only when <b>both clauses share one subject</b>. Here <em>ich</em> explains but <em>du</em> understands — two subjects, so <em>damit</em> is required.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 17 -->
     <section id="s17">
@@ -650,7 +1190,39 @@
         </ul>
       </div>
       <p class="tip"><b>so … wie</b> marks equality: <em>Sie ist <b>so</b> groß <b>wie</b> ich.</em> Reserve <em>als</em> for difference.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§17 · Komparativ & Superlativ</div>
+        <div class="q" data-a="als">
+          <p class="qt">Mein Bruder ist größer ___ ich.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wie">
+          <p class="qt">Sie ist so groß ___ ich.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="besser">
+          <p class="qt">gut → Komparativ</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="am meisten">
+          <p class="qt">viel → Superlativ</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="höher">
+          <p class="qt">hoch → Komparativ</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="lieber">
+          <p class="qt">gern → Komparativ</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">What does the letter-height Eselsbrücke claim?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">In <b>als</b> the <em>l</em> stands taller than the <em>a</em> → <b>unequal</b>. In <b>wie</b>, w–i–e sit at the same height → <b>equal</b>. It targets a native-speaker slip: <em>„größer wie"</em> is widespread in colloquial and southern German.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- 18 -->
     <section id="s18">
@@ -665,7 +1237,35 @@
         </ul>
       </div>
       <p class="tip"><b>*Name</b> is a mixed case: Genitiv <em>des Namens</em> (adds -ns), otherwise <em>Namen</em>.</p>
-    </section>
+          <div class="drill">
+        <div class="dhead">§18 · n-Deklination</div>
+        <div class="q" data-a="Studenten">
+          <p class="qt">Ich habe mit dem ___ gesprochen. <em>(der Student)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Nachbarn">
+          <p class="qt">Ich kenne den ___. <em>(der Nachbar)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Herrn">
+          <p class="qt">an ___ Schmidt <em>(Herr)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="Menschen">
+          <p class="qt">Das ist die Meinung des ___. <em>(der Mensch)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="des Namens">
+          <p class="qt">Genitiv von <em>der Name</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt"><em>der Junge, der Kollege, der Löwe</em> — what do they share?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>Masculine + ends in -e + living being</b> → n-Deklination. A strong positive test, but it misses the suffix group (<em>-ent, -ant, -ist, -oge, -at</em>) and the no-suffix crowd (<em>Herr, Bauer, Nachbar, Mensch, Held, Prinz, Bär</em>), which are pure memorisation.</div></details>
+        </div>
+      </div>
+
+</section>
 
     <!-- CHEAT SHEET -->
     <section id="cheat">
@@ -727,7 +1327,51 @@
           </div>
         </div>
       </div>
-    </section>
+          <div class="drill">
+        <div class="dhead">Mixed review — everything above, shuffled</div>
+        <div class="q" data-a="den Nachbarn">
+          <p class="qt">Wir helfen ___. <em>(die Nachbarn)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="des">
+          <p class="qt">Trotz ___ Wetters gehen wir raus. <em>(das Wetter)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="das">
+          <p class="qt">Das Buch, ___ ich gelesen habe, war gut.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="angekommen">
+          <p class="qt">Er ist gestern ___. <em>(ankommen, Perfekt)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="dem neuen">
+          <p class="qt">Ich fahre mit ___ neu___ Auto. <em>(das Auto — write article + adjective)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="wäre">
+          <p class="qt">Wenn ich du ___, würde ich gehen. <em>(sein)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="worden">
+          <p class="qt">Das Haus ist letztes Jahr renoviert ___.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="auf">
+          <p class="qt">Ich freue mich ___ das Wochenende.</p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">Die Kinder spielen auf ___ Straße. <em>(die Straße)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="aufzustehen">
+          <p class="qt">Ich möchte früh ___. <em>(aufstehen — Infinitiv mit zu)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+      </div>
+
+</section>
 
     <!-- 19 -->
     <section id="tricks">
@@ -1062,9 +1706,72 @@
       <p class="tip"><b>If you only keep ten:</b> DOGFU · the Bruder-Jakob Dativ chant · the <em>wo/wohin</em> rhyme · <em>-e</em> in five slots, <em>-en</em> elsewhere · gender from outside, case from inside · verb kickers + the five that don't · the two-condition <em>sein</em> rule · <em>worden</em> not <em>geworden</em> · <em>„Gleich wie — ungleich als"</em> · masculine + <em>-e</em> + living being.</p>
 
       <footer>Deutsch B1.2 · find the verb → ask the question → label every part</footer>
-    </section>
+          <div class="drill">
+        <div class="dhead">§19 · Recall the tricks</div>
+        <div class="q" data-a="worden">
+          <p class="qt">Das Haus ist gebaut ___. <em>(worden oder geworden?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q" data-a="der">
+          <p class="qt">Die Kinder spielen auf ___ Straße. <em>(die Straße — wo oder wohin?)</em></p>
+          <div class="row"><input type="text" aria-label="Antwort" autocomplete="off" autocapitalize="off" spellcheck="false"><button class="chk">Prüfen</button><span class="fb"></span></div>
+        </div>
+        <div class="q">
+          <p class="qt">Expand <b>DOGFU</b>.</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>d</b>urch · <b>o</b>hne · <b>g</b>egen · <b>f</b>ür · <b>u</b>m — always Akkusativ. Preferred over FUDGEBOW because it leaves out the three that misbehave.</div></details>
+        </div>
+        <div class="q">
+          <p class="qt">Name the five conjunctions that do <b>not</b> send the verb to the end.</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>und · aber · denn · oder · sondern</em> — the coordinating five. Everything else that introduces a clause kicks the finite verb to the end.</div></details>
+        </div>
+        <div class="q">
+          <p class="qt">Weak adjective endings: in how many slots is it <em>-e</em>, and which?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>Five.</b> Nominativ singular m/f/n, plus Akkusativ singular f/n. Everywhere else — all Dativ, all Genitiv, the whole plural — it is <em>-en</em>.</div></details>
+        </div>
+        <div class="q">
+          <p class="qt">Why is "motion → Akkusativ, position → Dativ" a bad rule?</p>
+          <details><summary>Antwort zeigen</summary><div class="ans">Because motion <em>inside</em> a space takes the Dativ: <em>Ich laufe <b>im</b> Park</em>. The real split is <b>destination reached</b> (wohin → Akkusativ) vs <b>location</b> (wo → Dativ), not moving vs still.</div></details>
+        </div>
+        <div class="q">
+          <p class="qt">Complete: gender and number from ___, case from ___.</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><b>Gender and number from the outside</b> — the noun the relative clause describes. <b>Case from the inside</b> — the pronoun's job within the relative clause.</div></details>
+        </div>
+        <div class="q">
+          <p class="qt">State the <em>sein</em>-vs-<em>haben</em> rule in its repaired form.</p>
+          <details><summary>Antwort zeigen</summary><div class="ans"><em>sein</em> requires <b>both</b> no Akkusativ object <b>and</b> a change of place or state, plus the four outliers <em>sein, bleiben, werden, passieren/gelingen</em>. "Movement → sein" on its own misfires on <em>bleiben</em>, on <em>getanzt/geschwommen</em>, and on every transitive use.</div></details>
+        </div>
+      </div>
+
+</section>
 
   </div>
 </div>
+<script>
+(function(){
+  // strip case, accents-safe, collapse spaces, drop trailing punctuation
+  var norm = function(s){
+    return s.toLowerCase().normalize('NFC').replace(/\s+/g,' ').replace(/[.!?,;]+$/,'').trim();
+  };
+  function check(q){
+    var input = q.querySelector('input[type=text]');
+    var fb = q.querySelector('.fb');
+    var accepted = q.dataset.a.split('|');
+    var ok = accepted.some(function(a){ return norm(a) === norm(input.value); });
+    q.classList.toggle('ok', ok);
+    q.classList.toggle('no', !ok);
+    fb.textContent = ok ? '✓ richtig' : '✗ — ' + accepted[0];
+  }
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.chk');
+    if (btn) check(btn.closest('.q'));
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' && e.target.matches('.q input[type=text]')){
+      e.preventDefault();
+      check(e.target.closest('.q'));
+    }
+  });
+})();
+</script>
 </body>
 </html>
