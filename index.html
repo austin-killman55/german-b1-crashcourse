@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<title>German B1.2 — Crash Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme:light only;
+    --ink:#1b1d24;
+    --muted:#6a6f7b;
+    --faint:#9aa0ab;
+    --paper:#f4f5f7;
+    --card:#ffffff;
+    --line:#e4e6ea;
+    --line-strong:#d3d6dc;
+    --header:#181b22;
+    --accent:#3b82f6;
+
+    /* the four cases — the spine of the whole guide */
+    --nom:#3b82f6;   --nom-bg:#e6effd;
+    --akk:#d83f45;   --akk-bg:#fdecec;
+    --dat:#1f9d5b;   --dat-bg:#e7f6ee;
+    --gen:#7c50e6;   --gen-bg:#f0ebfc;
+
+    --display:'Space Grotesk',system-ui,sans-serif;
+    --body:'Newsreader',Georgia,serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;background:#ffffff}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+  body{
+    margin:0;background:#ffffff;color:var(--ink);
+    font-family:var(--body);font-size:18px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- layout ---------- */
+  .wrap{display:grid;grid-template-columns:260px minmax(0,1fr);gap:0;max-width:1180px;margin:0 auto;background:#ffffff}
+  .main{padding:0 clamp(20px,5vw,64px) 120px;min-width:0;background:#ffffff}
+
+  /* ---------- sidebar ---------- */
+  aside{
+    position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;background:#ffffff;
+    padding:34px 22px 40px;border-right:1px solid var(--line);
+  }
+  aside .brand{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;line-height:1.1}
+  aside .brand span{display:block;font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.18em;color:var(--faint);text-transform:uppercase;margin-top:8px}
+  .legend{margin:22px 0 26px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .legend .lg-title{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+  .legend ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .legend li{display:flex;align-items:center;gap:10px;font-size:14px}
+  .swatch{width:13px;height:13px;border-radius:4px;flex:none}
+  .legend .q{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:auto}
+  nav ol{list-style:none;margin:0;padding:0;counter-reset:s}
+  nav li{counter-increment:s}
+  nav a{
+    display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--muted);
+    font-family:var(--display);font-size:13.5px;font-weight:500;padding:6px 8px;border-radius:7px;line-height:1.25;
+  }
+  nav a::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:10px;color:var(--faint);flex:none}
+  nav a:hover{color:var(--ink);background:#eef0f3}
+  nav a:focus-visible{outline:2px solid var(--nom);outline-offset:2px}
+
+  /* ---------- hero ---------- */
+  header.hero{background:#ffffff;color:var(--ink);border-bottom:1px solid var(--line);padding:clamp(40px,7vw,84px) clamp(20px,5vw,64px) clamp(44px,6vw,72px);margin:0 calc(-1*clamp(20px,5vw,64px)) 0}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  header.hero h1{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1.02;font-size:clamp(38px,7vw,66px);margin:16px 0 0}
+  header.hero h1 em{font-style:normal;color:var(--accent)}
+  header.hero .sub{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:44ch;margin:20px 0 0;line-height:1.5}
+
+  /* diagrammed hero sentence */
+  .diagram{margin:40px 0 0;padding:26px clamp(18px,3vw,30px);background:#f5f6f9;border:1px solid var(--line);border-radius:16px}
+  .diagram .dlabel{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .dsent{display:flex;flex-wrap:wrap;gap:10px 12px;font-family:var(--body);font-size:clamp(20px,3.3vw,30px);line-height:1.3}
+  .tok{display:flex;flex-direction:column;gap:7px}
+  .tok .w{padding:1px 7px;border-radius:6px;font-weight:500}
+  .tok .t{font-family:var(--mono);font-size:10px;letter-spacing:.04em;text-align:center;color:var(--muted);text-transform:uppercase}
+  .tok.plain .w{color:var(--ink)}
+  .w.nom{background:var(--nom-bg);color:var(--nom)}
+  .w.akk{background:var(--akk-bg);color:var(--akk)}
+  .w.dat{background:var(--dat-bg);color:var(--dat)}
+  .w.gen{background:var(--gen-bg);color:var(--gen)}
+  .diagram .dgloss{font-style:italic;color:var(--muted);font-size:15px;margin-top:18px}
+
+  /* ---------- sections ---------- */
+  section{padding-top:52px}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;border-bottom:2px solid var(--accent);padding-bottom:12px}
+  .sec-head .num{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--accent);flex:none}
+  .sec-head h2{font-family:var(--display);font-weight:700;letter-spacing:-.02em;font-size:clamp(24px,3.6vw,32px);margin:0;line-height:1.1;color:var(--accent)}
+  .lead{color:var(--muted);font-size:17px;margin:16px 0 24px;max-width:64ch}
+  .lead b, p b{color:var(--ink);font-weight:500}
+
+  h3.subhead{font-family:var(--display);font-weight:500;font-size:19px;letter-spacing:-.01em;margin:30px 0 4px;color:var(--ink)}
+
+  /* rule callout */
+  .rule{display:flex;gap:13px;background:#eef1fb;border:1px solid #d9e2fa;border-left:3px solid var(--accent);border-radius:10px;padding:15px 18px;margin:18px 0;font-size:16px;line-height:1.5}
+  .rule .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:700;padding-top:4px;flex:none}
+  .rule.warn{background:#fdf2ec;border-color:#f6d9c6;border-left-color:#d97a3a}
+  .rule.warn .tag{color:#c76a2c}
+
+  /* example card + parse */
+  .ex{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;margin:18px 0}
+  .ex .de{font-size:clamp(19px,2.6vw,23px);line-height:1.4;font-weight:500}
+  .ex .en{font-style:italic;color:var(--muted);font-size:16px;margin-top:5px}
+  .parse{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:11px}
+  .parse li{display:grid;grid-template-columns:auto auto 1fr;gap:10px 12px;align-items:baseline;font-size:15px}
+  @media (max-width:520px){.parse li{grid-template-columns:1fr;gap:4px}}
+  .parse .p{font-weight:500;padding:1px 7px;border-radius:6px;white-space:nowrap;font-size:16px}
+  .parse .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px;white-space:nowrap}
+  .parse .exp{color:var(--muted);font-size:15px}
+  .parse .exp em{color:var(--ink);font-style:italic}
+
+  /* case tinting utilities */
+  .nom{background:var(--nom-bg);color:var(--nom)} .lab.nom{background:none;color:var(--nom)}
+  .akk{background:var(--akk-bg);color:var(--akk)} .lab.akk{background:none;color:var(--akk)}
+  .dat{background:var(--dat-bg);color:var(--dat)} .lab.dat{background:none;color:var(--dat)}
+  .gen{background:var(--gen-bg);color:var(--gen)} .lab.gen{background:none;color:var(--gen)}
+  .lab.neutral{color:var(--faint)}
+  .p.plain{background:#f0f1f3;color:var(--ink)}
+
+  /* inline colored word in prose */
+  .c{padding:0 5px;border-radius:5px;font-weight:500}
+  .c.nom{background:var(--nom-bg);color:var(--nom)}
+  .c.akk{background:var(--akk-bg);color:var(--akk)}
+  .c.dat{background:var(--dat-bg);color:var(--dat)}
+  .c.gen{background:var(--gen-bg);color:var(--gen)}
+
+  /* tables */
+  .tbl{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:12px;background:#ffffff}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:460px;background:#ffffff}
+  caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:14px 16px 6px;background:#ffffff}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);background:#ffffff;color:var(--ink)}
+  thead th{background:#f3f4f6;font-family:var(--display);font-weight:500;font-size:13px;color:var(--muted)}
+  tbody th{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--ink);background:#fafbfc}
+  tr:last-child td,tr:last-child th{border-bottom:none}
+  td .end{font-weight:700}
+  td.n{color:var(--nom)} td.a{color:var(--akk)} td.d{color:var(--dat)} td.g{color:var(--gen)}
+
+  /* mini two-column compare */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+  @media (max-width:640px){.split{grid-template-columns:1fr}}
+  .split .ex{margin:0}
+
+  .tip{font-size:15px;color:var(--muted);margin:14px 0;padding-left:14px;border-left:2px solid var(--line-strong)}
+  .tip b{color:var(--ink);font-weight:500}
+
+  /* cheat sheet */
+  .cheat{background:#ffffff;color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:clamp(24px,4vw,40px);margin-top:46px}
+  .cheat h2{font-family:var(--display);color:var(--ink);margin:0 0 6px;font-size:26px;letter-spacing:-.02em}
+  .cheat .cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:22px;margin-top:24px}
+  .cheat h4{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 10px}
+  .cheat ul{margin:0;padding-left:18px;font-size:15px;line-height:1.7;color:var(--muted)}
+  .cheat ul b{color:var(--ink);font-weight:500}
+  .cheat code{font-family:var(--mono);font-size:13px;color:var(--accent)}
+
+  footer{color:var(--faint);font-size:13px;text-align:center;margin-top:60px;font-family:var(--mono);letter-spacing:.04em}
+
+  /* ---------- responsive: fold sidebar ---------- */
+  @media (max-width:860px){
+    .wrap{grid-template-columns:1fr}
+    aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);padding:20px}
+    aside .toc-wrap{margin-top:12px}
+    nav ol{columns:2;column-gap:18px}
+    header.hero{margin:0 calc(-1*clamp(20px,5vw,64px)) 0}
+  }
+  details.mtoc summary{cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:6px 0}
+  @media (min-width:861px){details.mtoc{display:block}details.mtoc summary{display:none}details.mtoc[open]>*{}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="brand">Deutsch B1.2<span>Grammatik · Crash Course</span></div>
+
+    <div class="legend" aria-label="Case colour key">
+      <div class="lg-title">The four cases</div>
+      <ul>
+        <li><span class="swatch" style="background:var(--nom)"></span> Nominativ <span class="q">wer? / was?</span></li>
+        <li><span class="swatch" style="background:var(--akk)"></span> Akkusativ <span class="q">wen? / was?</span></li>
+        <li><span class="swatch" style="background:var(--dat)"></span> Dativ <span class="q">wem?</span></li>
+        <li><span class="swatch" style="background:var(--gen)"></span> Genitiv <span class="q">wessen?</span></li>
+      </ul>
+    </div>
+
+    <details class="mtoc" open>
+      <summary>Contents</summary>
+      <div class="toc-wrap">
+      <nav aria-label="Contents">
+        <ol>
+          <li><a href="#s1">The four cases</a></li>
+          <li><a href="#s2">Verbs that fix the case</a></li>
+          <li><a href="#s3">Adjective endings</a></li>
+          <li><a href="#s4">Prepositions: fixed case</a></li>
+          <li><a href="#s5">Wechselpräpositionen</a></li>
+          <li><a href="#s6">Genitiv prepositions</a></li>
+          <li><a href="#s7">Reflexive verbs</a></li>
+          <li><a href="#s8">Verbs + preposition</a></li>
+          <li><a href="#s9">Word order · TeKaMoLo</a></li>
+          <li><a href="#s10">Subordinate clauses</a></li>
+          <li><a href="#s11">Relative clauses</a></li>
+          <li><a href="#s12">Tenses & nachdem</a></li>
+          <li><a href="#s13">Partizip I & II as adjectives</a></li>
+          <li><a href="#s14">Passiv</a></li>
+          <li><a href="#s15">Konjunktiv II</a></li>
+          <li><a href="#s16">Infinitive with zu</a></li>
+          <li><a href="#s17">Comparison</a></li>
+          <li><a href="#s18">n-Deklination</a></li>
+          <li><a href="#cheat">Cheat sheet</a></li>
+        </ol>
+      </nav>
+      </div>
+    </details>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <header class="hero">
+      <div class="kicker">Everything up to B1.2 · in one place</div>
+      <h1>Read a sentence the way<br>your teacher <em>takes it apart</em>.</h1>
+      <p class="sub">Find the verb, ask the case question, and label every piece. Every case-marked word below is tinted by its case, so you start to <em>see</em> the grammar.</p>
+
+      <div class="diagram">
+        <div class="dlabel">The method, in one sentence</div>
+        <div class="dsent">
+          <span class="tok"><span class="w nom">Der Mann</span><span class="t">Nom · wer?</span></span>
+          <span class="tok plain"><span class="w">hat</span><span class="t">Hilfsverb</span></span>
+          <span class="tok"><span class="w dat">dem Kind</span><span class="t">Dativ · wem?</span></span>
+          <span class="tok"><span class="w akk">das Buch</span><span class="t">Akk · was?</span></span>
+          <span class="tok plain"><span class="w">gegeben.</span><span class="t">Partizip II</span></span>
+        </div>
+        <div class="dgloss">The man gave the book to the child.</div>
+      </div>
+    </header>
+
+    <!-- 1 -->
+    <section id="s1">
+      <div class="sec-head"><span class="num">01</span><h2>The four cases & their questions</h2></div>
+      <p class="lead">Every noun phrase in a German sentence is in one of four cases. The case tells you the phrase's <b>job</b>, and you find it by asking the right question about the verb. This is the engine under everything else in this guide.</p>
+
+      <div class="tbl">
+        <table>
+          <caption>Kasusfragen — ask these about the conjugated verb</caption>
+          <thead><tr><th>Case</th><th>Question</th><th>Job in the sentence</th><th>der / die / das → …</th></tr></thead>
+          <tbody>
+            <tr><th class="n">Nominativ</th><td>wer? / was?</td><td>subject — who/what does the action</td><td>der · die · das · die</td></tr>
+            <tr><th class="a">Akkusativ</th><td>wen? / was?</td><td>direct object — receives the action</td><td>den · die · das · die</td></tr>
+            <tr><th class="d">Dativ</th><td>wem?</td><td>indirect object — to/for whom</td><td>dem · der · dem · den (+n)</td></tr>
+            <tr><th class="g">Genitiv</th><td>wessen?</td><td>possession — whose</td><td>des (+s) · der · des (+s) · der</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ex">
+        <div class="de"><span class="c nom">Die Lehrerin</span> erklärt <span class="c dat">den Schülern</span> <span class="c akk">die Grammatik</span>.</div>
+        <div class="en">The teacher explains the grammar to the students.</div>
+        <ul class="parse">
+          <li><span class="p nom">Die Lehrerin</span><span class="lab nom">Nom · wer?</span><span class="exp">Who is explaining? → the subject.</span></li>
+          <li><span class="p plain">erklärt</span><span class="lab neutral">Verb</span><span class="exp">The conjugated verb, always in position 2.</span></li>
+          <li><span class="p dat">den Schülern</span><span class="lab dat">Dat · wem?</span><span class="exp">To whom is it explained? Note the extra <em>-n</em> on the plural in Dativ.</span></li>
+          <li><span class="p akk">die Grammatik</span><span class="lab akk">Akk · was?</span><span class="exp">What is explained? → the direct object.</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>Order of attack:</b> verb first → <em>wer/was?</em> for the Nominativ subject → then the verb's <em>wen?</em> or <em>wem?</em> for the objects.</p>
+    </section>
+
+    <!-- 2 -->
+    <section id="s2">
+      <div class="sec-head"><span class="num">02</span><h2>Verbs that decide the case for you</h2></div>
+      <p class="lead">Most verbs take an Akkusativ object. But a fixed group takes <b>Dativ</b> — you simply have to know them. The case comes from the <b>verb</b>, not from meaning, so memorise these.</p>
+
+      <div class="rule"><span class="tag">Dativ verbs</span><div>helfen · danken · gefallen · gehören · antworten · glauben · folgen · passen · schmecken · gratulieren · begegnen — their object is <span class="c dat">Dativ</span>, not Akkusativ.</div></div>
+
+      <div class="split">
+        <div class="ex">
+          <div class="de">Ich helfe <span class="c dat">meinem Bruder</span>.</div>
+          <div class="en">I help my brother.</div>
+          <ul class="parse">
+            <li><span class="p dat">meinem Bruder</span><span class="lab dat">Dat · wem?</span><span class="exp"><em>helfen</em> forces Dativ.</span></li>
+          </ul>
+        </div>
+        <div class="ex">
+          <div class="de">Das Buch gehört <span class="c dat">der Frau</span>.</div>
+          <div class="en">The book belongs to the woman.</div>
+          <ul class="parse">
+            <li><span class="p dat">der Frau</span><span class="lab dat">Dat · wem?</span><span class="exp"><em>gehören</em> forces Dativ.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="tip"><b>Two objects?</b> The default pattern is <span class="c dat">Dativ</span> (person) + <span class="c akk">Akkusativ</span> (thing): <em>Ich gebe <span class="c dat">dir</span> <span class="c akk">das Geld</span>.</em></p>
+    </section>
+
+    <!-- 3 -->
+    <section id="s3">
+      <div class="sec-head"><span class="num">03</span><h2>Adjective endings</h2></div>
+      <p class="lead">An adjective <b>before</b> a noun takes an ending. Which ending depends on three things: the case, the gender/number, and <b>what article comes first</b>. There are three situations. After <em>sein/werden/bleiben</em> (predicative) the adjective takes <b>no ending</b>: <em>Das Auto ist <b>neu</b>.</em></p>
+
+      <h3 class="subhead">A · after a definite article (der/die/das) — "weak"</h3>
+      <div class="tbl"><table>
+        <caption>der gut<b>e</b> … — endings are mostly -e / -en</caption>
+        <thead><tr><th></th><th>maskulin</th><th>feminin</th><th>neutrum</th><th>Plural</th></tr></thead>
+        <tbody>
+          <tr><th class="n">Nom</th><td>der gut<span class="end">e</span></td><td>die gut<span class="end">e</span></td><td>das gut<span class="end">e</span></td><td>die gut<span class="end">en</span></td></tr>
+          <tr><th class="a">Akk</th><td>den gut<span class="end">en</span></td><td>die gut<span class="end">e</span></td><td>das gut<span class="end">e</span></td><td>die gut<span class="end">en</span></td></tr>
+          <tr><th class="d">Dat</th><td>dem gut<span class="end">en</span></td><td>der gut<span class="end">en</span></td><td>dem gut<span class="end">en</span></td><td>den gut<span class="end">en</span></td></tr>
+          <tr><th class="g">Gen</th><td>des gut<span class="end">en</span></td><td>der gut<span class="end">en</span></td><td>des gut<span class="end">en</span></td><td>der gut<span class="end">en</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="subhead">B · after ein-/kein-/mein- (indefinite) — "mixed"</h3>
+      <div class="tbl"><table>
+        <caption>the ending picks up the info the article can't show (three spots differ from table A)</caption>
+        <thead><tr><th></th><th>maskulin</th><th>feminin</th><th>neutrum</th><th>Plural (kein-)</th></tr></thead>
+        <tbody>
+          <tr><th class="n">Nom</th><td>ein gut<span class="end">er</span></td><td>eine gut<span class="end">e</span></td><td>ein gut<span class="end">es</span></td><td>keine gut<span class="end">en</span></td></tr>
+          <tr><th class="a">Akk</th><td>einen gut<span class="end">en</span></td><td>eine gut<span class="end">e</span></td><td>ein gut<span class="end">es</span></td><td>keine gut<span class="end">en</span></td></tr>
+          <tr><th class="d">Dat</th><td>einem gut<span class="end">en</span></td><td>einer gut<span class="end">en</span></td><td>einem gut<span class="end">en</span></td><td>keinen gut<span class="end">en</span></td></tr>
+          <tr><th class="g">Gen</th><td>eines gut<span class="end">en</span></td><td>einer gut<span class="end">en</span></td><td>eines gut<span class="end">en</span></td><td>keiner gut<span class="end">en</span></td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="subhead">C · no article at all — "strong"</h3>
+      <div class="tbl"><table>
+        <caption>the adjective now carries the full der/die/das signal itself (e.g. <b>-er, -es, -em</b>)</caption>
+        <thead><tr><th></th><th>maskulin</th><th>feminin</th><th>neutrum</th><th>Plural</th></tr></thead>
+        <tbody>
+          <tr><th class="n">Nom</th><td>gut<span class="end">er</span> Wein</td><td>gut<span class="end">e</span> Milch</td><td>gut<span class="end">es</span> Brot</td><td>gut<span class="end">e</span> Ideen</td></tr>
+          <tr><th class="a">Akk</th><td>gut<span class="end">en</span> Wein</td><td>gut<span class="end">e</span> Milch</td><td>gut<span class="end">es</span> Brot</td><td>gut<span class="end">e</span> Ideen</td></tr>
+          <tr><th class="d">Dat</th><td>gut<span class="end">em</span> Wein</td><td>gut<span class="end">er</span> Milch</td><td>gut<span class="end">em</span> Brot</td><td>gut<span class="end">en</span> Ideen</td></tr>
+          <tr><th class="g">Gen</th><td>gut<span class="end">en</span> Weins</td><td>gut<span class="end">er</span> Milch</td><td>gut<span class="end">en</span> Brots</td><td>gut<span class="end">er</span> Ideen</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="ex">
+        <div class="de">Ich habe <span class="c akk">einen neuen Computer</span> gekauft.</div>
+        <div class="en">I bought a new computer.</div>
+        <ul class="parse">
+          <li><span class="p akk">einen neuen Computer</span><span class="lab akk">Akk · was?</span><span class="exp">maskulin + Akkusativ + after <em>ein-</em> → ending <b>-en</b> (table B).</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>Shortcut:</b> if the article already shows the case clearly (den, dem, des, einem…), the adjective almost always ends in <b>-en</b>. The interesting endings live in the Nominativ/Akkusativ top rows.</p>
+    </section>
+
+    <!-- 4 -->
+    <section id="s4">
+      <div class="sec-head"><span class="num">04</span><h2>Prepositions with a fixed case</h2></div>
+      <p class="lead">Some prepositions <b>always</b> take the same case, no matter the meaning. Learn them in two groups.</p>
+
+      <div class="rule"><span class="tag">Always Akkusativ</span><div><b>durch · für · gegen · ohne · um</b> (+ <em>bis, entlang</em>). Memory hook: "DOGFU."</div></div>
+      <div class="rule"><span class="tag">Always Dativ</span><div><b>aus · bei · mit · nach · seit · von · zu</b> (+ <em>gegenüber</em>). Memory hook: "aus-bei-mit-nach-seit-von-zu" as a little chant.</div></div>
+
+      <div class="split">
+        <div class="ex">
+          <div class="de">Das Geschenk ist für <span class="c akk">dich</span>.</div>
+          <div class="en">The gift is for you.</div>
+          <ul class="parse"><li><span class="p akk">dich</span><span class="lab akk">Akk</span><span class="exp"><em>für</em> is always Akkusativ (<em>du → dich</em>).</span></li></ul>
+        </div>
+        <div class="ex">
+          <div class="de">Nach <span class="c dat">der Arbeit</span> fahre ich mit <span class="c dat">dem Bus</span>.</div>
+          <div class="en">After work I take the bus.</div>
+          <ul class="parse">
+            <li><span class="p dat">der Arbeit</span><span class="lab dat">Dat</span><span class="exp"><em>nach</em> → Dativ.</span></li>
+            <li><span class="p dat">dem Bus</span><span class="lab dat">Dat</span><span class="exp"><em>mit</em> → Dativ.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section id="s5">
+      <div class="sec-head"><span class="num">05</span><h2>Wechselpräpositionen — the two-way group</h2></div>
+      <p class="lead">Nine prepositions take <b>either</b> case: <b>an · auf · hinter · in · neben · über · unter · vor · zwischen</b>. The trick: ask <em>Wohin?</em> vs <em>Wo?</em></p>
+
+      <div class="rule"><span class="tag">The test</span><div><b>Movement toward a goal → <em>Wohin?</em> → <span class="c akk">Akkusativ</span></b>. &nbsp; <b>Static location → <em>Wo?</em> → <span class="c dat">Dativ</span></b>.</div></div>
+
+      <div class="split">
+        <div class="ex">
+          <div class="de">Ich hänge das Bild an <span class="c akk">die Wand</span>.</div>
+          <div class="en">I hang the picture onto the wall.</div>
+          <ul class="parse"><li><span class="p akk">an die Wand</span><span class="lab akk">Akk · wohin?</span><span class="exp">There's movement toward a goal.</span></li></ul>
+        </div>
+        <div class="ex">
+          <div class="de">Das Bild hängt an <span class="c dat">der Wand</span>.</div>
+          <div class="en">The picture hangs on the wall.</div>
+          <ul class="parse"><li><span class="p dat">an der Wand</span><span class="lab dat">Dat · wo?</span><span class="exp">No movement — just a location.</span></li></ul>
+        </div>
+      </div>
+      <p class="tip"><b>Verb pairs that give it away:</b> <em>legen/liegen, stellen/stehen, setzen/sitzen, hängen/hängen</em> — the "put" verb signals <em>wohin?</em> (Akk), the "be" verb signals <em>wo?</em> (Dat).</p>
+    </section>
+
+    <!-- 6 -->
+    <section id="s6">
+      <div class="sec-head"><span class="num">06</span><h2>Genitiv prepositions</h2></div>
+      <p class="lead">A handful of prepositions take the <b>Genitiv</b> — very common in written and formal German, and expected at B1.</p>
+      <div class="rule"><span class="tag">Genitiv</span><div><b>wegen</b> (because of) · <b>trotz</b> (despite) · <b>während</b> (during) · <b>(an)statt</b> (instead of) · <b>außerhalb / innerhalb</b> (outside / inside of).</div></div>
+
+      <div class="ex">
+        <div class="de">Wegen <span class="c gen">des schlechten Wetters</span> bleiben wir zu Hause.</div>
+        <div class="en">Because of the bad weather, we're staying home.</div>
+        <ul class="parse">
+          <li><span class="p gen">des schlechten Wetters</span><span class="lab gen">Gen · wessen?</span><span class="exp"><em>wegen</em> → Genitiv. Neuter noun adds <b>-s</b> (<em>Wetter → Wetters</em>); the adjective takes <b>-en</b>.</span></li>
+        </ul>
+      </div>
+      <p class="tip">In everyday speech you'll hear <em>wegen dem Wetter</em> (Dativ) — fine for talking, but write the Genitiv for exams.</p>
+    </section>
+
+    <!-- 7 -->
+    <section id="s7">
+      <div class="sec-head"><span class="num">07</span><h2>Reflexive verbs</h2></div>
+      <p class="lead">The reflexive pronoun points back at the subject. It's usually <b>Akkusativ</b> — but goes <b>Dativ</b> when there's already another Akkusativ object (typically a body part or thing).</p>
+
+      <div class="split">
+        <div class="ex">
+          <div class="de">Ich freue <span class="c akk">mich</span>.</div>
+          <div class="en">I'm glad / looking forward.</div>
+          <ul class="parse"><li><span class="p akk">mich</span><span class="lab akk">reflexiv · Akk</span><span class="exp">No other object → Akkusativ reflexive.</span></li></ul>
+        </div>
+        <div class="ex">
+          <div class="de">Ich putze <span class="c dat">mir</span> <span class="c akk">die Zähne</span>.</div>
+          <div class="en">I brush my teeth.</div>
+          <ul class="parse">
+            <li><span class="p dat">mir</span><span class="lab dat">reflexiv · Dat</span><span class="exp">There's already an Akkusativ object…</span></li>
+            <li><span class="p akk">die Zähne</span><span class="lab akk">Akk · was?</span><span class="exp">…so the reflexive shifts to Dativ.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="tip"><b>Akk vs Dat forms differ only in ich/du:</b> mich/mir, dich/dir. For er/sie/es/wir/ihr/sie the reflexive is just <em>sich / uns / euch / sich</em>.</p>
+    </section>
+
+    <!-- 8 -->
+    <section id="s8">
+      <div class="sec-head"><span class="num">08</span><h2>Verbs with a fixed preposition</h2></div>
+      <p class="lead">Many verbs pair with a specific preposition, and <b>that</b> preposition sets the case. You learn them as a unit: <em>sich freuen <b>auf</b></em>, <em>warten <b>auf</b></em>, <em>denken <b>an</b></em>, <em>sich interessieren <b>für</b></em>, <em>Angst haben <b>vor</b></em>.</p>
+
+      <div class="ex">
+        <div class="de">Ich freue mich auf <span class="c akk">die Ferien</span>.</div>
+        <div class="en">I'm looking forward to the holidays.</div>
+        <ul class="parse">
+          <li><span class="p akk">auf die Ferien</span><span class="lab akk">Präp.-Objekt · Akk</span><span class="exp"><em>sich freuen auf</em> is fixed and takes Akkusativ. Question: <em>Worauf freust du dich?</em></span></li>
+        </ul>
+      </div>
+      <div class="rule"><span class="tag">wo(r)- & da(r)-</span><div>For <b>things</b>, ask with <b>Wo(r)+prep</b> (<em>Worauf? Wovon? Woran?</em>) and answer with <b>Da(r)+prep</b> (<em>darauf, davon, daran</em>). For <b>people</b>, use the preposition + pronoun (<em>auf wen? → auf ihn</em>).</div></div>
+    </section>
+
+    <!-- 9 -->
+    <section id="s9">
+      <div class="sec-head"><span class="num">09</span><h2>Word order & TeKaMoLo</h2></div>
+      <p class="lead">In a main clause the conjugated verb is <b>always in position 2</b>. Whatever you put first (subject, time, place…), the verb still comes second and the subject then flips behind it. The middle-field adverbials follow a default order.</p>
+
+      <div class="rule"><span class="tag">TeKaMoLo</span><div><b>Te</b>mporal (wann?) → <b>Ka</b>usal (warum?) → <b>Mo</b>dal (wie?) → <b>Lo</b>kal (wo/wohin?).</div></div>
+
+      <div class="ex">
+        <div class="de">Ich fahre <b>morgen</b> <b>mit dem Auto</b> <b>nach Berlin</b>.</div>
+        <div class="en">I'm driving to Berlin by car tomorrow.</div>
+        <ul class="parse">
+          <li><span class="p plain">morgen</span><span class="lab neutral">Temporal · wann?</span><span class="exp">Time comes first in the middle field.</span></li>
+          <li><span class="p plain">mit dem Auto</span><span class="lab neutral">Modal · wie?</span><span class="exp">Then manner/means.</span></li>
+          <li><span class="p plain">nach Berlin</span><span class="lab neutral">Lokal · wohin?</span><span class="exp">Place/direction last.</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>Verb-second still holds if you front something:</b> <em>Morgen <u>fahre</u> ich mit dem Auto nach Berlin.</em> The verb stays in slot 2; the subject moves behind it.</p>
+    </section>
+
+    <!-- 10 -->
+    <section id="s10">
+      <div class="sec-head"><span class="num">10</span><h2>Subordinate clauses — verb to the end</h2></div>
+      <p class="lead">A subordinating conjunction sends the conjugated verb to the <b>very end</b> of its clause. The two clauses are separated by a comma.</p>
+      <div class="rule"><span class="tag">Common conjunctions</span><div><b>weil</b> (because) · <b>dass</b> (that) · <b>wenn</b> (if/when) · <b>als</b> (when, past) · <b>obwohl</b> (although) · <b>damit</b> (so that) · <b>ob</b> (whether) · <b>während · bevor · nachdem · seitdem</b>.</div></div>
+
+      <div class="ex">
+        <div class="de">Ich bleibe zu Hause, <b>weil</b> ich krank <b>bin</b>.</div>
+        <div class="en">I'm staying home because I'm sick.</div>
+        <ul class="parse">
+          <li><span class="p plain">weil</span><span class="lab neutral">Konjunktion</span><span class="exp">Subordinating → kicks the verb to the end.</span></li>
+          <li><span class="p nom">ich</span><span class="lab nom">Nom · wer?</span><span class="exp">Subject of the subordinate clause.</span></li>
+          <li><span class="p plain">bin</span><span class="lab neutral">Verb · am Ende</span><span class="exp">The conjugated verb sits last.</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>Front the subordinate clause?</b> Then it fills position 1, and the main verb comes right after the comma: <em>Weil ich krank bin, <u>bleibe</u> ich zu Hause.</em> (verb–verb across the comma).</p>
+      <p class="tip"><b>Careful:</b> <em>denn</em> also means "because" but is <b>coordinating</b> — normal word order, verb stays in position 2.</p>
+    </section>
+
+    <!-- 11 -->
+    <section id="s11">
+      <div class="sec-head"><span class="num">11</span><h2>Relative clauses</h2></div>
+      <p class="lead">A relative clause describes a noun. The relative pronoun's <b>gender/number</b> comes from the noun it refers back to; its <b>case</b> comes from its job <b>inside</b> the relative clause. The verb again goes to the end.</p>
+
+      <div class="ex">
+        <div class="de">Das ist der Mann, <span class="c dat">dem</span> ich geholfen habe.</div>
+        <div class="en">That's the man I helped.</div>
+        <ul class="parse">
+          <li><span class="p dat">dem</span><span class="lab dat">Relativpron · Dat</span><span class="exp">Masculine (from <em>der Mann</em>), but Dativ because <em>helfen</em> takes Dativ inside the clause.</span></li>
+          <li><span class="p plain">geholfen habe</span><span class="lab neutral">Verb · am Ende</span><span class="exp">Perfekt pushed to the end.</span></li>
+        </ul>
+      </div>
+      <div class="ex">
+        <div class="de">Die Frau, <b>mit</b> <span class="c dat">der</span> ich spreche, ist meine Chefin.</div>
+        <div class="en">The woman I'm speaking with is my boss.</div>
+        <ul class="parse">
+          <li><span class="p dat">mit der</span><span class="lab dat">Präp. + Rel. · Dat</span><span class="exp">A preposition can sit in front of the pronoun; here <em>mit</em> forces Dativ.</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>Genitiv relative pronoun</b> = <em>dessen</em> (m/n) / <em>deren</em> (f/pl): <em>Der Mann, <span class="c gen">dessen</span> Auto kaputt ist, …</em></p>
+    </section>
+
+    <!-- 12 -->
+    <section id="s12">
+      <div class="sec-head"><span class="num">12</span><h2>Tenses & the nachdem rule</h2></div>
+      <p class="lead">At B1 you juggle four past-referring forms. Quick map: <b>Perfekt</b> = spoken past (haben/sein + Partizip II). <b>Präteritum</b> = written past & common verbs (war, hatte, konnte). <b>Plusquamperfekt</b> = the "past before the past." <b>Futur I</b> = <em>werden</em> + Infinitiv.</p>
+
+      <div class="ex">
+        <div class="de"><b>Nachdem</b> ich <b>gegessen hatte</b>, <b>ging</b> ich spazieren.</div>
+        <div class="en">After I had eaten, I went for a walk.</div>
+        <ul class="parse">
+          <li><span class="p plain">gegessen hatte</span><span class="lab neutral">Plusquamperfekt</span><span class="exp">The <em>earlier</em> action (hatte + Partizip II).</span></li>
+          <li><span class="p plain">ging</span><span class="lab neutral">Präteritum</span><span class="exp">The <em>later</em> action. This tense pairing is the whole point of <em>nachdem</em>.</span></li>
+        </ul>
+      </div>
+      <div class="rule"><span class="tag">sein or haben?</span><div>Use <b>sein</b> in the Perfekt/Plusquamperfekt for verbs of <b>movement</b> (<em>gehen, fahren, kommen</em>) and <b>change of state</b> (<em>aufstehen, einschlafen, werden</em>). Everything else takes <b>haben</b>.</div></div>
+    </section>
+
+    <!-- 13 -->
+    <section id="s13">
+      <div class="sec-head"><span class="num">13</span><h2>Partizip I & II as adjectives</h2></div>
+      <p class="lead">Both participles can sit in front of a noun like an adjective — and they then take normal adjective endings. The difference is <b>active vs. passive / ongoing vs. finished</b>.</p>
+
+      <div class="split">
+        <div class="ex">
+          <div class="de">das <b>kochende</b> Wasser</div>
+          <div class="en">the boiling water</div>
+          <ul class="parse"><li><span class="p plain">kochende</span><span class="lab neutral">Partizip I</span><span class="exp">Infinitiv + <b>-d</b> + ending. Active, happening <em>now</em> — the water is boiling.</span></li></ul>
+        </div>
+        <div class="ex">
+          <div class="de">das <b>gekochte</b> Ei</div>
+          <div class="en">the boiled egg</div>
+          <ul class="parse"><li><span class="p plain">gekochte</span><span class="lab neutral">Partizip II</span><span class="exp">Passive / finished — the egg <em>has been</em> boiled.</span></li></ul>
+        </div>
+      </div>
+      <div class="ex">
+        <div class="de">Das <span class="c nom">weinende Kind</span> sucht <span class="c akk">seine Mutter</span>.</div>
+        <div class="en">The crying child is looking for its mother.</div>
+        <ul class="parse">
+          <li><span class="p nom">weinende Kind</span><span class="lab nom">Nom · Partizip I</span><span class="exp">Active: the child is doing the crying.</span></li>
+          <li><span class="p akk">seine Mutter</span><span class="lab akk">Akk · wen?</span><span class="exp">Direct object of <em>suchen</em>.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section id="s14">
+      <div class="sec-head"><span class="num">14</span><h2>Passiv (Vorgangspassiv)</h2></div>
+      <p class="lead">The passive puts the <b>action</b> centre-stage; the doer becomes optional. Formula: <b>werden</b> (conjugated) + <b>Partizip II</b> at the end. The thing that was the Akkusativ object becomes the Nominativ subject.</p>
+
+      <div class="ex">
+        <div class="de"><span class="c nom">Der Brief</span> wurde <b>von</b> <span class="c dat">meinem Chef</span> geschrieben.</div>
+        <div class="en">The letter was written by my boss.</div>
+        <ul class="parse">
+          <li><span class="p nom">Der Brief</span><span class="lab nom">Nom · wer/was?</span><span class="exp">Now the subject — it receives the action.</span></li>
+          <li><span class="p plain">wurde … geschrieben</span><span class="lab neutral">Passiv · Prät.</span><span class="exp"><em>werden</em> (here Präteritum <em>wurde</em>) + Partizip II.</span></li>
+          <li><span class="p dat">von meinem Chef</span><span class="lab dat">Agens · Dat</span><span class="exp"><b>von</b> + Dativ names the doer (optional).</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>von vs durch:</b> <em>von</em> = the person/agent doing it; <em>durch</em> = the means or cause (<em>durch einen Sturm</em>).</p>
+    </section>
+
+    <!-- 15 -->
+    <section id="s15">
+      <div class="sec-head"><span class="num">15</span><h2>Konjunktiv II — hypothetical & polite</h2></div>
+      <p class="lead">Use it for unreal conditions, wishes, and politeness. Two everyday forms: real Konjunktiv (<b>wäre, hätte, könnte, müsste</b>) for common verbs, and <b>würde + Infinitiv</b> for the rest.</p>
+
+      <div class="ex">
+        <div class="de"><b>Wenn</b> ich Zeit <b>hätte</b>, <b>würde</b> ich <span class="c dat">dir</span> <b>helfen</b>.</div>
+        <div class="en">If I had time, I'd help you.</div>
+        <ul class="parse">
+          <li><span class="p plain">hätte</span><span class="lab neutral">Konj. II · Bedingung</span><span class="exp">The unreal condition (from <em>haben</em>).</span></li>
+          <li><span class="p plain">würde … helfen</span><span class="lab neutral">Konj. II · Folge</span><span class="exp">The result, built with <em>würde</em> + Infinitiv.</span></li>
+          <li><span class="p dat">dir</span><span class="lab dat">Dat · wem?</span><span class="exp"><em>helfen</em> still takes Dativ.</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>Polite requests:</b> <em>Könnten Sie mir helfen?</em> / <em>Ich hätte gern einen Kaffee.</em> — softer than the plain present.</p>
+    </section>
+
+    <!-- 16 -->
+    <section id="s16">
+      <div class="sec-head"><span class="num">16</span><h2>Infinitive with zu · um…zu</h2></div>
+      <p class="lead">Many verbs and expressions attach a second verb as an <b>Infinitiv mit zu</b>. For purpose ("in order to") use <b>um … zu + Infinitiv</b> — but only when both clauses share the same subject.</p>
+
+      <div class="split">
+        <div class="ex">
+          <div class="de">Ich versuche, früh <b>aufzustehen</b>.</div>
+          <div class="en">I try to get up early.</div>
+          <ul class="parse"><li><span class="p plain">aufzustehen</span><span class="lab neutral">Inf. mit zu</span><span class="exp">Separable verb → <em>zu</em> goes <b>inside</b>: auf-zu-stehen.</span></li></ul>
+        </div>
+        <div class="ex">
+          <div class="de">Ich lerne Deutsch, <b>um</b> in Deutschland zu <b>studieren</b>.</div>
+          <div class="en">I'm learning German (in order) to study in Germany.</div>
+          <ul class="parse"><li><span class="p plain">um … zu studieren</span><span class="lab neutral">final · Zweck</span><span class="exp">Purpose, same subject in both parts.</span></li></ul>
+        </div>
+      </div>
+      <p class="tip"><b>Different subjects?</b> Use <em>damit</em> instead: <em>Ich erkläre es, <b>damit</b> du es verstehst.</em></p>
+    </section>
+
+    <!-- 17 -->
+    <section id="s17">
+      <div class="sec-head"><span class="num">17</span><h2>Comparison — Komparativ & Superlativ</h2></div>
+      <p class="lead">Comparative = adjective + <b>-er</b> (+ <em>als</em>). Superlative = <b>am …-sten</b> (predicative) or <b>der/die/das …-ste</b> (before a noun). Many short adjectives add an Umlaut.</p>
+
+      <div class="tbl"><table>
+        <caption>the pattern, with the irregulars you must know</caption>
+        <thead><tr><th>Grundform</th><th>Komparativ</th><th>Superlativ</th></tr></thead>
+        <tbody>
+          <tr><th>schnell</th><td>schneller</td><td>am schnellsten</td></tr>
+          <tr><th>groß</th><td>größer</td><td>am größten</td></tr>
+          <tr><th>gut</th><td>besser</td><td>am besten</td></tr>
+          <tr><th>viel</th><td>mehr</td><td>am meisten</td></tr>
+          <tr><th>gern</th><td>lieber</td><td>am liebsten</td></tr>
+          <tr><th>hoch</th><td>höher</td><td>am höchsten</td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="ex">
+        <div class="de"><span class="c nom">Mein Bruder</span> ist <b>größer als</b> ich.</div>
+        <div class="en">My brother is taller than I am.</div>
+        <ul class="parse">
+          <li><span class="p nom">Mein Bruder</span><span class="lab nom">Nom · wer?</span><span class="exp">Subject being compared.</span></li>
+          <li><span class="p plain">größer … als</span><span class="lab neutral">Komparativ</span><span class="exp">Umlaut + <b>-er</b>; comparison marked with <em>als</em> (not <em>wie</em>).</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>so … wie</b> marks equality: <em>Sie ist <b>so</b> groß <b>wie</b> ich.</em> Reserve <em>als</em> for difference.</p>
+    </section>
+
+    <!-- 18 -->
+    <section id="s18">
+      <div class="sec-head"><span class="num">18</span><h2>n-Deklination</h2></div>
+      <p class="lead">A group of masculine nouns adds <b>-(e)n</b> in <b>every case except Nominativ singular</b>. Common ones: <em>der Student, Junge, Kunde, Kollege, Mensch, Nachbar, Herr, Präsident, Name*.</em></p>
+
+      <div class="ex">
+        <div class="de">Ich habe mit <span class="c dat">dem Studenten</span> gesprochen.</div>
+        <div class="en">I spoke with the student.</div>
+        <ul class="parse">
+          <li><span class="p dat">dem Studenten</span><span class="lab dat">Dat · n-Deklination</span><span class="exp">Nominativ is <em>der Student</em>, but Dat/Akk/Gen all take <b>-en</b>: <em>dem/den/des Studenten</em>.</span></li>
+        </ul>
+      </div>
+      <p class="tip"><b>*Name</b> is a mixed case: Genitiv <em>des Namens</em> (adds -ns), otherwise <em>Namen</em>.</p>
+    </section>
+
+    <!-- CHEAT SHEET -->
+    <section id="cheat">
+      <div class="cheat">
+        <div class="kicker" style="color:var(--muted)">One-screen recap</div>
+        <h2>The cheat sheet</h2>
+        <div class="cg">
+          <div>
+            <h4>Ask the case</h4>
+            <ul>
+              <li><b>Nom</b> — wer? was?</li>
+              <li><b>Akk</b> — wen? was?</li>
+              <li><b>Dat</b> — wem?</li>
+              <li><b>Gen</b> — wessen?</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Prepositions</h4>
+            <ul>
+              <li><b>Akk:</b> durch, für, gegen, ohne, um</li>
+              <li><b>Dat:</b> aus, bei, mit, nach, seit, von, zu</li>
+              <li><b>Wechsel:</b> wohin?→Akk / wo?→Dat</li>
+              <li><b>Gen:</b> wegen, trotz, während, statt</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Verb position</h4>
+            <ul>
+              <li>Main clause → verb slot <b>2</b></li>
+              <li>weil/dass/wenn… → verb <b>last</b></li>
+              <li>Middle field → <b>TeKaMoLo</b></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Dativ verbs</h4>
+            <ul>
+              <li>helfen, danken, gehören,</li>
+              <li>gefallen, antworten, folgen,</li>
+              <li>passen, schmecken, glauben</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Build it</h4>
+            <ul>
+              <li><b>Perfekt:</b> haben/sein + Part. II</li>
+              <li><b>Passiv:</b> werden + Part. II</li>
+              <li><b>Konj II:</b> würde + Infinitiv</li>
+              <li><b>Purpose:</b> um … zu + Inf.</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Adjective endings</h4>
+            <ul>
+              <li>after der/die/das → <b>-e / -en</b></li>
+              <li>after ein- → ending carries the info</li>
+              <li>no article → adj. shows the case</li>
+              <li>after sein/werden → <b>no ending</b></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <footer>Deutsch B1.2 · find the verb → ask the question → label every part</footer>
+    </section>
+
+  </div>
+</div>
+</body>
+</html>
