@@ -6,6 +6,7 @@ works offline once loaded, on a phone as well as a laptop.
 | Page | What it covers |
 | --- | --- |
 | [`index.html`](index.html) | German grammar A1 → B1.2: the four cases, adjective endings, prepositions, word order, relative clauses, Passiv, Konjunktiv II, n-Deklination, plus a cheat sheet and a page of Eselsbrücken |
+| [`werbung.html`](werbung.html) | Hausaufgabe: Werbe-Website für ein fiktives Produkt (pünktliche Bahn) — nur Design, alle Texte sind leere Platzhalter zum Selberschreiben |
 | [`kapitel-3.html`](kapitel-3.html) | *Begegnungen B1+* Kapitel 3 · **Medien** — the five grammar points of the chapter explained in English, the full D2 verb list with English meanings, the chapter vocabulary, and 96 graded practice questions |
 
 ## Kapitel 3 at a glance
