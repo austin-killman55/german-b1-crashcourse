@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vokabeltrainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="eyebrow">Deutsch · B1 · Spaced Repetition</div>
+      <h1>Vokabeltrainer</h1>
+    </div>
+    <div class="stats">
+      <div class="stat due"><b id="s-due">–</b><span>fällig</span></div>
+      <div class="stat"><b id="s-new">–</b><span>neu</span></div>
+      <div class="stat rev"><b id="s-rev">–</b><span>EN → DE</span></div>
+      <div class="stat"><b id="s-total">–</b><span>Karten</span></div>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-review" role="tab" aria-selected="true">Üben</button>
+    <button class="tab" id="tab-add" role="tab" aria-selected="false">+ Wort</button>
+    <button class="tab" id="tab-days" role="tab" aria-selected="false">Tageswortschatz</button>
+    <button class="tab" id="tab-browse" role="tab" aria-selected="false">Alle Karten</button>
+    <button class="tab" id="tab-settings" role="tab" aria-selected="false">Einstellungen</button>
+  </div>
+
+  <section id="view-review">
+    <div class="prog" id="prog" hidden>
+      <span id="prog-text">0 von 0</span>
+      <span class="track"><span class="fill" id="prog-fill"></span></span>
+      <button class="mix" id="shuffle-queue" title="Reihenfolge mischen">Mischen</button>
+    </div>
+
+    <div class="panel" id="msg">
+      <h2 id="msg-title">Wird geladen …</h2>
+      <p id="msg-text">Karten werden geholt.</p>
+    </div>
+
+    <div class="review" id="card" hidden>
+      <div class="body">
+        <div class="face" id="c-front"></div>
+        <div class="answer" id="c-answer" hidden></div>
+      </div>
+      <div class="controls">
+        <button class="reveal-btn" id="reveal">Antwort zeigen</button>
+        <div class="grades" id="grades" hidden>
+          <button class="grade" data-g="1"><b>Nochmal</b><span id="i1"></span></button>
+          <button class="grade" data-g="2"><b>Schwer</b><span id="i2"></span></button>
+          <button class="grade" data-g="3"><b>Gut</b><span id="i3"></span></button>
+          <button class="grade" data-g="4"><b>Leicht</b><span id="i4"></span></button>
+        </div>
+        <div class="undo-row">
+          <span class="keys">Leertaste = aufdecken · 1–4 = bewerten · M = mischen</span>
+          <button id="undo" disabled>Rückgängig</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-add" hidden>
+    <form class="addform" id="add-form" autocomplete="off">
+      <label class="field grow">
+        <span>Wort</span>
+        <input type="text" id="add-word" placeholder="z. B. sich freuen, Absage, abhängen …" required>
+      </label>
+      <label class="field grow">
+        <span>Bedeutung / Kontext <i>(optional)</i></span>
+        <input type="text" id="add-hint" placeholder="falls mehrdeutig, z. B. „Bank“ = bench">
+      </label>
+      <button type="submit" class="primary" id="add-go">Nachschlagen</button>
+    </form>
+    <p class="status" id="add-status" role="status"></p>
+    <div id="add-preview"></div>
+  </section>
+
+  <section id="view-days" hidden>
+    <div class="daybar">
+      <span class="daynav">
+        <button class="nav" id="day-prev" title="Früherer Tag">‹</button>
+        <select id="day-select" aria-label="Tag auswählen"></select>
+        <button class="nav" id="day-next" title="Späterer Tag">›</button>
+      </span>
+      <button class="mix" id="shuffle-day">Mischen</button>
+      <button class="mix" id="flip-all">Alle umdrehen</button>
+      <span class="daycount" id="day-count"></span>
+    </div>
+
+    <details class="key">
+      <summary>Reading the pronunciations</summary>
+      <ul>
+        <li><b>CAPS</b> — the stressed syllable, hit it harder</li>
+        <li><b>kh</b> — the <i>ch</i> hiss: like <i>huge</i>, or Scottish <i>loch</i></li>
+        <li><b>ew</b> — the <i>ü</i>: say “ee” with your lips rounded</li>
+        <li><b>ur</b> — the <i>ö</i>: the vowel in British “fur”</li>
+        <li><b>ts</b> = z · <b>v</b> = w · <b>f</b> = v · <b>z</b> = s</li>
+        <li><b>ow</b> = au · <b>oy</b> = eu/äu · <b>ine</b> = ein</li>
+      </ul>
+    </details>
+
+    <div class="grid" id="day-grid"></div>
+  </section>
+
+  <section id="view-browse" hidden>
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Wort oder Bedeutung suchen …" aria-label="Karten durchsuchen">
+      <span class="mono" id="browse-count"></span>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Wort</th><th>Bedeutung</th><th>Tag</th><th>Status</th><th>Richtung</th><th>Fällig</th><th>Intervall</th><th>Wdh.</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="view-settings" hidden>
+    <div class="settings">
+      <div class="setblock">
+        <h3>Claude API-Schlüssel</h3>
+        <p>Zum Nachschlagen neuer Wörter. Der Schlüssel bleibt in diesem Browser und wird nur an <span class="mono">api.anthropic.com</span> geschickt. Einen Schlüssel bekommst du unter <a href="https://console.anthropic.com/" target="_blank" rel="noopener">console.anthropic.com</a>.</p>
+        <div class="row">
+          <input type="password" id="api-key" placeholder="sk-ant-…" autocomplete="off" aria-label="API-Schlüssel">
+          <button id="key-save">Speichern</button>
+          <button id="key-clear">Entfernen</button>
+        </div>
+        <p class="status" id="key-status"></p>
+      </div>
+      <div class="setblock">
+        <h3>Daten</h3>
+        <p>Karten und Lernstand liegen im Speicher dieses Browsers. Exportiere sie, um sie zu sichern oder auf ein anderes Gerät zu übertragen.</p>
+        <div class="row">
+          <button id="export">Exportieren (JSON)</button>
+          <label class="filebtn">Importieren …<input type="file" id="import" accept="application/json,.json" hidden></label>
+          <button id="reset" class="danger">Auf Startsatz zurücksetzen</button>
+        </div>
+        <p class="status" id="data-status"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>Neue Wörter fügst du unter <b>+ Wort</b> hinzu: Claude ergänzt Artikel, Aussprache, einen Beispielsatz mit farbig markierten Fällen, bei Verben alle drei Zeitformen, den Kasus des Objekts und feste Präpositionen. Eine Karte, die du mit <b>Leicht</b> bewertest, kommt ab dann auf Englisch dran. Unter „Alle Karten“ kannst du die Richtung umstellen oder ältere Karten mit ✨ anreichern.</footer>
+</div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
